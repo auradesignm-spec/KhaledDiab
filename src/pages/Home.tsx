@@ -78,7 +78,7 @@ function SectionLabel({ ar, en, light = false }: any) {
 
 /* ─── Project Card (Hover & Click to Zoom) ─── */
 const ProjectCard = ({ src, label, onClick }: { src: string; label: string; onClick: () => void }) => (
-  <div 
+  <div
     onClick={onClick}
     className="group relative w-[280px] sm:w-[320px] md:w-[380px] aspect-[3/4] overflow-hidden bg-charcoal-dark shrink-0 cursor-zoom-in border border-transparent transition-all duration-500 ease-out hover:border-gold/30 hover:shadow-[0_0_30px_rgba(212,175,55,0.08)]"
   >
@@ -93,7 +93,6 @@ const ProjectCard = ({ src, label, onClick }: { src: string; label: string; onCl
 
 /* ─── Flawless CSS Infinite Marquee ─── */
 const InfiniteSeamlessMarquee = ({ images, duration, reverse, onImageClick }: { images: any[]; duration: number; reverse?: boolean; onImageClick: (img: any) => void }) => {
-  // المضاعفة 4 مرات لضمان عدم وجود أي فراغ مهما كان عرض الشاشة
   const duplicatedImages = [...images, ...images, ...images, ...images];
   const animationClass = reverse ? "animate-marquee-right" : "animate-marquee-left";
 
@@ -101,8 +100,8 @@ const InfiniteSeamlessMarquee = ({ images, duration, reverse, onImageClick }: { 
     <div className="relative w-full overflow-hidden mb-16">
       <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-charcoal to-transparent z-10 pointer-events-none" />
       <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-charcoal to-transparent z-10 pointer-events-none" />
-      
-      <div 
+
+      <div
         className={`flex gap-4 sm:gap-6 w-max ${animationClass} hover:animation-paused`}
         style={{ animationDuration: `${duration}s` }}
       >
@@ -119,7 +118,7 @@ export default function HomePage() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-charcoal">
-      
+
       {/* ─── CSS Animations Injected ─── */}
       <style>{`
         @keyframes marquee-left {
@@ -135,7 +134,7 @@ export default function HomePage() {
         .hover\\:animation-paused:hover { animation-play-state: paused; }
       `}</style>
 
-      {/* ─── Lightbox Modal (Zoom In) ─── */}
+      {/* ─── Lightbox Modal ─── */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
@@ -153,19 +152,19 @@ export default function HomePage() {
               onClick={(e) => e.stopPropagation()}
               className="relative flex flex-col items-center justify-center max-w-5xl w-full cursor-default"
             >
-              <button 
+              <button
                 onClick={() => setSelectedImage(null)}
                 className="absolute -top-12 right-0 md:-right-12 p-2 text-white/50 hover:text-gold transition-colors duration-300"
               >
                 <X className="w-8 h-8" strokeWidth={1.5} />
               </button>
-              
-              <img 
-                src={selectedImage.src} 
-                alt={selectedImage.label} 
-                className="w-auto max-h-[75vh] md:max-h-[85vh] object-contain rounded-sm shadow-2xl border border-white/5" 
+
+              <img
+                src={selectedImage.src}
+                alt={selectedImage.label}
+                className="w-auto max-h-[75vh] md:max-h-[85vh] object-contain rounded-sm shadow-2xl border border-white/5"
               />
-              
+
               <div className="mt-6 text-center">
                 <p className="text-gold tracking-[0.2em] uppercase text-sm md:text-base font-medium">
                   {selectedImage.label}
@@ -234,8 +233,14 @@ export default function HomePage() {
               <span className="en">We Transform <em className="italic text-gold-dark">Spaces</em><br />into Masterpieces</span>
             </h2>
             <div className="space-y-6 text-text-muted font-light text-base md:text-lg leading-[2] text-justify">
-              <p className="ar">في فيوتشر ديزاين ديكور، نؤمن بأن كل مساحة تروي قصة. بقيادة المصمم خالد دياب، نجمع بين الفخامة والوظيفة لنبتكر تصاميم داخلية تعكس شخصية عملائنا وترتقي بأسلوب حياتهم.</p>
-              <p className="ar">نقدم حلولاً متكاملة من التصميم على الورق حتى التسليم النهائي، مع اهتمام استثنائي بأدق التفاصيل وأعلى معايير الجودة.</p>
+              <p>
+                <span className="ar">في فيوتشر ديزاين ديكور، نؤمن بأن كل مساحة تروي قصة. بقيادة المصمم خالد دياب، نجمع بين الفخامة والوظيفة لنبتكر تصاميم داخلية تعكس شخصية عملائنا وترتقي بأسلوب حياتهم.</span>
+                <span className="en">At Future Design Decore, we believe every space tells a story. Led by designer Khaled Diab, we blend luxury with function to craft interiors that reflect our clients' personalities and elevate their lifestyle.</span>
+              </p>
+              <p>
+                <span className="ar">نقدم حلولاً متكاملة من التصميم على الورق حتى التسليم النهائي، مع اهتمام استثنائي بأدق التفاصيل وأعلى معايير الجودة.</span>
+                <span className="en">We deliver end-to-end solutions from initial design concepts to final handover, with exceptional attention to detail and the highest quality standards.</span>
+              </p>
             </div>
           </Reveal>
 
@@ -306,8 +311,14 @@ export default function HomePage() {
                   <div className="mb-8 mt-4 transition-transform duration-500 group-hover:-translate-y-1 group-hover:text-gold-light">
                     <svc.icon strokeWidth={1.2} className="w-11 h-11 text-gold/70" />
                   </div>
-                  <h3 className="font-sans font-bold text-lg text-cream-light mb-3 leading-snug"><span className="ar">{svc.ar}</span><span className="en">{svc.en}</span></h3>
-                  <p className="text-sm font-light text-cream/45 leading-[1.9] text-justify"><span className="ar">{svc.arDesc}</span><span className="en">{svc.enDesc}</span></p>
+                  <h3 className="font-sans font-bold text-lg text-cream-light mb-3 leading-snug">
+                    <span className="ar">{svc.ar}</span>
+                    <span className="en">{svc.en}</span>
+                  </h3>
+                  <p className="text-sm font-light text-cream/45 leading-[1.9] text-justify">
+                    <span className="ar">{svc.arDesc}</span>
+                    <span className="en">{svc.enDesc}</span>
+                  </p>
                 </div>
               </StaggerChild>
             ))}
@@ -332,13 +343,13 @@ export default function HomePage() {
 
           <StaggerParent className="grid grid-cols-1 md:grid-cols-2 border border-charcoal/8 bg-white/50 backdrop-blur-sm shadow-xl">
             {[
-              { icon: HomeIcon, num: "01", ar: "أعمال التصميم الديكوري", en: "Decor Design Works", arDesc: "مجالس · غرف معيشة · مطابخ · حمامات · غرف نوم" },
-              { icon: Wrench, num: "02", ar: "أعمال النجارة", en: "Carpentry Works", arDesc: "ديكورات خشبية · خزائن · مطابخ مدمجة" },
-              { icon: Square, num: "03", ar: "أعمال الجبس", en: "Gypsum Works", arDesc: "جدران · أسقف · ديكورات جبسية متنوعة" },
-              { icon: Layers, num: "04", ar: "أسمنت بورد", en: "Cement Board", arDesc: "قواطع داخلية · واجهات خارجية" },
-              { icon: Grid3x3, num: "05", ar: "الحجر وبدائله", en: "Stone & Alternatives", arDesc: "تكسية جدران داخلية · واجهات خارجية" },
-              { icon: Star, num: "06", ar: "لوحات ثلاثية الأبعاد", en: "3D Panels", arDesc: "لوحات 3D مضيئة بأشكال وتصاميم متعددة" },
-              { icon: PaintBucket, num: "07", ar: "أعمال الدهانات", en: "Painting Works", arDesc: "دهانات متنوعة · تشطيبات ملمسية" },
+              { icon: HomeIcon, num: "01", ar: "أعمال التصميم الديكوري", en: "Decor Design Works", arDesc: "مجالس · غرف معيشة · مطابخ · حمامات · غرف نوم", enDesc: "Majlis · Living Rooms · Kitchens · Bathrooms · Bedrooms" },
+              { icon: Wrench, num: "02", ar: "أعمال النجارة", en: "Carpentry Works", arDesc: "ديكورات خشبية · خزائن · مطابخ مدمجة", enDesc: "Wooden Decor · Wardrobes · Built-in Kitchens" },
+              { icon: Square, num: "03", ar: "أعمال الجبس", en: "Gypsum Works", arDesc: "جدران · أسقف · ديكورات جبسية متنوعة", enDesc: "Walls · Ceilings · Various Gypsum Decorations" },
+              { icon: Layers, num: "04", ar: "أسمنت بورد", en: "Cement Board", arDesc: "قواطع داخلية · واجهات خارجية", enDesc: "Interior Partitions · Exterior Facades" },
+              { icon: Grid3x3, num: "05", ar: "الحجر وبدائله", en: "Stone & Alternatives", arDesc: "تكسية جدران داخلية · واجهات خارجية", enDesc: "Interior Wall Cladding · External Facades" },
+              { icon: Star, num: "06", ar: "لوحات ثلاثية الأبعاد", en: "3D Panels", arDesc: "لوحات 3D مضيئة بأشكال وتصاميم متعددة", enDesc: "Illuminated 3D panels in various shapes and designs" },
+              { icon: PaintBucket, num: "07", ar: "أعمال الدهانات", en: "Painting Works", arDesc: "دهانات متنوعة · تشطيبات ملمسية", enDesc: "Various Paints · Textured Finishes" },
             ].map((item, idx) => (
               <StaggerChild key={idx}>
                 <div className={`group flex items-start gap-7 p-10 xl:p-12 transition-colors duration-400 hover:bg-white/70 border-b border-charcoal/8 ${idx % 2 === 0 ? "md:border-e md:border-charcoal/8" : ""}`}>
@@ -347,8 +358,14 @@ export default function HomePage() {
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2"><span className="font-serif text-[11px] text-charcoal/20 tracking-widest">{item.num}</span></div>
-                    <h3 className="font-sans font-bold text-base md:text-lg text-charcoal mb-2 leading-snug"><span className="ar">{item.ar}</span></h3>
-                    <p className="text-sm font-light text-text-muted leading-relaxed text-justify"><span className="ar">{item.arDesc}</span></p>
+                    <h3 className="font-sans font-bold text-base md:text-lg text-charcoal mb-2 leading-snug">
+                      <span className="ar">{item.ar}</span>
+                      <span className="en">{item.en}</span>
+                    </h3>
+                    <p className="text-sm font-light text-text-muted leading-relaxed text-justify">
+                      <span className="ar">{item.arDesc}</span>
+                      <span className="en">{item.enDesc}</span>
+                    </p>
                   </div>
                 </div>
               </StaggerChild>
@@ -379,9 +396,9 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* LOOP 1: استراحة مهنا */}
-        <InfiniteSeamlessMarquee 
-          duration={80} // كلما زاد الرقم كانت الحركة أبطأ وأكثر فخامة
+        {/* LOOP 1 */}
+        <InfiniteSeamlessMarquee
+          duration={80}
           onImageClick={setSelectedImage}
           images={[
             { src: "/work-1.jpeg", label: "صحار | المجلس الرئيسي" },
@@ -395,11 +412,11 @@ export default function HomePage() {
             { src: "/work-9.jpeg", label: "صحار | اللمسات النهائية" },
           ]}
         />
-        
-        {/* LOOP 2: مغاسل مسقط */}
-        <InfiniteSeamlessMarquee 
-          duration={65} 
-          reverse={true} 
+
+        {/* LOOP 2 */}
+        <InfiniteSeamlessMarquee
+          duration={65}
+          reverse={true}
           onImageClick={setSelectedImage}
           images={[
             { src: "/marble-1.jpeg", label: "مسقط | مغاسل رخام فاخرة" },
@@ -423,9 +440,11 @@ export default function HomePage() {
             <SectionLabel ar="تواصل مع المكتب" en="Contact the Studio" light />
             <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl text-cream-light leading-[1.15] mb-6">
               <span className="ar">دعنا نتحدث<br /><em className="not-italic text-gold">عن مشروعك</em></span>
+              <span className="en">Let's Talk<br /><em className="italic text-gold">About Your Project</em></span>
             </h2>
             <p className="text-cream/50 font-light text-base mb-12 leading-[1.9] text-justify max-w-lg">
               <span className="ar">نحن هنا لتحويل أفكارك إلى حقيقة. تواصل معنا للحصول على استشارتك المجانية ومناقشة تفاصيل مشروعك.</span>
+              <span className="en">We are here to turn your ideas into reality. Contact us for a free consultation and to discuss the details of your project.</span>
             </p>
 
             <div className="space-y-4 max-w-md">
@@ -439,8 +458,14 @@ export default function HomePage() {
                     <c.icon className="w-6 h-6 text-gold group-hover:text-charcoal transition-colors duration-300" />
                   </div>
                   <div className="flex-1">
-                    <div className="text-[10px] tracking-[0.3em] text-gold/60 uppercase mb-1 font-medium"><span className="ar">{c.labelAr}</span></div>
-                    <div className="text-base font-medium text-cream/95" dir={c.forceLtr ? "ltr" : undefined}><span className="ar">{c.valAr}</span></div>
+                    <div className="text-[10px] tracking-[0.3em] text-gold/60 uppercase mb-1 font-medium">
+                      <span className="ar">{c.labelAr}</span>
+                      <span className="en">{c.labelEn}</span>
+                    </div>
+                    <div className="text-base font-medium text-cream/95" dir={c.forceLtr ? "ltr" : undefined}>
+                      <span className="ar">{c.valAr}</span>
+                      <span className="en">{c.valEn}</span>
+                    </div>
                   </div>
                 </motion.a>
               ))}
@@ -455,7 +480,10 @@ export default function HomePage() {
                 <div className="w-20 h-[1px] bg-gold/20 mb-9" />
                 <div className="font-sans font-light text-xl tracking-[0.5em] uppercase text-cream/85 mb-3">Khaled Diab</div>
                 <div className="font-sans font-light text-xs tracking-[0.4em] uppercase text-gold/60">Future Design Decore</div>
-                <div className="mt-10 text-[11px] tracking-[0.25em] uppercase text-cream/30"><span className="ar">سلطنة عُمان</span></div>
+                <div className="mt-10 text-[11px] tracking-[0.25em] uppercase text-cream/30">
+                  <span className="ar">سلطنة عُمان</span>
+                  <span className="en">Sultanate of Oman</span>
+                </div>
               </div>
             </div>
           </Reveal>
