@@ -10,15 +10,12 @@ export default function Nav() {
   const [activeTab, setActiveTab] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
-  // حالة اللغة لتتبع اتجاه الموقع
   const [isAr, setIsAr] = useState(true);
 
-  // تحديث حالة اللغة عند تحميل الصفحة لضمان توافقها مع إعداداتك
   useEffect(() => {
     setIsAr(document.documentElement.dir === "rtl" || document.documentElement.lang === "ar");
   }, []);
 
-  // دالة تبديل اللغة وتغيير اتجاه الموقع الفعلي (لضمان عمل كلاسات .ar و .en بشكل سليم)
   const toggleLanguage = () => {
     const newIsAr = !isAr;
     setIsAr(newIsAr);
@@ -36,26 +33,28 @@ export default function Nav() {
     setScrolled(latest > 50);
   });
 
+  // 🛠️ التعديل هنا: إضافة / قبل كل رابط ليعمل من أي صفحة
   const desktopLinks = [
-    { id: "about", labelAr: "من نحن", labelEn: "About Us", href: "#about" },
-    { id: "design-services", labelAr: "خدمات التصميم", labelEn: "Design Services", href: "#design-services" },
-    { id: "execution-services", labelAr: "خدمات التنفيذ", labelEn: "Execution Services", href: "#execution-services" },
+    { id: "about", labelAr: "من نحن", labelEn: "About Us", href: "/#about" },
+    { id: "design-services", labelAr: "خدمات التصميم", labelEn: "Design Services", href: "/#design-services" },
+    { id: "execution-services", labelAr: "خدمات التنفيذ", labelEn: "Execution Services", href: "/#execution-services" },
     { id: "portfolio", labelAr: "أهم أعمالنا", labelEn: "Our Portfolio", href: "/portfolio" },
-    { id: "contact", labelAr: "تواصل معنا", labelEn: "Contact Us", href: "#contact" },
+    { id: "contact", labelAr: "تواصل معنا", labelEn: "Contact Us", href: "/#contact" },
   ];
 
+  // 🛠️ التعديل هنا أيضاً للشريط السفلي
   const mobileNavItems = [
-    { id: "home", icon: Home, labelAr: "الرئيسية", labelEn: "Home", href: "#top" },
-    { id: "design", icon: PenTool, labelAr: "التصميم", labelEn: "Design", href: "#design-services" },
-    { id: "execution", icon: Wrench, labelAr: "التنفيذ", labelEn: "Execution", href: "#execution-services" },
+    { id: "home", icon: Home, labelAr: "الرئيسية", labelEn: "Home", href: "/" },
+    { id: "design", icon: PenTool, labelAr: "التصميم", labelEn: "Design", href: "/#design-services" },
+    { id: "execution", icon: Wrench, labelAr: "التنفيذ", labelEn: "Execution", href: "/#execution-services" },
     { id: "portfolio", icon: Briefcase, labelAr: "أعمالنا", labelEn: "Portfolio", href: "/portfolio" },
-    { id: "contact", icon: Phone, labelAr: "تواصل", labelEn: "Contact", href: "#contact" },
+    { id: "contact", icon: Phone, labelAr: "تواصل", labelEn: "Contact", href: "/#contact" },
   ];
 
   return (
     <>
       {/* ══════════════════════════════════════════
-          1. TOP HEADER (Desktop & Mobile Top)
+          1. TOP HEADER
       ══════════════════════════════════════════ */}
       <motion.header
         variants={{ visible: { y: 0 }, hidden: { y: "-100%" } }}
@@ -67,10 +66,8 @@ export default function Nav() {
       >
         <div className="max-w-[1300px] mx-auto px-6">
           
-          {/* ─── تخطيط الشاشات الكبيرة (ثبات مطلق ومضمون) ─── */}
+          {/* ─── تخطيط الشاشات الكبيرة ─── */}
           <div className="hidden lg:flex items-center justify-between w-full h-12" dir="ltr">
-            
-            {/* 1. الشعار والاسم (أقصى اليسار) */}
             <div className="w-1/4 flex items-center justify-start gap-3">
               <BrandLogo className="w-10 h-8 text-gold" />
               <span className="font-serif text-lg tracking-[0.2em] text-cream-light uppercase mt-1">
@@ -78,7 +75,6 @@ export default function Nav() {
               </span>
             </div>
 
-            {/* 2. الروابط بالمنتصف (تعرض النصين معاً والموقع يخفي واحد حسب اللغة) */}
             <nav 
               className="flex-1 flex items-center justify-center gap-8 xl:gap-14"
               dir={isAr ? "rtl" : "ltr"}
@@ -91,26 +87,23 @@ export default function Nav() {
                 >
                   <span className="ar text-[15px] font-medium tracking-normal">{item.labelAr}</span>
                   <span className="en text-[11px] font-medium tracking-[0.2em] uppercase">{item.labelEn}</span>
-                  {/* تأثير التسطير الذهبي الفخم */}
                   <span className="absolute -bottom-2 left-1/2 w-0 h-[1px] bg-gold -translate-x-1/2 transition-all duration-500 group-hover:w-full" />
                 </a>
               ))}
             </nav>
 
-            {/* 3. زر اللغة (أقصى اليمين) */}
             <div className="w-1/4 flex items-center justify-end">
               <button 
                 onClick={toggleLanguage}
                 className="px-6 py-2.5 rounded-full border border-gold/20 text-[10px] tracking-widest text-cream/70 uppercase hover:bg-gold hover:text-charcoal hover:border-gold transition-all duration-400 font-medium whitespace-nowrap"
               >
-                {/* إذا كانت الواجهة عربية فالزر يظهر 'English' والعكس */}
                 <span className="ar">English</span>
                 <span className="en">عـربـي</span>
               </button>
             </div>
           </div>
 
-          {/* ─── تخطيط الموبايل (Mobile) ─── */}
+          {/* ─── تخطيط الموبايل ─── */}
           <div className="flex lg:hidden items-center justify-between w-full h-10" dir="ltr">
             <button 
               onClick={() => setIsMobileMenuOpen(true)}
@@ -135,7 +128,7 @@ export default function Nav() {
       </motion.header>
 
       {/* ══════════════════════════════════════════
-          2. MOBILE SIDE DRAWER (القائمة الجانبية للموبايل)
+          2. MOBILE SIDE DRAWER
       ══════════════════════════════════════════ */}
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -189,7 +182,7 @@ export default function Nav() {
       </AnimatePresence>
 
       {/* ══════════════════════════════════════════
-          3. MOBILE BOTTOM BAR (شريط الموبايل السفلي)
+          3. MOBILE BOTTOM BAR
       ══════════════════════════════════════════ */}
       <div className="lg:hidden fixed bottom-0 inset-x-0 z-40">
         <div className="bg-[#1a1816]/85 backdrop-blur-xl border-t border-gold/20 pb-6 pt-3 px-4 shadow-[0_-15px_40px_-10px_rgba(212,175,55,0.15)] relative overflow-hidden">
