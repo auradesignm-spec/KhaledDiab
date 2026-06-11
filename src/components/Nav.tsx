@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { Home, PenTool, Wrench, Briefcase, Phone, Menu, X } from "lucide-react";
 import BrandLogo from "@/components/BrandLogo";
@@ -8,12 +8,22 @@ export default function Nav() {
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeTab, setActiveTab] = useState("home");
-  const [lang, setLang] = useState<"ar" | "en">("ar");
-  
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  // حالة اللغة لتتبع اتجاه الموقع
+  const [isAr, setIsAr] = useState(true);
 
+  // تحديث حالة اللغة عند تحميل الصفحة لضمان توافقها مع إعداداتك
+  useEffect(() => {
+    setIsAr(document.documentElement.dir === "rtl" || document.documentElement.lang === "ar");
+  }, []);
+
+  // دالة تبديل اللغة وتغيير اتجاه الموقع الفعلي (لضمان عمل كلاسات .ar و .en بشكل سليم)
   const toggleLanguage = () => {
-    setLang((prev) => (prev === "ar" ? "en" : "ar"));
+    const newIsAr = !isAr;
+    setIsAr(newIsAr);
+    document.documentElement.dir = newIsAr ? "rtl" : "ltr";
+    document.documentElement.lang = newIsAr ? "ar" : "en";
   };
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -57,21 +67,21 @@ export default function Nav() {
       >
         <div className="max-w-[1300px] mx-auto px-6">
           
-          {/* ─── تخطيط الشاشات الكبيرة (الاستقرار الفائق) ─── */}
-          <div className="hidden lg:flex relative items-center justify-center w-full h-12">
+          {/* ─── تخطيط الشاشات الكبيرة (ثبات مطلق ومضمون) ─── */}
+          <div className="hidden lg:flex items-center justify-between w-full h-12" dir="ltr">
             
-            {/* 1. الشعار والاسم (مثبت أقصى اليسار دائماً) */}
-            <div className="absolute left-0 flex items-center gap-3">
+            {/* 1. الشعار والاسم (أقصى اليسار) */}
+            <div className="w-1/4 flex items-center justify-start gap-3">
               <BrandLogo className="w-10 h-8 text-gold" />
               <span className="font-serif text-lg tracking-[0.2em] text-cream-light uppercase mt-1">
                 Khaled Diab
               </span>
             </div>
 
-            {/* 2. الروابط (في المنتصف المطلق مع مسافات مريحة) */}
+            {/* 2. الروابط بالمنتصف (تعرض النصين معاً والموقع يخفي واحد حسب اللغة) */}
             <nav 
-              className="flex items-center gap-8 xl:gap-14"
-              dir={lang === "ar" ? "rtl" : "ltr"}
+              className="flex-1 flex items-center justify-center gap-8 xl:gap-14"
+              dir={isAr ? "rtl" : "ltr"}
             >
               {desktopLinks.map((item) => (
                 <a 
@@ -79,30 +89,29 @@ export default function Nav() {
                   href={item.href} 
                   className="group relative text-cream/80 hover:text-white transition-colors duration-400 whitespace-nowrap"
                 >
-                  {lang === "ar" ? (
-                    <span className="ar text-[15px] font-medium tracking-wide">{item.labelAr}</span>
-                  ) : (
-                    <span className="en text-[11px] font-medium tracking-[0.2em] uppercase">{item.labelEn}</span>
-                  )}
-                  {/* تأثير التسطير الذهبي الفخم (يتمدد من المنتصف) */}
+                  <span className="ar text-[15px] font-medium tracking-normal">{item.labelAr}</span>
+                  <span className="en text-[11px] font-medium tracking-[0.2em] uppercase">{item.labelEn}</span>
+                  {/* تأثير التسطير الذهبي الفخم */}
                   <span className="absolute -bottom-2 left-1/2 w-0 h-[1px] bg-gold -translate-x-1/2 transition-all duration-500 group-hover:w-full" />
                 </a>
               ))}
             </nav>
 
-            {/* 3. زر اللغة (مثبت أقصى اليمين دائماً) */}
-            <div className="absolute right-0 flex items-center">
+            {/* 3. زر اللغة (أقصى اليمين) */}
+            <div className="w-1/4 flex items-center justify-end">
               <button 
                 onClick={toggleLanguage}
                 className="px-6 py-2.5 rounded-full border border-gold/20 text-[10px] tracking-widest text-cream/70 uppercase hover:bg-gold hover:text-charcoal hover:border-gold transition-all duration-400 font-medium whitespace-nowrap"
               >
-                {lang === "ar" ? "English" : "عـربـي"}
+                {/* إذا كانت الواجهة عربية فالزر يظهر 'English' والعكس */}
+                <span className="ar">English</span>
+                <span className="en">عـربـي</span>
               </button>
             </div>
           </div>
 
           {/* ─── تخطيط الموبايل (Mobile) ─── */}
-          <div className="flex lg:hidden items-center justify-between w-full h-10">
+          <div className="flex lg:hidden items-center justify-between w-full h-10" dir="ltr">
             <button 
               onClick={() => setIsMobileMenuOpen(true)}
               className="p-2 -ml-2 text-gold hover:text-white transition-colors"
@@ -118,7 +127,8 @@ export default function Nav() {
               onClick={toggleLanguage}
               className="px-4 py-1.5 rounded-full border border-gold/30 text-[9px] tracking-widest text-cream/80 uppercase hover:bg-gold hover:text-charcoal transition-all duration-300 font-medium whitespace-nowrap"
             >
-              {lang === "ar" ? "EN" : "عـربـي"}
+              <span className="ar">EN</span>
+              <span className="en">عـربـي</span>
             </button>
           </div>
         </div>
@@ -145,7 +155,7 @@ export default function Nav() {
               transition={{ type: "spring", bounce: 0, duration: 0.4 }}
               className="fixed top-0 left-0 bottom-0 w-[75vw] max-w-sm bg-charcoal z-[70] lg:hidden border-r border-gold/10 shadow-2xl flex flex-col"
             >
-              <div className="flex items-center justify-between p-6 border-b border-gold/10">
+              <div className="flex items-center justify-between p-6 border-b border-gold/10" dir="ltr">
                 <div className="flex items-center gap-3">
                   <BrandLogo className="w-8 h-6 text-gold" />
                   <span className="font-serif text-sm tracking-[0.2em] text-cream-light uppercase mt-1">
@@ -168,9 +178,8 @@ export default function Nav() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="p-4 rounded-xl text-white font-medium hover:bg-gold/10 hover:text-gold transition-colors flex items-center justify-between"
                   >
-                    <span className={lang === "ar" ? "ar text-base tracking-normal" : "en text-sm tracking-widest uppercase"}>
-                      {lang === "ar" ? item.labelAr : item.labelEn}
-                    </span>
+                    <span className="ar text-base tracking-normal whitespace-nowrap">{item.labelAr}</span>
+                    <span className="en text-sm tracking-widest uppercase whitespace-nowrap">{item.labelEn}</span>
                   </a>
                 ))}
               </div>
@@ -180,13 +189,13 @@ export default function Nav() {
       </AnimatePresence>
 
       {/* ══════════════════════════════════════════
-          3. MOBILE BOTTOM BAR (شريط الموبايل السفلي الزجاجي)
+          3. MOBILE BOTTOM BAR (شريط الموبايل السفلي)
       ══════════════════════════════════════════ */}
       <div className="lg:hidden fixed bottom-0 inset-x-0 z-40">
         <div className="bg-[#1a1816]/85 backdrop-blur-xl border-t border-gold/20 pb-6 pt-3 px-4 shadow-[0_-15px_40px_-10px_rgba(212,175,55,0.15)] relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-t from-gold/5 to-transparent pointer-events-none" />
           
-          <div className="flex justify-between items-center relative z-10 max-w-md mx-auto">
+          <div className="flex justify-between items-center relative z-10 max-w-md mx-auto" dir={isAr ? "rtl" : "ltr"}>
             {mobileNavItems.map((item) => {
               const isActive = activeTab === item.id;
               return (
@@ -208,14 +217,9 @@ export default function Nav() {
                     <item.icon strokeWidth={isActive ? 2 : 1.5} className="w-[20px] h-[20px] relative z-10" />
                   </div>
                   
-                  <span 
-                    className={`font-medium transition-all duration-300 ${
-                      isActive ? "text-gold translate-y-0" : "text-cream/30 opacity-70"
-                    } ${
-                      lang === "en" ? "text-[8px] tracking-widest uppercase whitespace-nowrap" : "text-[10px] tracking-normal whitespace-nowrap"
-                    }`}
-                  >
-                    {lang === "ar" ? item.labelAr : item.labelEn}
+                  <span className={`font-medium transition-all duration-300 ${isActive ? "text-gold translate-y-0" : "text-cream/30 opacity-70"}`}>
+                    <span className="ar text-[10px] tracking-normal whitespace-nowrap">{item.labelAr}</span>
+                    <span className="en text-[8px] tracking-widest uppercase whitespace-nowrap">{item.labelEn}</span>
                   </span>
                 </a>
               );
