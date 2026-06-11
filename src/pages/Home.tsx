@@ -90,7 +90,8 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-tr from-gold/4 via-transparent to-transparent opacity-80" />
         </div>
 
-        <div className="relative z-10 text-center max-w-5xl px-6 flex flex-col items-center">
+        {/* 🛠️ تم إضافة pt-28 md:pt-32 هنا لحل مشكلة التداخل مع الهيدر */}
+        <div className="relative z-10 text-center max-w-5xl px-6 flex flex-col items-center pt-28 md:pt-32">
           <motion.div initial={{ scale: 0.88, opacity: 0.6 }} animate={{ scale: 1, opacity: 0.88 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-7">
             <BrandLogo className="w-28 h-20 text-cream-light" />
           </motion.div>
