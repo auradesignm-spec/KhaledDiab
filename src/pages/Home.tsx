@@ -15,8 +15,6 @@ import {
   PaintBucket,
   Box,
   Square,
-  Info,
-  Briefcase
 } from "lucide-react";
 import Nav from "@/components/Nav";
 import BrandLogo from "@/components/BrandLogo";
@@ -77,48 +75,10 @@ function SectionLabel({ ar, en, light = false }: any) {
   );
 }
 
-/* ─── Mobile Bottom Bar (App-like UX) ─── */
-const MobileBottomBar = () => {
-  const [active, setActive] = useState("home");
-  
-  const navItems = [
-    { id: "home", icon: HomeIcon, label: "الرئيسية", href: "#top" },
-    { id: "about", icon: Info, label: "من نحن", href: "#about" },
-    { id: "services", icon: Briefcase, label: "الخدمات", href: "#design-services" },
-    { id: "contact", icon: Phone, label: "تواصل", href: "#contact" },
-  ];
-
-  return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-charcoal/85 backdrop-blur-xl border-t border-gold/15 pb-6 pt-3 px-6 shadow-[0_-10px_40px_rgba(0,0,0,0.3)]">
-      <div className="flex justify-between items-center">
-        {navItems.map((item) => {
-          const isActive = active === item.id;
-          return (
-            <a 
-              key={item.id} 
-              href={item.href}
-              onClick={() => setActive(item.id)}
-              className="flex flex-col items-center gap-1.5 w-16"
-            >
-              <div className={`p-2 rounded-full transition-all duration-300 ${isActive ? 'bg-gold/15 text-gold' : 'text-cream/40 hover:text-cream/80'}`}>
-                <item.icon strokeWidth={isActive ? 2 : 1.5} className="w-5 h-5" />
-              </div>
-              <span className={`text-[10px] font-medium transition-colors duration-300 ${isActive ? 'text-gold' : 'text-cream/40'}`}>
-                {item.label}
-              </span>
-            </a>
-          );
-        })}
-      </div>
-    </div>
-  );
-};
-
 export default function HomePage() {
   return (
-    <div id="top" className="relative min-h-screen overflow-x-hidden bg-charcoal pb-20 md:pb-0">
+    <div id="top" className="relative min-h-screen overflow-x-hidden bg-charcoal">
       <Nav />
-      <MobileBottomBar />
 
       {/* ══════════════════════════════════════════
           1. HERO
@@ -136,9 +96,9 @@ export default function HomePage() {
           </motion.div>
           <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }} style={{ transformOrigin: "top" }} className="w-[1px] h-12 bg-gradient-to-b from-transparent via-gold to-transparent mx-auto mb-7" />
           
-          <motion.p initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }} className="font-sans font-extralight text-xs md:text-sm text-gold-light uppercase mb-5">
+          <motion.p initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }} className="font-sans font-extralight text-xs md:text-sm uppercase mb-5 text-gold-light">
             <span className="ar tracking-normal">خالد دياب</span>
-            <span className="en tracking-[0.45em] ml-4">Khaled Diab</span>
+            <span className="en tracking-[0.45em]">Khaled Diab</span>
           </motion.p>
           
           <motion.h1 initial={{ y: 22, opacity: 0.2 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }} className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-cream-light leading-[1.1] -tracking-[0.02em] mb-3">
@@ -148,9 +108,9 @@ export default function HomePage() {
             Decore
           </motion.h1>
           
-          <motion.p initial={{ y: 16, opacity: 0.25 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }} className="font-sans font-light text-xs sm:text-sm md:text-base text-cream/55 uppercase mb-12 leading-loose flex flex-col md:flex-row gap-2 md:gap-4 items-center justify-center">
-            <span className="ar tracking-normal">تصميم داخلي · تنفيذ احترافي · إبداع لا حدود له</span>
-            <span className="en tracking-[0.12em] hidden md:block">Interior Design · Professional Execution · Limitless Creativity</span>
+          <motion.p initial={{ y: 16, opacity: 0.25 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }} className="font-sans font-light text-xs sm:text-sm md:text-base text-cream/55 uppercase mb-12 leading-loose">
+            <span className="ar tracking-normal block md:inline">تصميم داخلي · تنفيذ احترافي · إبداع لا حدود له</span>
+            <span className="en tracking-[0.12em] block md:inline">Interior Design · Professional Execution · Limitless Creativity</span>
           </motion.p>
           
           <motion.div initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 1.05, ease: [0.16, 1, 0.3, 1] }}>
@@ -158,9 +118,16 @@ export default function HomePage() {
               <span className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
               <span className="relative z-10">
                 <span className="ar tracking-normal">استكشف خدماتنا</span>
-                <span className="en tracking-[0.3em] hidden">Explore Services</span>
+                <span className="en tracking-[0.3em]">Explore Services</span>
               </span>
             </a>
+          </motion.div>
+        </div>
+
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10 hidden md:flex">
+          <motion.div animate={{ y: [0, 8, 0], opacity: [0.4, 0.9, 0.4] }} transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }} className="flex flex-col items-center gap-1">
+            <div className="w-[1px] h-8 bg-gradient-to-b from-gold to-transparent opacity-70" />
+            <div className="w-1 h-1 rounded-full bg-gold/50" />
           </motion.div>
         </div>
       </section>
@@ -174,13 +141,16 @@ export default function HomePage() {
             <SectionLabel ar="من نحن" en="About Us" />
             <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl text-charcoal leading-[1.2] lg:leading-[1.15] mb-8">
               <span className="ar tracking-normal">نحوّل <em className="not-italic text-gold-dark">المساحات</em><br />إلى تحف فنية</span>
+              <span className="en">We Transform <em className="italic text-gold-dark">Spaces</em><br />into Masterpieces</span>
             </h2>
             <div className="space-y-6 text-text-muted font-light text-base md:text-lg leading-[2] text-justify">
               <p>
                 <span className="ar tracking-normal">في فيوتشر ديزاين ديكور، نؤمن بأن كل مساحة تروي قصة. بقيادة المصمم خالد دياب، نجمع بين الفخامة والوظيفة لنبتكر تصاميم داخلية تعكس شخصية عملائنا وترتقي بأسلوب حياتهم.</span>
+                <span className="en">At Future Design Decore, we believe every space tells a story. Led by designer Khaled Diab, we blend luxury with function to craft interiors that reflect our clients' personalities and elevate their lifestyle.</span>
               </p>
               <p>
                 <span className="ar tracking-normal">نقدم حلولاً متكاملة من التصميم على الورق حتى التسليم النهائي، مع اهتمام استثنائي بأدق التفاصيل وأعلى معايير الجودة.</span>
+                <span className="en">We deliver end-to-end solutions from initial design concepts to final handover, with exceptional attention to detail and the highest quality standards.</span>
               </p>
             </div>
           </Reveal>
@@ -217,29 +187,36 @@ export default function HomePage() {
           3. DESIGN SERVICES
       ══════════════════════════════════════════ */}
       <section id="design-services" className="py-24 lg:py-40 px-6 bg-charcoal text-cream-light relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute -start-32 top-1/2 -translate-y-1/2 w-64 h-64 rounded-full border border-gold/5" />
+          <div className="absolute -end-20 bottom-20 w-96 h-96 rounded-full border border-gold/5 opacity-80" />
+        </div>
+
         <div className="max-w-[1300px] mx-auto relative z-10">
           <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-16 gap-6">
             <Reveal direction="left">
               <SectionLabel ar="خدمات التصميم" en="Design Services" light />
               <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl text-cream-light leading-[1.2]">
                 <span className="ar tracking-normal">من الفكرة<br /><em className="not-italic text-gold">إلى المخطط</em></span>
+                <span className="en">From Concept<br /><em className="italic text-gold">to Blueprint</em></span>
               </h2>
             </Reveal>
             <Reveal delay={0.15} className="max-w-xs text-start">
               <p className="text-cream/40 font-light text-sm leading-relaxed text-justify">
                 <span className="ar tracking-normal">نقدم خدمات تصميم داخلي شاملة تبدأ من التصورات الأولى وتصل إلى أدق تفاصيل التنفيذ.</span>
+                <span className="en">Comprehensive interior design services from initial concepts down to the finest execution details.</span>
               </p>
             </Reveal>
           </div>
 
           <StaggerParent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-gold/10 border border-gold/10 shadow-lg">
             {[
-              { num: "01", icon: Grid3x3, ar: "تصميم 2D", arDesc: "مخططات دقيقة بالأبعاد الفعلية وتوزيع أمثل للأثاث." },
-              { num: "02", icon: Layers, ar: "تصميم 3D", arDesc: "تصور واقعي للمساحة قبل التنفيذ باستخدام أحدث التقنيات." },
-              { num: "03", icon: Box, ar: "حصر الكميات", arDesc: "جداول دقيقة للكميات تُسهل ضبط الميزانية وتفادي المفاجآت." },
-              { num: "04", icon: Sun, ar: "المواد والألوان", arDesc: "اختيار متناسق للخامات والألوان المتاحة في السوق المحلي." },
-              { num: "05", icon: Lamp, ar: "توزيع الإنارة", arDesc: "إضاءة مدروسة لإبراز جماليات كل مساحة وخلق الأجواء المطلوبة." },
-              { num: "06", icon: Map, ar: "مخططات تنفيذية", arDesc: "خرائط هندسية تفصيلية تتضمن كل القياسات اللازمة للتنفيذ." },
+              { num: "01", icon: Grid3x3, ar: "تصميم 2D", en: "2D Design", arDesc: "مخططات دقيقة بالأبعاد الفعلية وتوزيع أمثل للأثاث.", enDesc: "Precise 2D layouts with exact dimensions and optimal furniture placement." },
+              { num: "02", icon: Layers, ar: "تصميم 3D", en: "3D Design", arDesc: "تصور واقعي للمساحة قبل التنفيذ باستخدام أحدث التقنيات.", enDesc: "Ultra-realistic 3D visualization before execution using cutting-edge tools." },
+              { num: "03", icon: Box, ar: "حصر الكميات", en: "Bill of Quantities", arDesc: "جداول دقيقة للكميات تُسهل ضبط الميزانية وتفادي المفاجآت.", enDesc: "Accurate quantity schedules for effective budget control." },
+              { num: "04", icon: Sun, ar: "المواد والألوان", en: "Materials & Colors", arDesc: "اختيار متناسق للخامات والألوان المتاحة في السوق المحلي.", enDesc: "Harmonious selection of locally available materials and colors." },
+              { num: "05", icon: Lamp, ar: "توزيع الإنارة", en: "Lighting Setup", arDesc: "إضاءة مدروسة لإبراز جماليات كل مساحة وخلق الأجواء المطلوبة.", enDesc: "Thoughtful lighting design to highlight space aesthetics and create ambiance." },
+              { num: "06", icon: Map, ar: "مخططات تنفيذية", en: "Executive Plans", arDesc: "خرائط هندسية تفصيلية تتضمن كل القياسات اللازمة للتنفيذ.", enDesc: "Detailed engineering blueprints with all measurements for on-site execution." },
             ].map((svc, idx) => (
               <StaggerChild key={idx}>
                 <div className="group relative bg-charcoal p-8 xl:p-12 h-full cursor-default overflow-hidden transition-colors duration-500 hover:bg-charcoal-light">
@@ -250,9 +227,11 @@ export default function HomePage() {
                   </div>
                   <h3 className="font-sans font-bold text-lg text-cream-light mb-3 leading-snug">
                     <span className="ar tracking-normal">{svc.ar}</span>
+                    <span className="en tracking-wider">{svc.en}</span>
                   </h3>
                   <p className="text-sm font-light text-cream/45 leading-[1.9] text-justify">
                     <span className="ar tracking-normal">{svc.arDesc}</span>
+                    <span className="en">{svc.enDesc}</span>
                   </p>
                 </div>
               </StaggerChild>
@@ -262,43 +241,129 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          4. CONTACT
+          4. EXECUTION SERVICES (تم استرجاع هذا القسم بالكامل)
+      ══════════════════════════════════════════ */}
+      <section id="execution-services" className="py-24 lg:py-40 px-6 bg-cream-light relative overflow-hidden">
+        <div className="absolute end-0 top-1/2 -translate-y-1/2 font-serif text-[200px] font-bold text-charcoal/3 leading-none pointer-events-none select-none hidden xl:block">KD</div>
+
+        <div className="max-w-[1300px] mx-auto relative z-10">
+          <Reveal>
+            <SectionLabel ar="خدمات التنفيذ" en="Execution Services" />
+            <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl text-charcoal leading-[1.2] lg:leading-[1.15] mb-16 lg:mb-20">
+              <span className="ar tracking-normal">من المخطط<br /><em className="not-italic text-gold-dark">إلى الواقع</em></span>
+              <span className="en">From Blueprint<br /><em className="italic text-gold-dark">To Reality</em></span>
+            </h2>
+          </Reveal>
+
+          <StaggerParent className="grid grid-cols-1 md:grid-cols-2 border border-charcoal/8 bg-white/50 backdrop-blur-sm shadow-xl">
+            {[
+              { icon: HomeIcon, num: "01", ar: "أعمال التصميم الديكوري", en: "Decor Design Works", arDesc: "مجالس · غرف معيشة · مطابخ · حمامات · غرف نوم", enDesc: "Majlis · Living Rooms · Kitchens · Bathrooms · Bedrooms" },
+              { icon: Wrench, num: "02", ar: "أعمال النجارة", en: "Carpentry Works", arDesc: "ديكورات خشبية · خزائن · مطابخ مدمجة", enDesc: "Wooden Decor · Wardrobes · Built-in Kitchens" },
+              { icon: Square, num: "03", ar: "أعمال الجبس", en: "Gypsum Works", arDesc: "جدران · أسقف · ديكورات جبسية متنوعة", enDesc: "Walls · Ceilings · Various Gypsum Decorations" },
+              { icon: Layers, num: "04", ar: "أسمنت بورد", en: "Cement Board", arDesc: "قواطع داخلية · واجهات خارجية", enDesc: "Interior Partitions · Exterior Facades" },
+              { icon: Grid3x3, num: "05", ar: "الحجر وبدائله", en: "Stone & Alternatives", arDesc: "تكسية جدران داخلية · واجهات خارجية", enDesc: "Interior Wall Cladding · External Facades" },
+              { icon: Star, num: "06", ar: "لوحات ثلاثية الأبعاد", en: "3D Panels", arDesc: "لوحات 3D مضيئة بأشكال وتصاميم متعددة", enDesc: "Illuminated 3D panels in various shapes and designs" },
+              { icon: PaintBucket, num: "07", ar: "أعمال الدهانات", en: "Painting Works", arDesc: "دهانات متنوعة · تشطيبات ملمسية", enDesc: "Various Paints · Textured Finishes" },
+            ].map((item, idx) => (
+              <StaggerChild key={idx}>
+                <div className={`group flex items-start gap-5 lg:gap-7 p-8 xl:p-12 transition-colors duration-400 hover:bg-white/70 border-b border-charcoal/8 ${idx % 2 === 0 ? "md:border-e md:border-charcoal/8" : ""}`}>
+                  <div className="w-12 h-12 lg:w-14 lg:h-14 bg-charcoal shrink-0 flex items-center justify-center transition-all duration-400 group-hover:bg-gold">
+                    <item.icon strokeWidth={1.3} className="w-5 h-5 lg:w-6 lg:h-6 text-gold group-hover:text-charcoal transition-colors duration-400" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2"><span className="font-serif text-[11px] text-charcoal/20 tracking-widest">{item.num}</span></div>
+                    <h3 className="font-sans font-bold text-base md:text-lg text-charcoal mb-2 leading-snug">
+                      <span className="ar tracking-normal">{item.ar}</span>
+                      <span className="en tracking-wider">{item.en}</span>
+                    </h3>
+                    <p className="text-sm font-light text-text-muted leading-relaxed text-justify">
+                      <span className="ar tracking-normal">{item.arDesc}</span>
+                      <span className="en">{item.enDesc}</span>
+                    </p>
+                  </div>
+                </div>
+              </StaggerChild>
+            ))}
+          </StaggerParent>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          5. CONTACT
       ══════════════════════════════════════════ */}
       <section id="contact" className="py-24 lg:py-40 px-6 bg-charcoal-mid relative overflow-hidden text-cream-light border-t border-gold/10">
+        <div className="absolute -bottom-12 -start-8 font-serif text-[280px] font-bold text-gold/3 leading-none pointer-events-none select-none hidden md:block">KD</div>
+
         <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-center relative z-10">
           <Reveal direction="left">
-            <SectionLabel ar="تواصل مع المكتب" en="Contact Us" light />
+            <SectionLabel ar="تواصل مع المكتب" en="Contact the Studio" light />
             <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl text-cream-light leading-[1.2] mb-6">
               <span className="ar tracking-normal">دعنا نتحدث<br /><em className="not-italic text-gold">عن مشروعك</em></span>
+              <span className="en">Let's Talk<br /><em className="italic text-gold">About Your Project</em></span>
             </h2>
             <p className="text-cream/50 font-light text-base mb-12 leading-[1.9] text-justify max-w-lg">
               <span className="ar tracking-normal">نحن هنا لتحويل أفكارك إلى حقيقة. تواصل معنا للحصول على استشارتك المجانية ومناقشة تفاصيل مشروعك.</span>
+              <span className="en">We are here to turn your ideas into reality. Contact us for a free consultation and to discuss the details of your project.</span>
             </p>
 
             <div className="space-y-4 max-w-md">
               {[
-                { icon: Phone, labelAr: "الهاتف / واتساب", valAr: "+968 7753 3603", link: "https://wa.link/gitycp", forceLtr: true },
-                { icon: Instagram, labelAr: "إنستغرام", valAr: "@future_design_decor", link: "https://www.instagram.com/future_design_decor", forceLtr: true },
-                { icon: MapPin, labelAr: "الموقع", valAr: "سلطنة عُمان", link: "#", forceLtr: false },
+                { icon: Phone, labelAr: "الهاتف / واتساب", labelEn: "Phone / WhatsApp", valAr: "+968 7753 3603", valEn: "+968 7753 3603", link: "https://wa.link/gitycp", forceLtr: true },
+                { icon: Instagram, labelAr: "إنستغرام", labelEn: "Instagram", valAr: "@future_design_decor", valEn: "@future_design_decor", link: "https://www.instagram.com/future_design_decor", forceLtr: true },
+                { icon: MapPin, labelAr: "الموقع", labelEn: "Location", valAr: "سلطنة عُمان", valEn: "Sultanate of Oman", link: "#", forceLtr: false },
               ].map((c, i) => (
                 <motion.a key={i} href={c.link} target="_blank" rel="noopener noreferrer" whileHover={{ y: -4, x: 5 }} transition={{ duration: 0.3 }} className="group flex items-center gap-5 p-5 border border-gold/15 bg-white/3 hover:bg-white/5 hover:border-gold/30 transition-all duration-300 shadow-md">
                   <div className="w-12 h-12 rounded-full bg-gold/10 shrink-0 flex items-center justify-center group-hover:bg-gold transition-colors duration-300">
                     <c.icon className="w-5 h-5 text-gold group-hover:text-charcoal transition-colors duration-300" />
                   </div>
                   <div className="flex-1">
-                    <div className="text-[10px] text-gold/60 mb-1 font-medium">
+                    <div className="text-[10px] tracking-[0.3em] text-gold/60 uppercase mb-1 font-medium">
                       <span className="ar tracking-normal">{c.labelAr}</span>
+                      <span className="en">{c.labelEn}</span>
                     </div>
                     <div className="text-base font-medium text-cream/95" dir={c.forceLtr ? "ltr" : undefined}>
                       <span className="ar tracking-normal">{c.valAr}</span>
+                      <span className="en tracking-wider">{c.valEn}</span>
                     </div>
                   </div>
                 </motion.a>
               ))}
             </div>
           </Reveal>
+
+          <Reveal delay={0.2} direction="right">
+            <div className="relative group p-1 ml-4 hidden lg:block">
+              <div className="absolute -top-5 -end-5 -bottom-5 start-5 border border-gold/20 pointer-events-none transition-all duration-500 group-hover:top-[-25px] group-hover:-end-[25px] opacity-70" />
+              <div className="relative text-center py-20 px-10 bg-gradient-to-br from-charcoal to-[#1a1816] border border-gold/15 flex flex-col items-center justify-center backdrop-blur-sm shadow-2xl">
+                <BrandLogo className="w-28 h-20 text-gold mb-12 opacity-90" />
+                <div className="w-20 h-[1px] bg-gold/20 mb-9" />
+                <div className="font-sans font-light text-xl tracking-[0.5em] uppercase text-cream/85 mb-3">Khaled Diab</div>
+                <div className="font-sans font-light text-xs tracking-[0.4em] uppercase text-gold/60">Future Design Decore</div>
+                <div className="mt-10 text-[11px] tracking-[0.25em] uppercase text-cream/30">
+                  <span className="ar tracking-normal">سلطنة عُمان</span>
+                  <span className="en">Sultanate of Oman</span>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
+
+      {/* ══════════════════════════════════════════
+          6. FOOTER
+      ══════════════════════════════════════════ */}
+      <footer className="bg-charcoal border-t border-gold/10 py-10 px-6 pb-28 lg:pb-10">
+        <div className="max-w-[1300px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-3">
+            <BrandLogo className="w-8 h-6 text-gold/50" />
+            <p className="text-xs font-light text-cream/30 tracking-wider">© 2026 Future Design Decore — All rights reserved.</p>
+          </div>
+          <div className="flex gap-8">
+            <a href="https://www.instagram.com/future_design_decor" target="_blank" rel="noopener noreferrer" className="text-xs tracking-[0.25em] text-cream/45 hover:text-gold uppercase transition-colors duration-300 font-medium">Instagram</a>
+            <a href="https://wa.link/gitycp" target="_blank" rel="noopener noreferrer" className="text-xs tracking-[0.25em] text-cream/45 hover:text-gold uppercase transition-colors duration-300 font-medium">WhatsApp</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
