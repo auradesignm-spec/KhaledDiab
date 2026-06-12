@@ -81,20 +81,22 @@ export default function HomePage() {
       <Nav />
 
       {/* ══════════════════════════════════════════
-          1. HERO
+          1. HERO (تم إصلاح مسافات التوسيط الجذري)
       ══════════════════════════════════════════ */}
-      <section className="relative h-[100dvh] bg-charcoal flex flex-col items-center justify-center overflow-hidden">
+      {/* 🛠️ الحل: استخدام pt-[120px] على الـ section نفسه لإنشاء منطقة آمنة تحت الهيدر */}
+      <section className="relative min-h-[100dvh] w-full bg-charcoal flex flex-col items-center justify-center overflow-hidden pt-[120px] pb-16">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <motion.div animate={{ scale: [1, 1.06, 1], opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} className="absolute -top-[40%] -end-[15%] w-[700px] h-[700px] rounded-full border border-gold/20" />
           <motion.div animate={{ scale: [1, 1.08, 1], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2.5 }} className="absolute -top-[25%] -end-[5%] w-[480px] h-[480px] rounded-full border border-gold/12" />
           <div className="absolute inset-0 bg-gradient-to-tr from-gold/4 via-transparent to-transparent opacity-80" />
         </div>
 
-        <div className="relative z-10 text-center max-w-5xl px-6 flex flex-col items-center pt-32 md:pt-40">
+        {/* 🛠️ الحل: تمت إزالة الـ padding العشوائي من هنا ليتوسط بشكل صحيح دائمًا */}
+        <div className="relative z-10 text-center max-w-5xl px-6 flex flex-col items-center">
           <motion.div initial={{ scale: 0.88, opacity: 0.6 }} animate={{ scale: 1, opacity: 0.88 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-8 md:mb-10">
-            <BrandLogo className="w-28 h-20 text-cream-light" />
+            <BrandLogo className="w-24 h-16 md:w-28 md:h-20 text-cream-light" />
           </motion.div>
-          <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }} style={{ transformOrigin: "top" }} className="w-[1px] h-14 bg-gradient-to-b from-transparent via-gold to-transparent mx-auto mb-8" />
+          <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }} style={{ transformOrigin: "top" }} className="w-[1px] h-12 md:h-14 bg-gradient-to-b from-transparent via-gold to-transparent mx-auto mb-8" />
           
           <motion.p initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }} className="font-sans font-medium text-xs md:text-sm uppercase mb-6 text-gold-light">
             <span className="ar tracking-normal">خالد دياب</span>
