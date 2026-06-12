@@ -144,7 +144,7 @@ export default function HomePage() {
         </div>
 
         {/* 🛠️ المؤشر محمي الآن ولا يمكن أن يلمس الزر */}
-        <div className="absolute bottom-6 lg:bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 hidden md:flex">
+        <div className="absolute bottom-6 lg:bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 hidden md:flex">
           <motion.div animate={{ y: [0, 8, 0], opacity: [0.4, 0.9, 0.4] }} transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }} className="flex flex-col items-center gap-1">
             <div className="w-[1px] h-6 lg:h-10 bg-gradient-to-b from-gold to-transparent opacity-70" />
             <div className="w-1.5 h-1.5 rounded-full bg-gold/60" />
