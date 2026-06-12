@@ -81,44 +81,45 @@ export default function HomePage() {
       <Nav />
 
       {/* ══════════════════════════════════════════
-          1. HERO (تم إصلاح مسافات التوسيط الجذري)
+          1. HERO (المسافات والأحجام مضبوطة بدقة)
       ══════════════════════════════════════════ */}
-      {/* 🛠️ الحل: استخدام pt-[120px] على الـ section نفسه لإنشاء منطقة آمنة تحت الهيدر */}
-      <section className="relative min-h-[100dvh] w-full bg-charcoal flex flex-col items-center justify-center overflow-hidden pt-[120px] pb-16">
+      <section className="relative h-[100dvh] w-full bg-charcoal flex flex-col items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <motion.div animate={{ scale: [1, 1.06, 1], opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} className="absolute -top-[40%] -end-[15%] w-[700px] h-[700px] rounded-full border border-gold/20" />
           <motion.div animate={{ scale: [1, 1.08, 1], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2.5 }} className="absolute -top-[25%] -end-[5%] w-[480px] h-[480px] rounded-full border border-gold/12" />
           <div className="absolute inset-0 bg-gradient-to-tr from-gold/4 via-transparent to-transparent opacity-80" />
         </div>
 
-        {/* 🛠️ الحل: تمت إزالة الـ padding العشوائي من هنا ليتوسط بشكل صحيح دائمًا */}
-        <div className="relative z-10 text-center max-w-5xl px-6 flex flex-col items-center">
-          <motion.div initial={{ scale: 0.88, opacity: 0.6 }} animate={{ scale: 1, opacity: 0.88 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-8 md:mb-10">
-            <BrandLogo className="w-24 h-16 md:w-28 md:h-20 text-cream-light" />
+        <div className="relative z-10 text-center max-w-5xl px-6 flex flex-col items-center w-full">
+          {/* تصغير الشعار وتقليل مسافته */}
+          <motion.div initial={{ scale: 0.88, opacity: 0.6 }} animate={{ scale: 1, opacity: 0.88 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-6">
+            <BrandLogo className="w-20 h-14 md:w-24 md:h-16 text-cream-light" />
           </motion.div>
-          <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }} style={{ transformOrigin: "top" }} className="w-[1px] h-12 md:h-14 bg-gradient-to-b from-transparent via-gold to-transparent mx-auto mb-8" />
           
-          <motion.p initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }} className="font-sans font-medium text-xs md:text-sm uppercase mb-6 text-gold-light">
+          <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }} style={{ transformOrigin: "top" }} className="w-[1px] h-10 md:h-12 bg-gradient-to-b from-transparent via-gold to-transparent mx-auto mb-6" />
+          
+          <motion.p initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }} className="font-sans font-medium text-[10px] md:text-xs uppercase mb-4 text-gold-light">
             <span className="ar tracking-normal">خالد دياب</span>
             <span className="en tracking-[0.45em]">Khaled Diab</span>
           </motion.p>
           
-          <motion.h1 initial={{ y: 22, opacity: 0.2 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }} className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-cream-light leading-tight -tracking-[0.02em] mb-2 md:mb-4">
+          {/* تصغير الكلمتين لمنع خروجهما من الشاشة */}
+          <motion.h1 initial={{ y: 22, opacity: 0.2 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }} className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-cream-light leading-tight -tracking-[0.02em] mb-1 md:mb-2">
             Future Design
           </motion.h1>
-          <motion.h1 initial={{ y: 22, opacity: 0.2 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.75, ease: [0.16, 1, 0.3, 1] }} className="font-serif italic text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-gold leading-tight -tracking-[0.02em] mb-12 md:mb-16">
+          <motion.h1 initial={{ y: 22, opacity: 0.2 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.75, ease: [0.16, 1, 0.3, 1] }} className="font-serif italic text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gold leading-tight -tracking-[0.02em] mb-8 md:mb-10">
             Decore
           </motion.h1>
           
-          <motion.div initial={{ y: 16, opacity: 0.25 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }} className="max-w-2xl mx-auto mb-14">
-            <p className="font-sans font-light text-sm md:text-base text-cream/60 uppercase leading-loose md:leading-loose">
+          <motion.div initial={{ y: 16, opacity: 0.25 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }} className="max-w-2xl mx-auto mb-10">
+            <p className="font-sans font-light text-xs md:text-sm text-cream/60 uppercase leading-loose md:leading-loose">
               <span className="ar tracking-normal block md:inline">تصميم داخلي · تنفيذ احترافي · إبداع لا حدود له</span>
               <span className="en tracking-[0.15em] block md:inline">Interior Design · Professional Execution · Limitless Creativity</span>
             </p>
           </motion.div>
           
           <motion.div initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 1.05, ease: [0.16, 1, 0.3, 1] }}>
-            <a href="/#design-services" className="group relative inline-flex items-center gap-3 px-12 py-5 border border-gold/40 text-gold-light font-sans text-xs uppercase overflow-hidden transition-colors duration-300 hover:text-charcoal">
+            <a href="/#design-services" className="group relative inline-flex items-center gap-3 px-10 py-4 border border-gold/40 text-gold-light font-sans text-xs uppercase overflow-hidden transition-colors duration-300 hover:text-charcoal">
               <span className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
               <span className="relative z-10 font-medium">
                 <span className="ar tracking-normal">استكشف خدماتنا</span>
@@ -128,9 +129,9 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10 hidden md:flex">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 hidden md:flex">
           <motion.div animate={{ y: [0, 8, 0], opacity: [0.4, 0.9, 0.4] }} transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }} className="flex flex-col items-center gap-1">
-            <div className="w-[1px] h-10 bg-gradient-to-b from-gold to-transparent opacity-70" />
+            <div className="w-[1px] h-8 bg-gradient-to-b from-gold to-transparent opacity-70" />
             <div className="w-1.5 h-1.5 rounded-full bg-gold/60" />
           </motion.div>
         </div>
