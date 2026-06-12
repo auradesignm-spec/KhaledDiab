@@ -1,6 +1,22 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, animate, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { motion, useInView, useMotionValue, animate, AnimatePresence } from "framer-motion";
+import {
+  Phone,
+  Instagram,
+  MapPin,
+  Home as HomeIcon,
+  Layers,
+  Grid3x3,
+  Sun,
+  Lamp,
+  Map,
+  Star,
+  Wrench,
+  PaintBucket,
+  Box,
+  Square,
+  X,
+} from "lucide-react";
 import Nav from "@/components/Nav";
 import BrandLogo from "@/components/BrandLogo";
 
@@ -21,9 +37,9 @@ function SectionLabel({ ar, en, light = false }: any) {
   const color = light ? "text-gold-light" : "text-gold";
   const lineColor = light ? "bg-gold-light" : "bg-gold";
   return (
-    <div className={`flex items-center gap-4 text-xs font-medium tracking-[0.5em] uppercase mb-6 ${color}`}>
+    <div className={`flex items-center gap-4 text-xs font-medium tracking-[0.5em] uppercase mb-5 ${color}`}>
       <div className={`w-12 h-[1px] shrink-0 ${lineColor} opacity-70`} />
-      <span className="ar tracking-normal">{ar}</span>
+      <span className="ar">{ar}</span>
       <span className="en">{en}</span>
     </div>
   );
@@ -33,13 +49,14 @@ function SectionLabel({ ar, en, light = false }: any) {
 const ProjectCard = ({ src, label, onClick }: { src: string; label: string; onClick: () => void }) => (
   <div
     onClick={onClick}
-    className="group relative w-[280px] sm:w-[320px] md:w-[380px] aspect-[3/4] overflow-hidden bg-charcoal-dark shrink-0 cursor-zoom-in border border-transparent transition-all duration-500 ease-out hover:border-gold/30 hover:shadow-[0_0_30px_rgba(212,175,55,0.08)]"
+    // 🛠️ تم تصغير أحجام البطاقات في اللابتوب (lg و md) لتتناسب مع ارتفاع الشاشة
+    className="group relative w-[260px] sm:w-[280px] md:w-[320px] lg:w-[340px] aspect-[3/4] overflow-hidden bg-charcoal-dark shrink-0 cursor-zoom-in border border-transparent transition-all duration-500 ease-out hover:border-gold/30 hover:shadow-[0_0_30px_rgba(212,175,55,0.08)]"
   >
     <img src={src} alt={label} className="w-full h-full object-cover opacity-85 transition-all duration-700 ease-out group-hover:opacity-100 group-hover:scale-105" loading="lazy" />
     <div className="absolute inset-0 bg-gradient-to-t from-[#0a0907] via-[#0a0907]/10 to-transparent opacity-90 pointer-events-none transition-opacity duration-500 group-hover:opacity-100" />
-    <div className="absolute bottom-0 start-0 w-full p-6 md:p-8 pointer-events-none translate-y-2 transition-transform duration-500 ease-out group-hover:translate-y-0">
+    <div className="absolute bottom-0 start-0 w-full p-6 pointer-events-none translate-y-2 transition-transform duration-500 ease-out group-hover:translate-y-0">
       <div className="w-8 h-[1px] bg-gold mb-3 opacity-50 transition-all duration-500 group-hover:w-16 group-hover:opacity-100" />
-      <p className="text-white text-base md:text-lg font-medium tracking-wide drop-shadow-md"><span className="ar">{label}</span></p>
+      <p className="text-white text-sm md:text-base font-medium tracking-wide drop-shadow-md"><span className="ar">{label}</span></p>
     </div>
   </div>
 );
@@ -50,7 +67,8 @@ const InfiniteSeamlessMarquee = ({ images, duration, reverse, onImageClick }: { 
   const animationClass = reverse ? "animate-marquee-right" : "animate-marquee-left";
 
   return (
-    <div className="relative w-full overflow-hidden mb-8 md:mb-12" dir="ltr">
+    // 🛠️ تم تقليل المسافة السفلية للخطوط المتحركة
+    <div className="relative w-full overflow-hidden mb-6 md:mb-8" dir="ltr">
       <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-charcoal to-transparent z-10 pointer-events-none" />
       <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-charcoal to-transparent z-10 pointer-events-none" />
 
@@ -70,7 +88,7 @@ export default function PortfolioPage() {
   const [selectedImage, setSelectedImage] = useState<{ src: string; label: string } | null>(null);
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-charcoal">
+    <div className="relative min-h-screen overflow-x-hidden bg-charcoal flex flex-col">
       
       {/* ─── CSS Animations Injected ─── */}
       <style>{`
@@ -133,18 +151,20 @@ export default function PortfolioPage() {
       {/* ══════════════════════════════════════════
           PORTFOLIO SECTION
       ══════════════════════════════════════════ */}
-      <section className="pt-32 pb-24 lg:pt-40 lg:pb-32 bg-charcoal relative overflow-hidden min-h-[80vh]">
-        <div className="max-w-[1300px] mx-auto px-6 mb-16 relative z-10 mt-10">
-          <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-8">
+      {/* 🛠️ تم ضغط الـ Padding العلوي وتصغير المساحات الفارغة */}
+      <section className="pt-28 lg:pt-36 pb-20 bg-charcoal relative overflow-hidden flex-1">
+        <div className="max-w-[1300px] mx-auto px-6 mb-12 relative z-10">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-6">
             <Reveal direction="left">
               <SectionLabel ar="أهم أعمالنا" en="Our Featured Work" light />
-              <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl text-cream-light leading-[1.3] lg:leading-[1.15]">
+              {/* 🛠️ تم تصغير الخطوط لتناسب الشاشة */}
+              <h2 className="font-serif text-4xl md:text-5xl text-cream-light leading-[1.3] lg:leading-[1.15]">
                 <span className="ar tracking-normal">معرض <em className="not-italic text-gold">الإبداع</em></span>
                 <span className="en">Gallery of <em className="italic text-gold">Creativity</em></span>
               </h2>
             </Reveal>
             <Reveal delay={0.15} className="max-w-sm text-start">
-              <p className="text-cream/40 font-light text-sm leading-relaxed text-justify">
+              <p className="text-cream/40 font-light text-xs md:text-sm leading-relaxed text-justify">
                 <span className="ar tracking-normal">جولة بصرية لا نهائية في أحدث مشاريعنا. اضغط على أي صورة لتكبيرها واستكشاف دقة التفاصيل وجودة التنفيذ.</span>
                 <span className="en">An infinite visual tour of our latest projects. Click any image to enlarge and explore the precision of our execution.</span>
               </p>
@@ -207,7 +227,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-charcoal border-t border-gold/10 py-10 px-6 mt-auto">
+      <footer className="bg-charcoal border-t border-gold/10 py-8 px-6 pb-28 md:pb-8 mt-auto z-10">
         <div className="max-w-[1300px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-3">
             <BrandLogo className="w-8 h-6 text-gold/50" />
