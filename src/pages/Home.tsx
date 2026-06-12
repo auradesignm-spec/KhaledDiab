@@ -101,7 +101,7 @@ export default function HomePage() {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="relative px-3 py-2 flex items-center justify-center"
             >
-              <BrandLogo className="relative z-10 w-20 h-14 md:w-24 md:h-16 lg:w-26 lg:h-18 text-cream-light" />
+            </motion.div>
           </motion.div>
           
           <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }} style={{ transformOrigin: "top" }} className="w-[1px] h-8 lg:h-10 bg-gradient-to-b from-transparent via-gold to-transparent mx-auto mb-3" />
