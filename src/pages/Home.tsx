@@ -80,10 +80,11 @@ export default function HomePage() {
     <div id="top" className="relative min-h-screen overflow-x-hidden bg-charcoal">
       <Nav />
 
-  {/* ══════════════════════════════════════════
-          1. HERO (شعار يطفو مع لمعة السيف الصافية - تم إصلاح الظل)
+{/* ══════════════════════════════════════════
+          1. HERO (منطقة عازلة لمنع تداخل المؤشر مع الزر تماماً)
       ══════════════════════════════════════════ */}
-      <section className="relative h-[100dvh] min-h-[650px] w-full bg-charcoal flex flex-col items-center justify-center overflow-hidden pt-16 pb-24 lg:pt-[120px] lg:pb-16">
+      {/* 🛠️ تمت زيادة lg:pb-[130px] لإنشاء منطقة آمنة للمؤشر السفلي */}
+      <section className="relative h-[100dvh] min-h-[650px] w-full bg-charcoal flex flex-col items-center justify-center overflow-hidden pt-16 pb-24 lg:pt-[120px] lg:pb-[130px]">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <motion.div animate={{ scale: [1, 1.06, 1], opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} className="absolute -top-[40%] -end-[15%] w-[700px] h-[700px] rounded-full border border-gold/20" />
           <motion.div animate={{ scale: [1, 1.08, 1], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2.5 }} className="absolute -top-[25%] -end-[5%] w-[480px] h-[480px] rounded-full border border-gold/12" />
@@ -92,30 +93,21 @@ export default function HomePage() {
 
         <div className="relative z-10 text-center max-w-4xl px-6 flex flex-col items-center w-full mt-20 md:mt-24">
           
-          {/* 🌟 دخول الشعار */}
           <motion.div initial={{ scale: 0.88, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-0 md:mb-1">
-            
-            {/* 🌟 حركة الطفو المستمرة */}
             <motion.div
-              animate={{ y: [0, -6, 0] }}
+              animate={{ 
+                y: [0, -6, 0],
+                filter: [
+                  "drop-shadow(0px 0px 0px rgba(212,175,55,0))",
+                  "drop-shadow(0px 0px 12px rgba(212,175,55,0.5))",
+                  "drop-shadow(0px 0px 0px rgba(212,175,55,0))"
+                ]
+              }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="relative overflow-hidden px-3 py-2 flex items-center justify-center"
+              className="relative px-3 py-2 flex items-center justify-center"
             >
-              <BrandLogo className="relative z-10 w-20 h-14 md:w-24 md:h-16 lg:w-26 lg:h-18 text-cream-light drop-shadow-lg" />
-              
-              {/* ⚔️ لمعة السيف الخاطفة (أبيض نقي 100% بدون ظلال سوداء) */}
-              <motion.div
-                animate={{ left: ["-150%", "200%", "200%"] }}
-                transition={{ 
-                  duration: 6, 
-                  repeat: Infinity, 
-                  ease: "linear", 
-                  times: [0, 0.15, 1] 
-                }}
-                className="absolute top-0 bottom-0 w-full bg-gradient-to-r from-white/0 via-white/50 to-white/0 -skew-x-[35deg] pointer-events-none z-20"
-              />
+              <BrandLogo className="relative z-10 w-20 h-14 md:w-24 md:h-16 lg:w-26 lg:h-18 text-cream-light" />
             </motion.div>
-
           </motion.div>
           
           <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }} style={{ transformOrigin: "top" }} className="w-[1px] h-10 lg:h-12 bg-gradient-to-b from-transparent via-gold to-transparent mx-auto mb-4 lg:mb-5" />
@@ -139,7 +131,8 @@ export default function HomePage() {
             </p>
           </motion.div>
           
-          <motion.div initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 1.05, ease: [0.16, 1, 0.3, 1] }} className="mb-10 lg:mb-12">
+          {/* 🛠️ أزلنا الهوامش السفلية المبالغ فيها واعتمدنا على الحشوة الخاصة بالقسم الرئيسي */}
+          <motion.div initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 1.05, ease: [0.16, 1, 0.3, 1] }} className="mb-2">
             <a href="/#design-services" className="group relative inline-flex items-center gap-3 px-10 py-4 border border-gold/40 text-gold-light font-sans text-[11px] md:text-xs uppercase overflow-hidden transition-colors duration-300 hover:text-charcoal">
               <span className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
               <span className="relative z-10 font-medium">
@@ -150,9 +143,10 @@ export default function HomePage() {
           </motion.div>
         </div>
 
+        {/* 🛠️ المؤشر محمي الآن ولا يمكن أن يلمس الزر */}
         <div className="absolute bottom-6 lg:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 hidden md:flex">
           <motion.div animate={{ y: [0, 8, 0], opacity: [0.4, 0.9, 0.4] }} transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }} className="flex flex-col items-center gap-1">
-            <div className="w-[1px] h-6 lg:h-8 bg-gradient-to-b from-gold to-transparent opacity-70" />
+            <div className="w-[1px] h-6 lg:h-10 bg-gradient-to-b from-gold to-transparent opacity-70" />
             <div className="w-1.5 h-1.5 rounded-full bg-gold/60" />
           </motion.div>
         </div>
