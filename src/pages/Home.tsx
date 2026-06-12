@@ -80,8 +80,8 @@ export default function HomePage() {
     <div id="top" className="relative min-h-screen overflow-x-hidden bg-charcoal">
       <Nav />
 
-   {/* ══════════════════════════════════════════
-          1. HERO (شعار يطفو مع لمعة السيف الفاخرة)
+  {/* ══════════════════════════════════════════
+          1. HERO (شعار يطفو مع لمعة السيف الصافية - تم إصلاح الظل)
       ══════════════════════════════════════════ */}
       <section className="relative h-[100dvh] min-h-[650px] w-full bg-charcoal flex flex-col items-center justify-center overflow-hidden pt-16 pb-24 lg:pt-[120px] lg:pb-16">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -99,20 +99,20 @@ export default function HomePage() {
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="relative overflow-hidden px-2 py-1 group"
+              className="relative overflow-hidden px-3 py-2 flex items-center justify-center"
             >
-              <BrandLogo className="w-20 h-14 md:w-24 md:h-16 lg:w-26 lg:h-18 text-cream-light drop-shadow-lg" />
+              <BrandLogo className="relative z-10 w-20 h-14 md:w-24 md:h-16 lg:w-26 lg:h-18 text-cream-light drop-shadow-lg" />
               
-              {/* ⚔️ لمعة السيف الخاطفة */}
+              {/* ⚔️ لمعة السيف الخاطفة (أبيض نقي 100% بدون ظلال سوداء) */}
               <motion.div
                 animate={{ left: ["-150%", "200%", "200%"] }}
                 transition={{ 
-                  duration: 6, // تتكرر كل 6 ثواني
+                  duration: 6, 
                   repeat: Infinity, 
                   ease: "linear", 
-                  times: [0, 0.15, 1] // اللمعة تعبر بسرعة (15% من الوقت) وتنتظر الباقي
+                  times: [0, 0.15, 1] 
                 }}
-                className="absolute top-0 bottom-0 w-2/3 bg-gradient-to-r from-transparent via-white/50 to-transparent -skew-x-[35deg] pointer-events-none mix-blend-overlay"
+                className="absolute top-0 bottom-0 w-full bg-gradient-to-r from-white/0 via-white/50 to-white/0 -skew-x-[35deg] pointer-events-none z-20"
               />
             </motion.div>
 
