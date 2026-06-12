@@ -12,8 +12,17 @@ export default function Nav() {
   
   const [isAr, setIsAr] = useState(true);
 
+  // 🛠️ التعديل هنا: استخدام localStorage لحفظ اللغة عند التنقل أو التحديث
   useEffect(() => {
-    setIsAr(document.documentElement.dir === "rtl" || document.documentElement.lang === "ar");
+    const savedLang = localStorage.getItem("preferredLang");
+    if (savedLang) {
+      const isArabic = savedLang === "ar";
+      setIsAr(isArabic);
+      document.documentElement.dir = isArabic ? "rtl" : "ltr";
+      document.documentElement.lang = isArabic ? "ar" : "en";
+    } else {
+      setIsAr(document.documentElement.dir === "rtl" || document.documentElement.lang === "ar");
+    }
   }, []);
 
   const toggleLanguage = () => {
@@ -21,6 +30,8 @@ export default function Nav() {
     setIsAr(newIsAr);
     document.documentElement.dir = newIsAr ? "rtl" : "ltr";
     document.documentElement.lang = newIsAr ? "ar" : "en";
+    // 🛠️ حفظ الخيار في الذاكرة
+    localStorage.setItem("preferredLang", newIsAr ? "ar" : "en");
   };
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -33,7 +44,6 @@ export default function Nav() {
     setScrolled(latest > 50);
   });
 
-  // 🛠️ التعديل هنا: إضافة / قبل كل رابط ليعمل من أي صفحة
   const desktopLinks = [
     { id: "about", labelAr: "من نحن", labelEn: "About Us", href: "/#about" },
     { id: "design-services", labelAr: "خدمات التصميم", labelEn: "Design Services", href: "/#design-services" },
@@ -42,7 +52,6 @@ export default function Nav() {
     { id: "contact", labelAr: "تواصل معنا", labelEn: "Contact Us", href: "/#contact" },
   ];
 
-  // 🛠️ التعديل هنا أيضاً للشريط السفلي
   const mobileNavItems = [
     { id: "home", icon: Home, labelAr: "الرئيسية", labelEn: "Home", href: "/" },
     { id: "design", icon: PenTool, labelAr: "التصميم", labelEn: "Design", href: "/#design-services" },
@@ -68,11 +77,15 @@ export default function Nav() {
           
           {/* ─── تخطيط الشاشات الكبيرة ─── */}
           <div className="hidden lg:flex items-center justify-between w-full h-12" dir="ltr">
-            <div className="w-1/4 flex items-center justify-start gap-3">
-              <BrandLogo className="w-10 h-8 text-gold" />
-              <span className="font-serif text-lg tracking-[0.2em] text-cream-light uppercase mt-1">
-                Khaled Diab
-              </span>
+            
+            {/* 🛠️ التعديل هنا: جعل الشعار قابلاً للنقر مع تأثير فخم */}
+            <div className="w-1/4 flex items-center justify-start">
+              <a href="/" className="flex items-center gap-3 group">
+                <BrandLogo className="w-10 h-8 text-gold transition-transform duration-400 group-hover:scale-105" />
+                <span className="font-serif text-lg tracking-[0.2em] text-cream-light uppercase mt-1 transition-colors duration-400 group-hover:text-gold">
+                  Khaled Diab
+                </span>
+              </a>
             </div>
 
             <nav 
@@ -112,8 +125,11 @@ export default function Nav() {
               <Menu strokeWidth={1.5} className="w-7 h-7" />
             </button>
 
+            {/* 🛠️ التعديل هنا: جعل الشعار في الموبايل قابلاً للنقر */}
             <div className="flex items-center gap-2">
-              <BrandLogo className="w-8 h-6 text-gold" />
+              <a href="/" className="active:scale-95 transition-transform duration-300">
+                <BrandLogo className="w-8 h-6 text-gold" />
+              </a>
             </div>
 
             <button 
@@ -149,12 +165,15 @@ export default function Nav() {
               className="fixed top-0 left-0 bottom-0 w-[75vw] max-w-sm bg-charcoal z-[70] lg:hidden border-r border-gold/10 shadow-2xl flex flex-col"
             >
               <div className="flex items-center justify-between p-6 border-b border-gold/10" dir="ltr">
-                <div className="flex items-center gap-3">
-                  <BrandLogo className="w-8 h-6 text-gold" />
-                  <span className="font-serif text-sm tracking-[0.2em] text-cream-light uppercase mt-1">
+                
+                {/* 🛠️ التعديل هنا: جعل الشعار في القائمة الجانبية قابلاً للنقر */}
+                <a href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 group">
+                  <BrandLogo className="w-8 h-6 text-gold transition-transform duration-400 group-hover:scale-105" />
+                  <span className="font-serif text-sm tracking-[0.2em] text-cream-light uppercase mt-1 transition-colors duration-400 group-hover:text-gold">
                     Khaled Diab
                   </span>
-                </div>
+                </a>
+                
                 <button 
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="p-2 bg-white/5 rounded-full text-cream/50 hover:text-white transition-colors"
