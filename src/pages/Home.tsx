@@ -80,10 +80,9 @@ export default function HomePage() {
     <div id="top" className="relative min-h-screen overflow-x-hidden bg-charcoal">
       <Nav />
 
-    {/* ══════════════════════════════════════════
-          1. HERO (توسيط بصري دقيق للموبايل واللابتوب وحل تداخل المؤشر)
+   {/* ══════════════════════════════════════════
+          1. HERO (شعار يطفو مع لمعة السيف الفاخرة)
       ══════════════════════════════════════════ */}
-      {/* 🛠️ تعديل min-h-650px و lg:pb-16 لضمان مساحة تنفس سفلية */}
       <section className="relative h-[100dvh] min-h-[650px] w-full bg-charcoal flex flex-col items-center justify-center overflow-hidden pt-16 pb-24 lg:pt-[120px] lg:pb-16">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <motion.div animate={{ scale: [1, 1.06, 1], opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} className="absolute -top-[40%] -end-[15%] w-[700px] h-[700px] rounded-full border border-gold/20" />
@@ -91,10 +90,32 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-tr from-gold/4 via-transparent to-transparent opacity-80" />
         </div>
 
-        <div className="relative z-10 text-center max-w-4xl px-6 flex flex-col items-center w-full">
+        <div className="relative z-10 text-center max-w-4xl px-6 flex flex-col items-center w-full mt-20 md:mt-24">
           
-          <motion.div initial={{ scale: 0.88, opacity: 0.6 }} animate={{ scale: 1, opacity: 0.88 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-4 lg:mb-5">
-            <BrandLogo className="w-20 h-14 md:w-24 md:h-16 lg:w-26 lg:h-18 text-cream-light" />
+          {/* 🌟 دخول الشعار */}
+          <motion.div initial={{ scale: 0.88, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-0 md:mb-1">
+            
+            {/* 🌟 حركة الطفو المستمرة */}
+            <motion.div
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="relative overflow-hidden px-2 py-1 group"
+            >
+              <BrandLogo className="w-20 h-14 md:w-24 md:h-16 lg:w-26 lg:h-18 text-cream-light drop-shadow-lg" />
+              
+              {/* ⚔️ لمعة السيف الخاطفة */}
+              <motion.div
+                animate={{ left: ["-150%", "200%", "200%"] }}
+                transition={{ 
+                  duration: 6, // تتكرر كل 6 ثواني
+                  repeat: Infinity, 
+                  ease: "linear", 
+                  times: [0, 0.15, 1] // اللمعة تعبر بسرعة (15% من الوقت) وتنتظر الباقي
+                }}
+                className="absolute top-0 bottom-0 w-2/3 bg-gradient-to-r from-transparent via-white/50 to-transparent -skew-x-[35deg] pointer-events-none mix-blend-overlay"
+              />
+            </motion.div>
+
           </motion.div>
           
           <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }} style={{ transformOrigin: "top" }} className="w-[1px] h-10 lg:h-12 bg-gradient-to-b from-transparent via-gold to-transparent mx-auto mb-4 lg:mb-5" />
@@ -118,8 +139,7 @@ export default function HomePage() {
             </p>
           </motion.div>
           
-          {/* 🛠️ أضفنا mb-10 و lg:mb-12 أسفل الزر لتشكيل مسافة عازلة عن المؤشر السفلي */}
-          <motion.div initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 1.05, ease: [0.16, 1, 0.3, 1] }} className="mb-10 lg:mb-16">
+          <motion.div initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 1.05, ease: [0.16, 1, 0.3, 1] }} className="mb-10 lg:mb-12">
             <a href="/#design-services" className="group relative inline-flex items-center gap-3 px-10 py-4 border border-gold/40 text-gold-light font-sans text-[11px] md:text-xs uppercase overflow-hidden transition-colors duration-300 hover:text-charcoal">
               <span className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
               <span className="relative z-10 font-medium">
@@ -130,7 +150,6 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        {/* 🛠️ تم ضبط التموضع السفلي bottom-6 lg:bottom-10 ليبتعد أكثر عن المنتصف */}
         <div className="absolute bottom-6 lg:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 hidden md:flex">
           <motion.div animate={{ y: [0, 8, 0], opacity: [0.4, 0.9, 0.4] }} transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }} className="flex flex-col items-center gap-1">
             <div className="w-[1px] h-6 lg:h-8 bg-gradient-to-b from-gold to-transparent opacity-70" />
