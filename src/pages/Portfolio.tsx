@@ -1,22 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, useMotionValue, animate, AnimatePresence } from "framer-motion";
-import {
-  Phone,
-  Instagram,
-  MapPin,
-  Home as HomeIcon,
-  Layers,
-  Grid3x3,
-  Sun,
-  Lamp,
-  Map,
-  Star,
-  Wrench,
-  PaintBucket,
-  Box,
-  Square,
-  X,
-} from "lucide-react";
+import { motion, useInView, animate, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 import Nav from "@/components/Nav";
 import BrandLogo from "@/components/BrandLogo";
 
@@ -39,7 +23,7 @@ function SectionLabel({ ar, en, light = false }: any) {
   return (
     <div className={`flex items-center gap-4 text-xs font-medium tracking-[0.5em] uppercase mb-6 ${color}`}>
       <div className={`w-12 h-[1px] shrink-0 ${lineColor} opacity-70`} />
-      <span className="ar">{ar}</span>
+      <span className="ar tracking-normal">{ar}</span>
       <span className="en">{en}</span>
     </div>
   );
@@ -66,8 +50,7 @@ const InfiniteSeamlessMarquee = ({ images, duration, reverse, onImageClick }: { 
   const animationClass = reverse ? "animate-marquee-right" : "animate-marquee-left";
 
   return (
-    // السر هنا: dir="ltr" يمنع الصور من الاختفاء عند التحويل للعربي
-    <div className="relative w-full overflow-hidden mb-16" dir="ltr">
+    <div className="relative w-full overflow-hidden mb-8 md:mb-12" dir="ltr">
       <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-charcoal to-transparent z-10 pointer-events-none" />
       <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-charcoal to-transparent z-10 pointer-events-none" />
 
@@ -136,7 +119,7 @@ export default function PortfolioPage() {
               />
 
               <div className="mt-6 text-center">
-                <p className="text-gold tracking-[0.2em] uppercase text-sm md:text-base font-medium">
+                <p className="text-gold tracking-wide text-sm md:text-base font-medium ar">
                   {selectedImage.label}
                 </p>
               </div>
@@ -155,49 +138,70 @@ export default function PortfolioPage() {
           <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-8">
             <Reveal direction="left">
               <SectionLabel ar="أهم أعمالنا" en="Our Featured Work" light />
-              <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl text-cream-light leading-[1.15]">
-                <span className="ar">معرض <em className="not-italic text-gold">الإبداع</em></span>
+              <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl text-cream-light leading-[1.3] lg:leading-[1.15]">
+                <span className="ar tracking-normal">معرض <em className="not-italic text-gold">الإبداع</em></span>
                 <span className="en">Gallery of <em className="italic text-gold">Creativity</em></span>
               </h2>
             </Reveal>
             <Reveal delay={0.15} className="max-w-sm text-start">
               <p className="text-cream/40 font-light text-sm leading-relaxed text-justify">
-                <span className="ar">جولة بصرية لا نهائية في أحدث مشاريعنا. اضغط على أي صورة لتكبيرها واستكشاف دقة التفاصيل وجودة التنفيذ.</span>
+                <span className="ar tracking-normal">جولة بصرية لا نهائية في أحدث مشاريعنا. اضغط على أي صورة لتكبيرها واستكشاف دقة التفاصيل وجودة التنفيذ.</span>
                 <span className="en">An infinite visual tour of our latest projects. Click any image to enlarge and explore the precision of our execution.</span>
               </p>
             </Reveal>
           </div>
         </div>
 
-        {/* LOOP 1 */}
+        {/* 1. صف التصميم الداخلي، الصالات والمجالس */}
         <InfiniteSeamlessMarquee
-          duration={80}
+          duration={90}
           onImageClick={setSelectedImage}
           images={[
-            { src: "/work-1.jpeg", label: "صحار | المجلس الرئيسي" },
-            { src: "/work-2.jpeg", label: "صحار | التصميم الداخلي" },
-            { src: "/work-3.jpeg", label: "صحار | غرف النوم" },
-            { src: "/work-4.jpeg", label: "صحار | الممرات والمداخل" },
-            { src: "/work-5.jpeg", label: "صحار | الجلسات الخارجية" },
-            { src: "/work-6.jpeg", label: "صحار | منطقة الطعام" },
-            { src: "/work-7.jpeg", label: "صحار | أعمال الإنارة" },
-            { src: "/work-8.jpeg", label: "صحار | التشطيبات الخشبية" },
-            { src: "/work-9.jpeg", label: "صحار | اللمسات النهائية" },
+            { src: "/تصميم داخلي.jpeg", label: "التصميم الداخلي المتكامل" },
+            { src: "/تصميم داخلي (2).jpeg", label: "تصميم داخلي عصري" },
+            { src: "/تصميم داخلي (3).jpeg", label: "تصاميم داخلية فاخرة" },
+            { src: "/ديكور داخلي.jpeg", label: "ديكور داخلي" },
+            { src: "/ديكور داخلي (2).jpeg", label: "تفاصيل الديكور الداخلي" },
+            { src: "/ديكور راقي.jpeg", label: "ديكور راقي وفخم" },
+            { src: "/ديكور صالة.jpeg", label: "ديكور الصالات الفاخرة" },
+            { src: "/ديكور مجلس.jpeg", label: "تصميم وتنفيذ المجالس" },
+            { src: "/ديكور تلفزيون.jpeg", label: "ديكور جدار التلفزيون" },
+            { src: "/اثاث وديكور.jpeg", label: "تنسيق الأثاث والديكور" },
+            { src: "/ديكور.jpeg", label: "لمسات ديكورية استثنائية" },
           ]}
         />
 
-        {/* LOOP 2 */}
+        {/* 2. صف غرف النوم، الإنارة، المرايا والأرفف (يتحرك بالعكس للجمالية) */}
         <InfiniteSeamlessMarquee
-          duration={65}
+          duration={80}
           reverse={true}
           onImageClick={setSelectedImage}
           images={[
-            { src: "/marble-1.jpeg", label: "مسقط | مغاسل رخام فاخرة" },
-            { src: "/marble-2.jpeg", label: "مسقط | كوارتز عالي الجودة" },
-            { src: "/marble-3.jpeg", label: "مسقط | جرانيت صلب" },
-            { src: "/marble-4.jpeg", label: "مسقط | بورسلين أنيق" },
-            { src: "/marble-5.jpeg", label: "مسقط | تصاميم عصرية" },
-            { src: "/marble-6.jpeg", label: "مسقط | تشطيبات دقيقة" },
+            { src: "/غرفة نوم.jpeg", label: "غرفة نوم رئيسية (Master Bedroom)" },
+            { src: "/غرفة نوم (2).jpeg", label: "غرف نوم عصرية" },
+            { src: "/ديكور غرفة نوم.jpeg", label: "ديكور غرف النوم" },
+            { src: "/ديكور غرفة نوم (2).jpeg", label: "تفاصيل غرف النوم" },
+            { src: "/ديكور غرفة نوم (3).jpeg", label: "إبداع في تصاميم غرف النوم" },
+            { src: "/ديكورات أرفف.jpeg", label: "ديكورات الأرفف الجدارية" },
+            { src: "/ديكورات أرفف (2).jpeg", label: "تصميم الأرفف الخشبية" },
+            { src: "/تصميم داخلي وإنارة.jpeg", label: "تناغم التصميم والإنارة" },
+            { src: "/ديكور وإنارة.jpeg", label: "توزيع الإنارة المخفية" },
+            { src: "/ديكور مرايا.jpeg", label: "ديكور المرايا وتوسيع المساحات" },
+          ]}
+        />
+
+        {/* 3. صف المغاسل ودورات المياه */}
+        <InfiniteSeamlessMarquee
+          duration={85}
+          onImageClick={setSelectedImage}
+          images={[
+            { src: "/دورات مياه.jpeg", label: "تصميم دورات المياه" },
+            { src: "/دورات مياه (2).jpeg", label: "دورات مياه فندقية" },
+            { src: "/مغاسل.jpeg", label: "تصميم المغاسل" },
+            { src: "/مغاسل (2).jpeg", label: "مغاسل رخامية فاخرة" },
+            { src: "/مغاسل (3).jpeg", label: "مغاسل بتصميم حديث" },
+            { src: "/مغاسل (4).jpeg", label: "تفاصيل منطقة المغاسل" },
+            { src: "/مغاسل ودورة مياه.jpeg", label: "مغاسل ودورات مياه متكاملة" },
           ]}
         />
       </section>
