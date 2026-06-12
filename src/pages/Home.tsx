@@ -102,8 +102,6 @@ export default function HomePage() {
               className="relative px-3 py-2 flex items-center justify-center"
             >
               <BrandLogo className="relative z-10 w-20 h-14 md:w-24 md:h-16 lg:w-26 lg:h-18 text-cream-light" />
-              <motion.div animate={{ left: ["-150%", "200%"] }} transition={{ duration: 6, repeat: Infinity, ease: "linear", times: [0, 1] }} className="absolute top-0 bottom-0 w-full bg-gradient-to-r from-white/0 via-white/50 to-white/0 -skew-x-[35deg] z-20" />
-            </motion.div>
           </motion.div>
           
           <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }} style={{ transformOrigin: "top" }} className="w-[1px] h-8 lg:h-10 bg-gradient-to-b from-transparent via-gold to-transparent mx-auto mb-3" />
