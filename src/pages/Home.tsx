@@ -119,7 +119,7 @@ export default function HomePage() {
           </motion.div>
           
           {/* 🛠️ أضفنا mb-10 و lg:mb-12 أسفل الزر لتشكيل مسافة عازلة عن المؤشر السفلي */}
-          <motion.div initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 1.05, ease: [0.16, 1, 0.3, 1] }} className="mb-10 lg:mb-12">
+          <motion.div initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 1.05, ease: [0.16, 1, 0.3, 1] }} className="mb-10 lg:mb-16">
             <a href="/#design-services" className="group relative inline-flex items-center gap-3 px-10 py-4 border border-gold/40 text-gold-light font-sans text-[11px] md:text-xs uppercase overflow-hidden transition-colors duration-300 hover:text-charcoal">
               <span className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
               <span className="relative z-10 font-medium">
