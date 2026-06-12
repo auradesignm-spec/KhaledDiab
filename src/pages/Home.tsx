@@ -67,7 +67,7 @@ function SectionLabel({ ar, en, light = false }: any) {
   const color = light ? "text-gold-light" : "text-gold";
   const lineColor = light ? "bg-gold-light" : "bg-gold";
   return (
-    <div className={`flex items-center gap-4 text-xs font-medium uppercase mb-6 ${color}`}>
+    <div className={`flex items-center gap-4 text-xs font-medium uppercase mb-8 ${color}`}>
       <div className={`w-12 h-[1px] shrink-0 ${lineColor} opacity-70`} />
       <span className="ar tracking-normal">{ar}</span>
       <span className="en tracking-[0.5em]">{en}</span>
@@ -90,33 +90,35 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-tr from-gold/4 via-transparent to-transparent opacity-80" />
         </div>
 
-        <div className="relative z-10 text-center max-w-5xl px-6 flex flex-col items-center pt-28 md:pt-32">
-          <motion.div initial={{ scale: 0.88, opacity: 0.6 }} animate={{ scale: 1, opacity: 0.88 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-7">
+        <div className="relative z-10 text-center max-w-5xl px-6 flex flex-col items-center pt-32 md:pt-40">
+          <motion.div initial={{ scale: 0.88, opacity: 0.6 }} animate={{ scale: 1, opacity: 0.88 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-8 md:mb-10">
             <BrandLogo className="w-28 h-20 text-cream-light" />
           </motion.div>
-          <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }} style={{ transformOrigin: "top" }} className="w-[1px] h-12 bg-gradient-to-b from-transparent via-gold to-transparent mx-auto mb-7" />
+          <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }} style={{ transformOrigin: "top" }} className="w-[1px] h-14 bg-gradient-to-b from-transparent via-gold to-transparent mx-auto mb-8" />
           
-          <motion.p initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }} className="font-sans font-extralight text-xs md:text-sm uppercase mb-5 text-gold-light">
+          <motion.p initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }} className="font-sans font-medium text-xs md:text-sm uppercase mb-6 text-gold-light">
             <span className="ar tracking-normal">خالد دياب</span>
             <span className="en tracking-[0.45em]">Khaled Diab</span>
           </motion.p>
           
-          <motion.h1 initial={{ y: 22, opacity: 0.2 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }} className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-cream-light leading-[1.1] -tracking-[0.02em] mb-3">
+          <motion.h1 initial={{ y: 22, opacity: 0.2 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }} className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-cream-light leading-tight -tracking-[0.02em] mb-2 md:mb-4">
             Future Design
           </motion.h1>
-          <motion.h1 initial={{ y: 22, opacity: 0.2 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.75, ease: [0.16, 1, 0.3, 1] }} className="font-serif italic text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-gold leading-[1.1] -tracking-[0.02em] mb-10">
+          <motion.h1 initial={{ y: 22, opacity: 0.2 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.75, ease: [0.16, 1, 0.3, 1] }} className="font-serif italic text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-gold leading-tight -tracking-[0.02em] mb-12 md:mb-16">
             Decore
           </motion.h1>
           
-          <motion.p initial={{ y: 16, opacity: 0.25 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }} className="font-sans font-light text-xs sm:text-sm md:text-base text-cream/55 uppercase mb-12 leading-loose">
-            <span className="ar tracking-normal block md:inline">تصميم داخلي · تنفيذ احترافي · إبداع لا حدود له</span>
-            <span className="en tracking-[0.12em] block md:inline">Interior Design · Professional Execution · Limitless Creativity</span>
-          </motion.p>
+          <motion.div initial={{ y: 16, opacity: 0.25 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }} className="max-w-2xl mx-auto mb-14">
+            <p className="font-sans font-light text-sm md:text-base text-cream/60 uppercase leading-loose md:leading-loose">
+              <span className="ar tracking-normal block md:inline">تصميم داخلي · تنفيذ احترافي · إبداع لا حدود له</span>
+              <span className="en tracking-[0.15em] block md:inline">Interior Design · Professional Execution · Limitless Creativity</span>
+            </p>
+          </motion.div>
           
           <motion.div initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 1.05, ease: [0.16, 1, 0.3, 1] }}>
-            <a href="#design-services" className="group relative inline-flex items-center gap-3 px-10 py-4 border border-gold/40 text-gold-light font-sans text-xs uppercase overflow-hidden transition-colors duration-300 hover:text-charcoal">
+            <a href="/#design-services" className="group relative inline-flex items-center gap-3 px-12 py-5 border border-gold/40 text-gold-light font-sans text-xs uppercase overflow-hidden transition-colors duration-300 hover:text-charcoal">
               <span className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
-              <span className="relative z-10">
+              <span className="relative z-10 font-medium">
                 <span className="ar tracking-normal">استكشف خدماتنا</span>
                 <span className="en tracking-[0.3em]">Explore Services</span>
               </span>
@@ -124,10 +126,10 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10 hidden md:flex">
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10 hidden md:flex">
           <motion.div animate={{ y: [0, 8, 0], opacity: [0.4, 0.9, 0.4] }} transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }} className="flex flex-col items-center gap-1">
-            <div className="w-[1px] h-8 bg-gradient-to-b from-gold to-transparent opacity-70" />
-            <div className="w-1 h-1 rounded-full bg-gold/50" />
+            <div className="w-[1px] h-10 bg-gradient-to-b from-gold to-transparent opacity-70" />
+            <div className="w-1.5 h-1.5 rounded-full bg-gold/60" />
           </motion.div>
         </div>
       </section>
@@ -135,15 +137,15 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════
           2. ABOUT
       ══════════════════════════════════════════ */}
-      <section id="about" className="py-24 lg:py-40 px-6 bg-cream-light relative">
-        <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-28 items-center">
+      <section id="about" className="py-28 lg:py-48 px-6 bg-cream-light relative">
+        <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-32 items-center">
           <Reveal direction="left">
             <SectionLabel ar="من نحن" en="About Us" />
-            <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl text-charcoal leading-[1.2] lg:leading-[1.15] mb-8">
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-charcoal leading-[1.3] lg:leading-[1.2] mb-10">
               <span className="ar tracking-normal">نحوّل <em className="not-italic text-gold-dark">المساحات</em><br />إلى تحف فنية</span>
               <span className="en">We Transform <em className="italic text-gold-dark">Spaces</em><br />into Masterpieces</span>
             </h2>
-            <div className="space-y-6 text-text-muted font-light text-base md:text-lg leading-[2] text-justify">
+            <div className="space-y-8 text-text-muted font-light text-base md:text-lg leading-[2.2] text-justify">
               <p>
                 <span className="ar tracking-normal">في فيوتشر ديزاين ديكور، نؤمن بأن كل مساحة تروي قصة. بقيادة المصمم خالد دياب، نجمع بين الفخامة والوظيفة لنبتكر تصاميم داخلية تعكس شخصية عملائنا وترتقي بأسلوب حياتهم.</span>
                 <span className="en">At Future Design Decore, we believe every space tells a story. Led by designer Khaled Diab, we blend luxury with function to craft interiors that reflect our clients' personalities and elevate their lifestyle.</span>
@@ -156,9 +158,9 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal delay={0.2} direction="right">
-            <div className="relative mt-8 lg:mt-0">
-              <div className="absolute -top-3 -end-3 -bottom-3 start-3 border border-gold/50 opacity-60 pointer-events-none" />
-              <div className="bg-charcoal p-8 lg:p-16 relative shadow-2xl">
+            <div className="relative mt-12 lg:mt-0">
+              <div className="absolute -top-4 -end-4 -bottom-4 start-4 border border-gold/40 opacity-60 pointer-events-none" />
+              <div className="bg-charcoal p-10 lg:p-16 xl:p-20 relative shadow-2xl">
                 <StaggerParent className="grid grid-cols-2 gap-0">
                   {[
                     { val: "2D", label_ar: "تصميم بالمقاسات", label_en: "Scaled Design" },
@@ -167,11 +169,11 @@ export default function HomePage() {
                     { val: 100, suffix: "%", label_ar: "رضا العملاء", label_en: "Client Satisfaction" },
                   ].map((stat, i) => (
                     <StaggerChild key={i}>
-                      <div className={`py-8 px-4 text-center ${i % 2 === 0 ? "border-e border-gold/15" : ""} ${i < 2 ? "border-b border-gold/15" : ""}`}>
-                        <div className="font-serif text-4xl lg:text-5xl text-gold mb-3 leading-none"><Counter to={stat.val} suffix={stat.suffix} /></div>
-                        <div className="text-[11px] font-light text-cream/45 uppercase leading-tight">
+                      <div className={`py-10 px-6 text-center ${i % 2 === 0 ? "border-e border-gold/15" : ""} ${i < 2 ? "border-b border-gold/15" : ""}`}>
+                        <div className="font-serif text-5xl lg:text-6xl text-gold mb-4 leading-none"><Counter to={stat.val} suffix={stat.suffix} /></div>
+                        <div className="text-xs font-light text-cream/50 uppercase leading-relaxed mt-2">
                           <span className="ar block tracking-normal">{stat.label_ar}</span>
-                          <span className="en block tracking-widest mt-1">{stat.label_en}</span>
+                          <span className="en block tracking-[0.2em] mt-1">{stat.label_en}</span>
                         </div>
                       </div>
                     </StaggerChild>
@@ -186,30 +188,30 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════
           3. DESIGN SERVICES
       ══════════════════════════════════════════ */}
-      <section id="design-services" className="py-24 lg:py-40 px-6 bg-charcoal text-cream-light relative overflow-hidden">
+      <section id="design-services" className="py-28 lg:py-48 px-6 bg-charcoal text-cream-light relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -start-32 top-1/2 -translate-y-1/2 w-64 h-64 rounded-full border border-gold/5" />
-          <div className="absolute -end-20 bottom-20 w-96 h-96 rounded-full border border-gold/5 opacity-80" />
+          <div className="absolute -start-32 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-gold/5" />
+          <div className="absolute -end-20 bottom-20 w-[600px] h-[600px] rounded-full border border-gold/5 opacity-80" />
         </div>
 
         <div className="max-w-[1300px] mx-auto relative z-10">
-          <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-16 gap-6">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-20 gap-8">
             <Reveal direction="left">
               <SectionLabel ar="خدمات التصميم" en="Design Services" light />
-              <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl text-cream-light leading-[1.2]">
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-cream-light leading-[1.3] lg:leading-[1.2]">
                 <span className="ar tracking-normal">من الفكرة<br /><em className="not-italic text-gold">إلى المخطط</em></span>
                 <span className="en">From Concept<br /><em className="italic text-gold">to Blueprint</em></span>
               </h2>
             </Reveal>
-            <Reveal delay={0.15} className="max-w-xs text-start">
-              <p className="text-cream/40 font-light text-sm leading-relaxed text-justify">
+            <Reveal delay={0.15} className="max-w-sm text-start">
+              <p className="text-cream/50 font-light text-base leading-loose text-justify">
                 <span className="ar tracking-normal">نقدم خدمات تصميم داخلي شاملة تبدأ من التصورات الأولى وتصل إلى أدق تفاصيل التنفيذ.</span>
                 <span className="en">Comprehensive interior design services from initial concepts down to the finest execution details.</span>
               </p>
             </Reveal>
           </div>
 
-          <StaggerParent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-gold/10 border border-gold/10 shadow-lg">
+          <StaggerParent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-gold/15 border border-gold/15 shadow-2xl">
             {[
               { num: "01", icon: Grid3x3, ar: "تصميم 2D", en: "2D Design", arDesc: "مخططات دقيقة بالأبعاد الفعلية وتوزيع أمثل للأثاث.", enDesc: "Precise 2D layouts with exact dimensions and optimal furniture placement." },
               { num: "02", icon: Layers, ar: "تصميم 3D", en: "3D Design", arDesc: "تصور واقعي للمساحة قبل التنفيذ باستخدام أحدث التقنيات.", enDesc: "Ultra-realistic 3D visualization before execution using cutting-edge tools." },
@@ -219,17 +221,19 @@ export default function HomePage() {
               { num: "06", icon: Map, ar: "مخططات تنفيذية", en: "Executive Plans", arDesc: "خرائط هندسية تفصيلية تتضمن كل القياسات اللازمة للتنفيذ.", enDesc: "Detailed engineering blueprints with all measurements for on-site execution." },
             ].map((svc, idx) => (
               <StaggerChild key={idx}>
-                <div className="group relative bg-charcoal p-8 xl:p-12 h-full cursor-default overflow-hidden transition-colors duration-500 hover:bg-charcoal-light">
-                  <div className="absolute bottom-0 start-0 h-[2px] w-0 bg-gold group-hover:w-full transition-all duration-500" />
-                  <span className="absolute top-6 start-6 font-serif text-[11px] text-gold/20 tracking-widest">{svc.num}</span>
-                  <div className="mb-6 mt-4 transition-transform duration-500 group-hover:-translate-y-1 group-hover:text-gold-light">
-                    <svc.icon strokeWidth={1.2} className="w-10 h-10 text-gold/70" />
+                <div className="group relative bg-charcoal p-10 lg:p-12 xl:p-14 h-full cursor-default overflow-hidden transition-colors duration-500 hover:bg-charcoal-light">
+                  <div className="absolute bottom-0 start-0 h-[3px] w-0 bg-gold group-hover:w-full transition-all duration-700 ease-out" />
+                  <span className="absolute top-8 start-8 font-serif text-[13px] text-gold/30 tracking-widest">{svc.num}</span>
+                  
+                  <div className="mb-8 mt-6 transition-transform duration-500 group-hover:-translate-y-2 group-hover:text-gold-light">
+                    <svc.icon strokeWidth={1} className="w-12 h-12 text-gold/80" />
                   </div>
-                  <h3 className="font-sans font-bold text-lg text-cream-light mb-3 leading-snug">
+                  
+                  <h3 className="font-sans font-bold text-xl text-cream-light mb-4 leading-snug">
                     <span className="ar tracking-normal">{svc.ar}</span>
-                    <span className="en tracking-wider">{svc.en}</span>
+                    <span className="en tracking-[0.1em]">{svc.en}</span>
                   </h3>
-                  <p className="text-sm font-light text-cream/45 leading-[1.9] text-justify">
+                  <p className="text-base font-light text-cream/50 leading-[2.2] text-justify">
                     <span className="ar tracking-normal">{svc.arDesc}</span>
                     <span className="en">{svc.enDesc}</span>
                   </p>
@@ -241,21 +245,21 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          4. EXECUTION SERVICES (تم استرجاع هذا القسم بالكامل)
+          4. EXECUTION SERVICES
       ══════════════════════════════════════════ */}
-      <section id="execution-services" className="py-24 lg:py-40 px-6 bg-cream-light relative overflow-hidden">
-        <div className="absolute end-0 top-1/2 -translate-y-1/2 font-serif text-[200px] font-bold text-charcoal/3 leading-none pointer-events-none select-none hidden xl:block">KD</div>
+      <section id="execution-services" className="py-28 lg:py-48 px-6 bg-cream-light relative overflow-hidden">
+        <div className="absolute end-0 top-1/2 -translate-y-1/2 font-serif text-[280px] font-bold text-charcoal/3 leading-none pointer-events-none select-none hidden xl:block">KD</div>
 
         <div className="max-w-[1300px] mx-auto relative z-10">
           <Reveal>
             <SectionLabel ar="خدمات التنفيذ" en="Execution Services" />
-            <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl text-charcoal leading-[1.2] lg:leading-[1.15] mb-16 lg:mb-20">
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-charcoal leading-[1.3] lg:leading-[1.2] mb-20 lg:mb-24">
               <span className="ar tracking-normal">من المخطط<br /><em className="not-italic text-gold-dark">إلى الواقع</em></span>
               <span className="en">From Blueprint<br /><em className="italic text-gold-dark">To Reality</em></span>
             </h2>
           </Reveal>
 
-          <StaggerParent className="grid grid-cols-1 md:grid-cols-2 border border-charcoal/8 bg-white/50 backdrop-blur-sm shadow-xl">
+          <StaggerParent className="grid grid-cols-1 md:grid-cols-2 border border-charcoal/10 bg-white/60 backdrop-blur-md shadow-2xl">
             {[
               { icon: HomeIcon, num: "01", ar: "أعمال التصميم الديكوري", en: "Decor Design Works", arDesc: "مجالس · غرف معيشة · مطابخ · حمامات · غرف نوم", enDesc: "Majlis · Living Rooms · Kitchens · Bathrooms · Bedrooms" },
               { icon: Wrench, num: "02", ar: "أعمال النجارة", en: "Carpentry Works", arDesc: "ديكورات خشبية · خزائن · مطابخ مدمجة", enDesc: "Wooden Decor · Wardrobes · Built-in Kitchens" },
@@ -266,17 +270,17 @@ export default function HomePage() {
               { icon: PaintBucket, num: "07", ar: "أعمال الدهانات", en: "Painting Works", arDesc: "دهانات متنوعة · تشطيبات ملمسية", enDesc: "Various Paints · Textured Finishes" },
             ].map((item, idx) => (
               <StaggerChild key={idx}>
-                <div className={`group flex items-start gap-5 lg:gap-7 p-8 xl:p-12 transition-colors duration-400 hover:bg-white/70 border-b border-charcoal/8 ${idx % 2 === 0 ? "md:border-e md:border-charcoal/8" : ""}`}>
-                  <div className="w-12 h-12 lg:w-14 lg:h-14 bg-charcoal shrink-0 flex items-center justify-center transition-all duration-400 group-hover:bg-gold">
-                    <item.icon strokeWidth={1.3} className="w-5 h-5 lg:w-6 lg:h-6 text-gold group-hover:text-charcoal transition-colors duration-400" />
+                <div className={`group flex items-start gap-6 lg:gap-8 p-10 lg:p-12 xl:p-14 transition-colors duration-500 hover:bg-white/90 border-b border-charcoal/10 ${idx % 2 === 0 ? "md:border-e md:border-charcoal/10" : ""}`}>
+                  <div className="w-14 h-14 lg:w-16 lg:h-16 bg-charcoal shrink-0 flex items-center justify-center transition-all duration-500 group-hover:bg-gold shadow-md">
+                    <item.icon strokeWidth={1.2} className="w-6 h-6 lg:w-7 lg:h-7 text-gold group-hover:text-charcoal transition-colors duration-500" />
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2"><span className="font-serif text-[11px] text-charcoal/20 tracking-widest">{item.num}</span></div>
-                    <h3 className="font-sans font-bold text-base md:text-lg text-charcoal mb-2 leading-snug">
+                  <div className="flex-1 mt-1">
+                    <div className="flex items-center gap-3 mb-3"><span className="font-serif text-[12px] text-charcoal/30 tracking-widest">{item.num}</span></div>
+                    <h3 className="font-sans font-bold text-lg md:text-xl text-charcoal mb-3 leading-snug">
                       <span className="ar tracking-normal">{item.ar}</span>
-                      <span className="en tracking-wider">{item.en}</span>
+                      <span className="en tracking-wide">{item.en}</span>
                     </h3>
-                    <p className="text-sm font-light text-text-muted leading-relaxed text-justify">
+                    <p className="text-base font-light text-text-muted leading-loose text-justify">
                       <span className="ar tracking-normal">{item.arDesc}</span>
                       <span className="en">{item.enDesc}</span>
                     </p>
@@ -291,37 +295,37 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════
           5. CONTACT
       ══════════════════════════════════════════ */}
-      <section id="contact" className="py-24 lg:py-40 px-6 bg-charcoal-mid relative overflow-hidden text-cream-light border-t border-gold/10">
-        <div className="absolute -bottom-12 -start-8 font-serif text-[280px] font-bold text-gold/3 leading-none pointer-events-none select-none hidden md:block">KD</div>
+      <section id="contact" className="py-28 lg:py-48 px-6 bg-charcoal-mid relative overflow-hidden text-cream-light border-t border-gold/10">
+        <div className="absolute -bottom-12 -start-8 font-serif text-[350px] font-bold text-gold/3 leading-none pointer-events-none select-none hidden md:block">KD</div>
 
-        <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-center relative z-10">
+        <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-28 items-center relative z-10">
           <Reveal direction="left">
             <SectionLabel ar="تواصل مع المكتب" en="Contact the Studio" light />
-            <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl text-cream-light leading-[1.2] mb-6">
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-cream-light leading-[1.3] lg:leading-[1.2] mb-8">
               <span className="ar tracking-normal">دعنا نتحدث<br /><em className="not-italic text-gold">عن مشروعك</em></span>
               <span className="en">Let's Talk<br /><em className="italic text-gold">About Your Project</em></span>
             </h2>
-            <p className="text-cream/50 font-light text-base mb-12 leading-[1.9] text-justify max-w-lg">
+            <p className="text-cream/60 font-light text-base lg:text-lg mb-14 leading-[2.2] text-justify max-w-lg">
               <span className="ar tracking-normal">نحن هنا لتحويل أفكارك إلى حقيقة. تواصل معنا للحصول على استشارتك المجانية ومناقشة تفاصيل مشروعك.</span>
               <span className="en">We are here to turn your ideas into reality. Contact us for a free consultation and to discuss the details of your project.</span>
             </p>
 
-            <div className="space-y-4 max-w-md">
+            <div className="space-y-5 max-w-md">
               {[
                 { icon: Phone, labelAr: "الهاتف / واتساب", labelEn: "Phone / WhatsApp", valAr: "+968 7753 3603", valEn: "+968 7753 3603", link: "https://wa.link/gitycp", forceLtr: true },
                 { icon: Instagram, labelAr: "إنستغرام", labelEn: "Instagram", valAr: "@future_design_decor", valEn: "@future_design_decor", link: "https://www.instagram.com/future_design_decor", forceLtr: true },
                 { icon: MapPin, labelAr: "الموقع", labelEn: "Location", valAr: "سلطنة عُمان", valEn: "Sultanate of Oman", link: "#", forceLtr: false },
               ].map((c, i) => (
-                <motion.a key={i} href={c.link} target="_blank" rel="noopener noreferrer" whileHover={{ y: -4, x: 5 }} transition={{ duration: 0.3 }} className="group flex items-center gap-5 p-5 border border-gold/15 bg-white/3 hover:bg-white/5 hover:border-gold/30 transition-all duration-300 shadow-md">
-                  <div className="w-12 h-12 rounded-full bg-gold/10 shrink-0 flex items-center justify-center group-hover:bg-gold transition-colors duration-300">
-                    <c.icon className="w-5 h-5 text-gold group-hover:text-charcoal transition-colors duration-300" />
+                <motion.a key={i} href={c.link} target="_blank" rel="noopener noreferrer" whileHover={{ y: -4, x: 5 }} transition={{ duration: 0.3 }} className="group flex items-center gap-6 p-6 lg:p-7 border border-gold/20 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-400 shadow-lg">
+                  <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-gold/10 shrink-0 flex items-center justify-center group-hover:bg-gold transition-colors duration-400">
+                    <c.icon strokeWidth={1.5} className="w-6 h-6 text-gold group-hover:text-charcoal transition-colors duration-400" />
                   </div>
                   <div className="flex-1">
-                    <div className="text-[10px] tracking-[0.3em] text-gold/60 uppercase mb-1 font-medium">
+                    <div className="text-[11px] tracking-[0.3em] text-gold/70 uppercase mb-2 font-medium">
                       <span className="ar tracking-normal">{c.labelAr}</span>
                       <span className="en">{c.labelEn}</span>
                     </div>
-                    <div className="text-base font-medium text-cream/95" dir={c.forceLtr ? "ltr" : undefined}>
+                    <div className="text-lg font-medium text-cream/95" dir={c.forceLtr ? "ltr" : undefined}>
                       <span className="ar tracking-normal">{c.valAr}</span>
                       <span className="en tracking-wider">{c.valEn}</span>
                     </div>
@@ -333,13 +337,13 @@ export default function HomePage() {
 
           <Reveal delay={0.2} direction="right">
             <div className="relative group p-1 ml-4 hidden lg:block">
-              <div className="absolute -top-5 -end-5 -bottom-5 start-5 border border-gold/20 pointer-events-none transition-all duration-500 group-hover:top-[-25px] group-hover:-end-[25px] opacity-70" />
-              <div className="relative text-center py-20 px-10 bg-gradient-to-br from-charcoal to-[#1a1816] border border-gold/15 flex flex-col items-center justify-center backdrop-blur-sm shadow-2xl">
-                <BrandLogo className="w-28 h-20 text-gold mb-12 opacity-90" />
-                <div className="w-20 h-[1px] bg-gold/20 mb-9" />
-                <div className="font-sans font-light text-xl tracking-[0.5em] uppercase text-cream/85 mb-3">Khaled Diab</div>
-                <div className="font-sans font-light text-xs tracking-[0.4em] uppercase text-gold/60">Future Design Decore</div>
-                <div className="mt-10 text-[11px] tracking-[0.25em] uppercase text-cream/30">
+              <div className="absolute -top-6 -end-6 -bottom-6 start-6 border border-gold/20 pointer-events-none transition-all duration-700 group-hover:top-[-30px] group-hover:-end-[30px] opacity-70" />
+              <div className="relative text-center py-24 px-12 bg-gradient-to-br from-charcoal to-[#1a1816] border border-gold/20 flex flex-col items-center justify-center backdrop-blur-sm shadow-2xl">
+                <BrandLogo className="w-32 h-24 text-gold mb-14 opacity-90" />
+                <div className="w-24 h-[1px] bg-gold/30 mb-10" />
+                <div className="font-sans font-light text-2xl tracking-[0.4em] uppercase text-cream/90 mb-4">Khaled Diab</div>
+                <div className="font-sans font-medium text-sm tracking-[0.4em] uppercase text-gold/70">Future Design Decore</div>
+                <div className="mt-12 text-[12px] tracking-[0.2em] uppercase text-cream/40">
                   <span className="ar tracking-normal">سلطنة عُمان</span>
                   <span className="en">Sultanate of Oman</span>
                 </div>
@@ -352,15 +356,15 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════
           6. FOOTER
       ══════════════════════════════════════════ */}
-      <footer className="bg-charcoal border-t border-gold/10 py-10 px-6 pb-28 lg:pb-10">
-        <div className="max-w-[1300px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-3">
-            <BrandLogo className="w-8 h-6 text-gold/50" />
-            <p className="text-xs font-light text-cream/30 tracking-wider">© 2026 Future Design Decore — All rights reserved.</p>
+      <footer className="bg-charcoal border-t border-gold/15 py-12 px-6 pb-32 lg:pb-12">
+        <div className="max-w-[1300px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="flex items-center gap-4">
+            <BrandLogo className="w-10 h-8 text-gold/60" />
+            <p className="text-sm font-light text-cream/40 tracking-wider">© 2026 Future Design Decore — All rights reserved.</p>
           </div>
-          <div className="flex gap-8">
-            <a href="https://www.instagram.com/future_design_decor" target="_blank" rel="noopener noreferrer" className="text-xs tracking-[0.25em] text-cream/45 hover:text-gold uppercase transition-colors duration-300 font-medium">Instagram</a>
-            <a href="https://wa.link/gitycp" target="_blank" rel="noopener noreferrer" className="text-xs tracking-[0.25em] text-cream/45 hover:text-gold uppercase transition-colors duration-300 font-medium">WhatsApp</a>
+          <div className="flex gap-10">
+            <a href="https://www.instagram.com/future_design_decor" target="_blank" rel="noopener noreferrer" className="text-xs tracking-[0.25em] text-cream/50 hover:text-gold uppercase transition-colors duration-400 font-medium">Instagram</a>
+            <a href="https://wa.link/gitycp" target="_blank" rel="noopener noreferrer" className="text-xs tracking-[0.25em] text-cream/50 hover:text-gold uppercase transition-colors duration-400 font-medium">WhatsApp</a>
           </div>
         </div>
       </footer>
