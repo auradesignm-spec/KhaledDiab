@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useMotionValue, animate } from "framer-motion";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import {
   Phone,
   Instagram,
@@ -377,6 +378,8 @@ export default function HomePage() {
           </div>
         </div>
       </footer>
+      {/* زر واتساب العائم */}
+      <WhatsAppButton />
     </div>
   );
 }
