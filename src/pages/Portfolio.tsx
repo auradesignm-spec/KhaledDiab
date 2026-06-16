@@ -279,6 +279,37 @@ export default function PortfolioPage() {
            
           ]}
         />
+        <InteractiveMarquee
+          speed={1}
+          reverse={true}
+          onImageClick={setSelectedImage}
+          images={[
+            { src: "/ديكور أسقف وجدران (1).jpeg", label: "ديكور أسقف وجدران" },
+            { src: "/ديكور أسقف وجدران (2).jpeg", label: "ديكور أسقف وجدران" },
+            { src: "/ديكور أسقف وجدران (3).jpeg", label: "ديكور أسقف وجدران" },
+            { src: "/ديكور أسقف وجدران (4).jpeg", label: "ديكور أسقف وجدران" },
+            { src: "/ديكور أسقف وجدران (5).jpeg", label: "ديكور أسقف وجدران" },
+            { src: "/ديكور أسقف وجدران (6).jpeg", label: "ديكور أسقف وجدران" },
+          ]}
+        />
+        <InteractiveMarquee
+          speed={1.2}
+          onImageClick={setSelectedImage}
+          images={[
+            { src: "/ديكور مدخل (1).jpeg", label: "ديكور مدخل" },
+            { src: "/ديكور مدخل (2).jpeg", label: "ديكور مدخل" },
+            { src: "/ديكور مدخل (3).jpeg", label: "ديكور مدخل" },
+            { src: "/ديكور مدخل (4).jpeg", label: "ديكور مدخل" },
+            { src: "/ديكور مدخل (5).jpeg", label: "ديكور مدخل" },
+            { src: "/ديكور مدخل (6).jpeg", label: "ديكور مدخل" },
+            { src: "/ديكور مدخل (7).jpeg", label: "ديكور مدخل" },
+            { src: "/ديكور مدخل (8).jpeg", label: "ديكور مدخل" },
+            { src: "/ديكور مدخل (9).jpeg", label: "ديكور مدخل" },
+            { src: "/ديكور مدخل (10).jpeg", label: "ديكور مدخل" },
+            { src: "/ديكور مدخل (11).jpeg", label: "ديكور مدخل" },
+
+          ]}
+        />
       </section>
 
       {/* FOOTER */}
