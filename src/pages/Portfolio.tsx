@@ -31,20 +31,22 @@ function SectionLabel({ ar, en, light = false }: any) {
 }
 
 /* ─── Project Card ─── */
-// التعديل هنا: إذا لم يتم تمرير label، لن تظهر الطبقة الداكنة ولا النص
-const ProjectCard = ({ src, label, onClick }: { src: string; label?: string; onClick: () => void }) => (
+const ProjectCard = ({ src, labelAr, labelEn, onClick }: { src: string; labelAr?: string; labelEn?: string; onClick: () => void }) => (
   <div
     onClick={onClick}
     className="group relative w-[280px] sm:w-[320px] md:w-[380px] aspect-[3/4] overflow-hidden bg-charcoal-dark shrink-0 cursor-zoom-in border border-transparent transition-all duration-500 ease-out hover:border-gold/30 hover:shadow-[0_0_30px_rgba(212,175,55,0.08)]"
   >
-    <img src={src} alt={label || "Portfolio Image"} className="w-full h-full object-cover opacity-85 transition-all duration-700 ease-out group-hover:opacity-100 group-hover:scale-105" loading="lazy" />
+    <img src={src} alt={labelEn || "Portfolio Image"} className="w-full h-full object-cover opacity-85 transition-all duration-700 ease-out group-hover:opacity-100 group-hover:scale-105" loading="lazy" />
     
-    {label && (
+    {(labelAr || labelEn) && (
       <>
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0907] via-[#0a0907]/10 to-transparent opacity-90 pointer-events-none transition-opacity duration-500 group-hover:opacity-100" />
         <div className="absolute bottom-0 start-0 w-full p-6 md:p-8 pointer-events-none translate-y-2 transition-transform duration-500 ease-out group-hover:translate-y-0">
           <div className="w-8 h-[1px] bg-gold mb-3 opacity-50 transition-all duration-500 group-hover:w-16 group-hover:opacity-100" />
-          <p className="text-white text-base md:text-lg font-medium tracking-wide drop-shadow-md"><span className="ar">{label}</span></p>
+          <p className="text-white text-base md:text-lg font-medium tracking-wide drop-shadow-md">
+            {labelAr && <span className="ar">{labelAr}</span>}
+            {labelEn && <span className="en">{labelEn}</span>}
+          </p>
         </div>
       </>
     )}
@@ -62,17 +64,14 @@ const InteractiveMarquee = ({ images, speed = 1, reverse = false, onImageClick }
   const [scrollLeftPos, setScrollLeftPos] = useState(0);
   const [dragDistance, setDragDistance] = useState(0);
 
-  // تكرار الصور لضمان الاستمرارية اللانهائية
   const duplicatedImages = [...images, ...images, ...images, ...images];
 
-  // تهيئة اتجاه الحركة العكسية عند التحميل
   useEffect(() => {
     if (reverse && scrollRef.current) {
       scrollRef.current.scrollLeft = scrollRef.current.scrollWidth / 2;
     }
   }, [reverse]);
 
-  // محرك التمرير التلقائي
   useEffect(() => {
     let animationFrameId: number;
     const scrollNode = scrollRef.current;
@@ -95,7 +94,6 @@ const InteractiveMarquee = ({ images, speed = 1, reverse = false, onImageClick }
     return () => cancelAnimationFrame(animationFrameId);
   }, [isPaused, isDragging, speed, reverse]);
 
-  // التحكم في التوقف واستئناف الحركة بعد 3 ثوانٍ
   const pauseScroll = () => {
     setIsPaused(true);
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -106,7 +104,6 @@ const InteractiveMarquee = ({ images, speed = 1, reverse = false, onImageClick }
     timeoutRef.current = setTimeout(() => setIsPaused(false), 3000);
   };
 
-  // تفاعلات سحب الماوس
   const onMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
     setDragDistance(0);
@@ -119,7 +116,7 @@ const InteractiveMarquee = ({ images, speed = 1, reverse = false, onImageClick }
     if (!isDragging || !scrollRef.current) return;
     e.preventDefault();
     const x = e.pageX - (scrollRef.current.offsetLeft || 0);
-    const walk = (x - startX) * 1.5; // سرعة استجابة السحب
+    const walk = (x - startX) * 1.5;
     setDragDistance(Math.abs(walk));
     scrollRef.current.scrollLeft = scrollLeftPos - walk;
   };
@@ -131,7 +128,6 @@ const InteractiveMarquee = ({ images, speed = 1, reverse = false, onImageClick }
     }
   };
 
-  // منع فتح الصورة إذا كان العميل يقوم بعملية سحب (Drag) وليس نقر (Click)
   const handleCardClick = (img: any) => {
     if (dragDistance < 10) onImageClick(img);
   };
@@ -152,7 +148,13 @@ const InteractiveMarquee = ({ images, speed = 1, reverse = false, onImageClick }
         onTouchEnd={resumeScroll}
       >
         {duplicatedImages.map((image, index) => (
-          <ProjectCard key={index} src={image.src} label={image.label} onClick={() => handleCardClick(image)} />
+          <ProjectCard 
+            key={index} 
+            src={image.src} 
+            labelAr={image.labelAr} 
+            labelEn={image.labelEn} 
+            onClick={() => handleCardClick(image)} 
+          />
         ))}
       </div>
     </div>
@@ -160,12 +162,11 @@ const InteractiveMarquee = ({ images, speed = 1, reverse = false, onImageClick }
 };
 
 export default function PortfolioPage() {
-  const [selectedImage, setSelectedImage] = useState<{ src: string; label?: string } | null>(null);
+  const [selectedImage, setSelectedImage] = useState<{ src: string; labelAr?: string; labelEn?: string } | null>(null);
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-charcoal">
       
-      {/* إخفاء شريط التمرير الافتراضي للحفاظ على جمالية التصميم */}
       <style>{`
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -198,14 +199,15 @@ export default function PortfolioPage() {
 
               <img
                 src={selectedImage.src}
-                alt={selectedImage.label || "Project"}
+                alt={selectedImage.labelEn || "Project Image"}
                 className="w-auto max-h-[75vh] md:max-h-[85vh] object-contain rounded-sm shadow-2xl border border-white/5"
               />
 
-              {selectedImage.label && (
+              {(selectedImage.labelAr || selectedImage.labelEn) && (
                 <div className="mt-6 text-center">
-                  <p className="text-gold tracking-wide text-sm md:text-base font-medium ar">
-                    {selectedImage.label}
+                  <p className="text-gold tracking-wide text-sm md:text-base font-medium">
+                    {selectedImage.labelAr && <span className="ar">{selectedImage.labelAr}</span>}
+                    {selectedImage.labelEn && <span className="en">{selectedImage.labelEn}</span>}
                   </p>
                 </div>
               )}
@@ -236,78 +238,80 @@ export default function PortfolioPage() {
           </div>
         </div>
 
-        {/* 1. صف الصور بدون نصوص (الترتيب الجديد الذي طلبته) */}
+        {/* 1. صف خزائن الخشب */}
         <InteractiveMarquee
           speed={1.2}
           onImageClick={setSelectedImage}
           images={[
-            { src: "/خزائن خشب (1).jpeg", label: "خزائن خشب" },
-            { src: "/خزائن خشب (2).jpeg", label: "خزائن خشب" },
-            { src: "/خزائن خشب (3).jpeg", label: "خزائن خشب" },
-            { src: "/خزائن خشب (4).jpeg", label: "خزائن خشب" },
-            { src: "/خزائن خشب (5).jpeg", label: "خزائن خشب" },
-            { src: "/خزائن خشب (6).jpeg", label: "خزائن خشب" },
-            { src: "/خزائن خشب (7).jpeg", label: "خزائن خشب" },
-            { src: "/خزائن خشب (8).jpeg", label: "خزائن خشب" },
-            { src: "/خزائن خشب (9).jpeg", label: "خزائن خشب" },
+            { src: "/خزائن خشب (1).jpeg", labelAr: "خزائن خشب", labelEn: "Wooden Cabinets" },
+            { src: "/خزائن خشب (2).jpeg", labelAr: "خزائن خشب", labelEn: "Wooden Cabinets" },
+            { src: "/خزائن خشب (3).jpeg", labelAr: "خزائن خشب", labelEn: "Wooden Cabinets" },
+            { src: "/خزائن خشب (4).jpeg", labelAr: "خزائن خشب", labelEn: "Wooden Cabinets" },
+            { src: "/خزائن خشب (5).jpeg", labelAr: "خزائن خشب", labelEn: "Wooden Cabinets" },
+            { src: "/خزائن خشب (6).jpeg", labelAr: "خزائن خشب", labelEn: "Wooden Cabinets" },
+            { src: "/خزائن خشب (7).jpeg", labelAr: "خزائن خشب", labelEn: "Wooden Cabinets" },
+            { src: "/خزائن خشب (8).jpeg", labelAr: "خزائن خشب", labelEn: "Wooden Cabinets" },
+            { src: "/خزائن خشب (9).jpeg", labelAr: "خزائن خشب", labelEn: "Wooden Cabinets" },
           ]}
         />
 
-        {/* 2. صف غرف النوم، الإنارة (يتحرك بالعكس) */}
+        {/* 2. صف غرف النوم والإنارة */}
         <InteractiveMarquee
           speed={1}
           reverse={true}
           onImageClick={setSelectedImage}
           images={[
-            { src: "/غرفة نوم.jpeg", label: "غرفة نوم رئيسية" },
-            { src: "/غرفة نوم (2).jpeg", label: "غرف نوم عصرية" },
-            { src: "/ديكور غرفة نوم.jpeg", label: "ديكور غرف النوم" },
-            { src: "/تصميم داخلي وإنارة.jpeg", label: "تناغم التصميم والإنارة" },
+            { src: "/غرفة نوم.jpeg", labelAr: "غرفة نوم رئيسية", labelEn: "Master Bedroom" },
+            { src: "/غرفة نوم (2).jpeg", labelAr: "غرف نوم عصرية", labelEn: "Modern Bedrooms" },
+            { src: "/ديكور غرفة نوم.jpeg", labelAr: "ديكور غرف النوم", labelEn: "Bedroom Decor" },
+            { src: "/تصميم داخلي وإنارة.jpeg", labelAr: "تناغم التصميم والإنارة", labelEn: "Lighting Harmony" },
           ]}
         />
 
+        {/* 3. صف غرف تغيير الملابس */}
         <InteractiveMarquee
           speed={1.2}
           onImageClick={setSelectedImage}
           images={[
-            { src: "/غرفة تغيير ملابس (1).jpeg", label: "غرفة تغيير ملابس" },
-            { src: "/غرفة تغيير ملابس (2).jpeg", label: "غرفة تغيير ملابس" },
-            { src: "/غرفة تغيير ملابس (3).jpeg", label: "غرفة تغيير ملابس" },
-            { src: "/غرفة تغيير ملابس (4).jpeg", label: "غرفة تغيير ملابس" },
-            { src: "/غرفة تغيير ملابس (5).jpeg", label: "غرفة تغيير ملابس" },
-           
-           
+            { src: "/غرفة تغيير ملابس (1).jpeg", labelAr: "غرفة تغيير ملابس", labelEn: "Walk-in Closet" },
+            { src: "/غرفة تغيير ملابس (2).jpeg", labelAr: "غرفة تغيير ملابس", labelEn: "Walk-in Closet" },
+            { src: "/غرفة تغيير ملابس (3).jpeg", labelAr: "غرفة تغيير ملابس", labelEn: "Walk-in Closet" },
+            { src: "/غرفة تغيير ملابس (4).jpeg", labelAr: "غرفة تغيير ملابس", labelEn: "Walk-in Closet" },
+            { src: "/غرفة تغيير ملابس (5).jpeg", labelAr: "غرفة تغيير ملابس", labelEn: "Walk-in Closet" },
           ]}
         />
+
+        {/* 4. صف الأسقف والجدران */}
         <InteractiveMarquee
           speed={1}
           reverse={true}
           onImageClick={setSelectedImage}
           images={[
-            { src: "/ديكور أسقف وجدران (1).jpeg", label: "ديكور أسقف وجدران" },
-            { src: "/ديكور أسقف وجدران (2).jpeg", label: "ديكور أسقف وجدران" },
-            { src: "/ديكور أسقف وجدران (3).jpeg", label: "ديكور أسقف وجدران" },
-            { src: "/ديكور أسقف وجدران (4).jpeg", label: "ديكور أسقف وجدران" },
-            { src: "/ديكور أسقف وجدران (5).jpeg", label: "ديكور أسقف وجدران" },
-            { src: "/ديكور أسقف وجدران (6).jpeg", label: "ديكور أسقف وجدران" },
+            { src: "/ديكور أسقف وجدران (1).jpeg", labelAr: "ديكور أسقف وجدران", labelEn: "Ceiling & Wall Decor" },
+            { src: "/ديكور أسقف وجدران (2).jpeg", labelAr: "ديكور أسقف وجدران", labelEn: "Ceiling & Wall Decor" },
+            { src: "/ديكور أسقف وجدران (3).jpeg", labelAr: "ديكور أسقف وجدران", labelEn: "Ceiling & Wall Decor" },
+            { src: "/ديكور أسقف وجدران (4).jpeg", labelAr: "ديكور أسقف وجدران", labelEn: "Ceiling & Wall Decor" },
+            { src: "/ديكور أسقف وجدران (5).jpeg", labelAr: "ديكور أسقف وجدران", labelEn: "Ceiling & Wall Decor" },
+            { src: "/ديكور أسقف وجدران (6).jpeg", labelAr: "ديكور أسقف وجدران", labelEn: "Ceiling & Wall Decor" },
           ]}
         />
+
+        {/* 5. صف المداخل */}
         <InteractiveMarquee
           speed={1.2}
           onImageClick={setSelectedImage}
           images={[
-            { src: "/ديكور مدخل (1).jpeg", label: "ديكور مدخل" },
-            { src: "/ديكور مدخل (2).jpeg", label: "ديكور مدخل" },
-            { src: "/ديكور مدخل (3).jpeg", label: "ديكور مدخل" },
-            { src: "/ديكور مدخل (4).jpeg", label: "ديكور مدخل" },
-            { src: "/ديكور مدخل (5).jpeg", label: "ديكور مدخل" },
-            { src: "/ديكور مدخل (6).jpeg", label: "ديكور مدخل" },
-            { src: "/ديكور مدخل (7).jpeg", label: "ديكور مدخل" },
-            { src: "/ديكور مدخل (8).jpeg", label: "ديكور مدخل" },
-            { src: "/ديكور مدخل (9).jpeg", label: "ديكور مدخل" },
-            { src: "/ديكور مدخل (10).jpeg", label: "ديكور مدخل" },
-            { src: "/ديكور مدخل (11).jpeg", label: "ديكور مدخل" },
-
+            { src: "/ديكور مدخل (1).jpeg", labelAr: "ديكور مدخل", labelEn: "Entrance Decor" },
+            { src: "/ديكور مدخل (2).jpeg", labelAr: "ديكور مدخل", labelEn: "Entrance Decor" },
+            { src: "/ديكور مدخل (3).jpeg", labelAr: "ديكور مدخل", labelEn: "Entrance Decor" },
+            { src: "/ديكور مدخل (4).jpeg", labelAr: "ديكور مدخل", labelEn: "Entrance Decor" },
+            { src: "/ديكور مدخل (5).jpeg", labelAr: "ديكور مدخل", labelEn: "Entrance Decor" },
+            { src: "/ديكور مدخل (6).jpeg", labelAr: "ديكور مدخل", labelEn: "Entrance Decor" },
+            { src: "/ديكور مدخل (7).jpeg", labelAr: "ديكور مدخل", labelEn: "Entrance Decor" },
+            { src: "/ديكور مدخل (8).jpeg", labelAr: "ديكور مدخل", labelEn: "Entrance Decor" },
+            { src: "/ديكور مدخل (9).jpeg", labelAr: "ديكور مدخل", labelEn: "Entrance Decor" },
+            { src: "/ديكور مدخل (10).jpeg", labelAr: "ديكور مدخل", labelEn: "Entrance Decor" },
+            { src: "/ديكور مدخل (11).jpeg", labelAr: "ديكور مدخل", labelEn: "Entrance Decor" },
           ]}
         />
       </section>
