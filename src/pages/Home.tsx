@@ -22,7 +22,8 @@ import BrandLogo from "@/components/BrandLogo";
 
 /* ─── الفاصل المعماري المتحرك (Breathing Wave Divider) ─── */
 const AnimatedDivider = ({ colorClass }: { colorClass: string }) => (
-  <div className="absolute left-0 w-full overflow-hidden leading-[0] h-[50px] md:h-[70px] lg:h-[100px] pointer-events-none z-20" style={{ bottom: '-2px' }}>
+  // تم تقليل z-index هنا ليكون خلف المحتوى دائماً
+  <div className="absolute left-0 w-full overflow-hidden leading-[0] h-[50px] md:h-[70px] lg:h-[100px] pointer-events-none z-10" style={{ bottom: '-2px' }}>
     <motion.svg viewBox="0 0 1440 120" preserveAspectRatio="none" className={`absolute bottom-0 left-0 w-full h-full ${colorClass} opacity-30`}>
       <motion.path fill="currentColor"
         animate={{
@@ -112,21 +113,18 @@ export default function HomePage() {
       <Nav />
 
       {/* ══════════════════════════════════════════
-           1. HERO SECTION (المعالجة الرياضية للمسافات)
+           1. HERO SECTION 
          ══════════════════════════════════════════ */}
-      {/* 🛠️ تم الحل هنا: 
-          - للهاتف: pt-[100px] و pb-[180px] تدفع المحتوى لأعلى هرباً من أزرار الهاتف.
-          - للكمبيوتر: md:pt-[180px] تدفع المحتوى لأسفل هرباً من الهيدر!
-      */}
-      <section className="relative h-[100dvh] min-h-[620px] w-full bg-charcoal flex flex-col items-center justify-center pt-[100px] pb-[180px] md:pt-[180px] md:pb-[100px] lg:pt-[200px] lg:pb-[120px]">
+      {/* 🛠️ زيادة lg:pb-[220px] و md:pb-[180px] لرفع المحتوى لأعلى بعيداً عن الموجة */}
+      <section className="relative h-[100dvh] min-h-[620px] w-full bg-charcoal flex flex-col items-center justify-center pt-[100px] pb-[180px] md:pt-[150px] md:pb-[180px] lg:pt-[170px] lg:pb-[220px]">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <motion.div animate={{ scale: [1, 1.06, 1], opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} className="absolute -top-[40%] -end-[15%] w-[700px] h-[700px] rounded-full border border-gold/20" />
           <motion.div animate={{ scale: [1, 1.08, 1], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2.5 }} className="absolute -top-[25%] -end-[5%] w-[480px] h-[480px] rounded-full border border-gold/12" />
           <div className="absolute inset-0 bg-gradient-to-tr from-gold/4 via-transparent to-transparent opacity-80" />
         </div>
 
-        {/* تمت إزالة خصائص الـ margin (mt) كلياً من هنا لكي تعمل الحشوات (Padding) التي وضعناها في السطر السابق بكفاءة مطلقة */}
-        <div className="relative z-10 text-center max-w-4xl px-6 flex flex-col items-center w-full">
+        {/* 🛠️ تغيير z-10 إلى z-30 ليكون المحتوى فوق الموجة المائية دائماً */}
+        <div className="relative z-30 text-center max-w-4xl px-6 flex flex-col items-center w-full">
           <motion.div initial={{ scale: 0.88, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-0 md:mb-1">
             <motion.div
               animate={{ 
@@ -165,7 +163,7 @@ export default function HomePage() {
             </p>
           </motion.div>
           
-          <motion.div initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 1.05, ease: [0.16, 1, 0.3, 1] }} className="mb-2">
+          <motion.div initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 1.05, ease: [0.16, 1, 0.3, 1] }} className="mb-10 md:mb-12">
             <a href="/portfolio" className="group relative inline-flex items-center gap-3 px-10 py-4 border border-gold/40 text-gold-light font-sans text-[11px] md:text-xs uppercase overflow-hidden transition-colors duration-300 hover:text-charcoal">
               <span className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
               <span className="relative z-10 font-medium">
