@@ -12,7 +12,7 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       // التعديل تم هنا: bottom-28 للهاتف، و md:bottom-8 للكمبيوتر
-      className="fixed bottom-28 md:bottom-8 right-6 z-[99] flex items-center justify-center w-14 h-14 bg-[#25D366] rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.4)] text-white transition-all duration-300 hover:scale-110 hover:bg-[#20ba5a] active:scale-95 group"
+      className="fixed bottom-28 md:bottom-15 right-6 z-[99] flex items-center justify-center w-14 h-14 bg-[#25D366] rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.4)] text-white transition-all duration-300 hover:scale-110 hover:bg-[#20ba5a] active:scale-95 group"
       aria-label="Contact us on WhatsApp"
     >
       <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-40 animate-ping pointer-events-none group-hover:animate-none" />
