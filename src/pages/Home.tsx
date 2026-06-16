@@ -81,73 +81,99 @@ export default function HomePage() {
     <div id="top" className="relative min-h-screen overflow-x-hidden bg-charcoal">
       <Nav />
 
-{/* ══════════════════════════════════════════
-    1. HERO (منطقة عازلة لمنع تداخل المؤشر مع الزر تماماً)
-══════════════════════════════════════════ */}
-{/* 🛠️ تعديل: تقليل الحد الأدنى للارتفاع في الهواتف إلى 500px للحفاظ على التناسق */}
-<section className="relative h-[100dvh] min-h-[500px] md:min-h-[650px] w-full bg-charcoal flex flex-col items-center justify-center overflow-hidden pt-20 pb-24 lg:pt-[120px] lg:pb-[130px]">
-  <div className="absolute inset-0 pointer-events-none overflow-hidden">
-    <motion.div animate={{ scale: [1, 1.06, 1], opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} className="absolute -top-[40%] -end-[15%] w-[700px] h-[700px] rounded-full border border-gold/20" />
-    <motion.div animate={{ scale: [1, 1.08, 1], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2.5 }} className="absolute -top-[25%] -end-[5%] w-[480px] h-[480px] rounded-full border border-gold/12" />
-    <div className="absolute inset-0 bg-gradient-to-tr from-gold/4 via-transparent to-transparent opacity-80" />
-  </div>
+      {/* ─── أنماط الحركة اللانهائية للأمواج (CSS Keyframes) ─── */}
+      <style>{`
+        @keyframes liquid-slide-left {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
+        }
+        @keyframes liquid-slide-right {
+          0% { transform: translate3d(-50%, 0, 0); }
+          100% { transform: translate3d(0, 0, 0); }
+        }
+        .animate-wave-left { animation: liquid-slide-left 18s linear infinite; }
+        .animate-wave-right { animation: liquid-slide-right 24s linear infinite; }
+      `}</style>
 
-  {/* 🛠️ تعديل: إزالة الهامش العلوي (mt-20) في الهواتف لجعله mt-0، وتطبيقه فقط في الشاشات الأكبر md:mt-12 */}
-  <div className="relative z-10 text-center max-w-4xl px-6 flex flex-col items-center w-full mt-0 md:mt-12 lg:mt-16">
-    
-    <motion.div initial={{ scale: 0.88, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-0 md:mb-1">
-      <motion.div
-        animate={{ 
-          y: [0, -6, 0],
-          filter: [
-            "drop-shadow(0px 0px 0px rgba(212,175,55,0))",
-            "drop-shadow(0px 0px 12px rgba(212,175,55,0.5))",
-            "drop-shadow(0px 0px 0px rgba(212,175,55,0))"
-          ]
-        }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="relative px-3 py-2 flex items-center justify-center"
-      >
-        <BrandLogo className="relative z-10 w-20 h-14 md:w-24 md:h-16 lg:w-26 lg:h-18 text-cream-light" />
-      </motion.div>
-    </motion.div>
-    
-    <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }} style={{ transformOrigin: "top" }} className="w-[1px] h-10 lg:h-12 bg-gradient-to-b from-transparent via-gold to-transparent mx-auto mb-4 lg:mb-5" />
-    
-    <motion.p initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }} className="font-sans font-medium text-[11px] md:text-xs uppercase mb-3 lg:mb-4 text-gold-light">
-      <span className="ar tracking-normal">خالد دياب</span>
-      <span className="en tracking-[0.45em] ml-2">Khaled Diab</span>
-    </motion.p>
-    
-    <motion.h1 initial={{ y: 22, opacity: 0.2 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }} className="font-serif text-5xl md:text-5xl lg:text-6xl xl:text-7xl text-cream-light leading-none -tracking-[0.02em] mb-1">
-      Future Design
-    </motion.h1>
-    <motion.h1 initial={{ y: 22, opacity: 0.2 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.75, ease: [0.16, 1, 0.3, 1] }} className="font-serif italic text-5xl md:text-5xl lg:text-6xl xl:text-7xl text-gold leading-none -tracking-[0.02em] mb-6 md:mb-8">
-      Decore
-    </motion.h1>
-    
-    <motion.div initial={{ y: 16, opacity: 0.25 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }} className="max-w-2xl mx-auto mb-8 md:mb-10">
-      <p className="font-sans font-light text-[11px] md:text-sm text-cream/60 uppercase leading-loose md:leading-loose">
-        <span className="ar tracking-normal block md:inline">تصميم داخلي · تنفيذ احترافي · إبداع لا حدود له</span>
-        <span className="en tracking-[0.15em] block md:inline">Interior Design · Professional Execution · Limitless Creativity</span>
-      </p>
-    </motion.div>
-    
-    <motion.div initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 1.05, ease: [0.16, 1, 0.3, 1] }} className="mb-2">
-      <a href="/portfolio" className="group relative inline-flex items-center gap-3 px-10 py-4 border border-gold/40 text-gold-light font-sans text-[11px] md:text-xs uppercase overflow-hidden transition-colors duration-300 hover:text-charcoal">
-        <span className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
-        <span className="relative z-10 font-medium">
-          <span className="ar tracking-normal"> استكشف أعـمـالـنـا الإبداعية</span>
-          <span className="en tracking-[0.3em]">Explore Our Creativity</span>
-        </span>
-      </a>
-    </motion.div>
-  </div>
-</section>
       {/* ══════════════════════════════════════════
-          2. ABOUT
-      ══════════════════════════════════════════ */}
-      <section id="about" className="py-28 lg:py-48 px-6 bg-cream-light relative">
+           1. HERO SECTION
+         ══════════════════════════════════════════ */}
+      <section className="relative h-[100dvh] min-h-[620px] w-full bg-charcoal flex flex-col items-center justify-start pt-28 md:justify-center md:pt-0 overflow-hidden pb-24 md:pb-32 lg:pb-[180px]">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <motion.div animate={{ scale: [1, 1.06, 1], opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} className="absolute -top-[40%] -end-[15%] w-[700px] h-[700px] rounded-full border border-gold/20" />
+          <motion.div animate={{ scale: [1, 1.08, 1], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2.5 }} className="absolute -top-[25%] -end-[5%] w-[480px] h-[480px] rounded-full border border-gold/12" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-gold/4 via-transparent to-transparent opacity-80" />
+        </div>
+
+        <div className="relative z-10 text-center max-w-4xl px-6 flex flex-col items-center w-full mt-0 md:mt-16 lg:mt-24">
+          <motion.div initial={{ scale: 0.88, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-0 md:mb-1">
+            <motion.div
+              animate={{ 
+                y: [0, -6, 0],
+                filter: [
+                  "drop-shadow(0px 0px 0px rgba(212,175,55,0))",
+                  "drop-shadow(0px 0px 12px rgba(212,175,55,0.5))",
+                  "drop-shadow(0px 0px 0px rgba(212,175,55,0))"
+                ]
+              }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="relative px-3 py-2 flex items-center justify-center"
+            >
+              <BrandLogo className="relative z-10 w-20 h-14 md:w-24 md:h-16 lg:w-26 lg:h-18 text-cream-light" />
+            </motion.div>
+          </motion.div>
+          
+          <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }} style={{ transformOrigin: "top" }} className="w-[1px] h-8 md:h-10 lg:h-12 bg-gradient-to-b from-transparent via-gold to-transparent mx-auto mb-3 lg:mb-5" />
+          
+          <motion.p initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }} className="font-sans font-medium text-[11px] md:text-xs uppercase mb-2 lg:mb-4 text-gold-light">
+            <span className="ar tracking-normal">خالد دياب</span>
+            <span className="en tracking-[0.45em] ml-2">Khaled Diab</span>
+          </motion.p>
+          
+          <motion.h1 initial={{ y: 22, opacity: 0.2 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }} className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-cream-light leading-none -tracking-[0.02em] mb-1">
+            Future Design
+          </motion.h1>
+          <motion.h1 initial={{ y: 22, opacity: 0.2 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.75, ease: [0.16, 1, 0.3, 1] }} className="font-serif italic text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-gold leading-none -tracking-[0.02em] mb-4 md:mb-8">
+            Decore
+          </motion.h1>
+          
+          <motion.div initial={{ y: 16, opacity: 0.25 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }} className="max-w-2xl mx-auto mb-6 md:mb-10">
+            <p className="font-sans font-light text-[11px] md:text-sm text-cream/60 uppercase leading-loose md:leading-loose">
+              <span className="ar tracking-normal block md:inline">تصميم داخلي · تنفيذ احترافي · إبداع لا حدود له</span>
+              <span className="en tracking-[0.15em] block md:inline">Interior Design · Professional Execution · Limitless Creativity</span>
+            </p>
+          </motion.div>
+          
+          <motion.div initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 1.05, ease: [0.16, 1, 0.3, 1] }} className="mb-2">
+            <a href="/portfolio" className="group relative inline-flex items-center gap-3 px-10 py-4 border border-gold/40 text-gold-light font-sans text-[11px] md:text-xs uppercase overflow-hidden transition-colors duration-300 hover:text-charcoal">
+              <span className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+              <span className="relative z-10 font-medium">
+                <span className="ar tracking-normal"> استكشف أعـمـالـنـا الإبداعية</span>
+                <span className="en tracking-[0.3em]">Explore Our Creativity</span>
+              </span>
+            </a>
+          </motion.div>
+        </div>
+
+        {/* ─── الفاصل الحركي المزدوج الأول (من الهيرو إلى أباوت) ─── */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] h-[40px] sm:h-[65px] md:h-[90px] pointer-events-none select-none">
+          {/* الموجة الخلفية المتأخرة */}
+          <div className="absolute inset-0 w-[200%] flex opacity-25 text-cream-light fill-current animate-wave-right">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,50 C360,120 1080,20 1440,50 L1440,120 L0,120 Z"/></svg>
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,50 C360,120 1080,20 1440,50 L1440,120 L0,120 Z"/></svg>
+          </div>
+          {/* الموجة الأمامية الرئيسية */}
+          <div className="absolute inset-0 w-[200%] flex text-cream-light fill-current animate-wave-left">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,32L120,42.7C240,53,480,75,720,74.7C960,75,1200,53,1320,42.7L1440,32L1440,120 L0,120 Z"/></svg>
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,32L120,42.7C240,53,480,75,720,74.7C960,75,1200,53,1320,42.7L1440,32L1440,120 L0,120 Z"/></svg>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+           2. ABOUT SECTION
+         ══════════════════════════════════════════ */}
+      <section id="about" className="pt-24 pb-36 lg:pt-36 lg:pb-52 px-6 bg-cream-light relative">
         <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-32 items-center">
           <Reveal direction="left">
             <SectionLabel ar="من نحن" en="About Us" />
@@ -193,12 +219,24 @@ export default function HomePage() {
             </div>
           </Reveal>
         </div>
+
+        {/* ─── الفاصل الحركي المزدوج الثاني (من أباوت إلى خدمات التصميم) ─── */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] h-[40px] sm:h-[65px] md:h-[90px] pointer-events-none select-none">
+          <div className="absolute inset-0 w-[200%] flex opacity-25 text-charcoal fill-current animate-wave-left">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,40 C480,100 960,0 1440,40 L1440,120 L0,120 Z"/></svg>
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,40 C480,100 960,0 1440,40 L1440,120 L0,120 Z"/></svg>
+          </div>
+          <div className="absolute inset-0 w-[200%] flex text-charcoal fill-current animate-wave-right">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,50 C360,130 1080,-30 1440,50 L1440,120 L0,120 Z"/></svg>
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,50 C360,130 1080,-30 1440,50 L1440,120 L0,120 Z"/></svg>
+          </div>
+        </div>
       </section>
 
       {/* ══════════════════════════════════════════
-          3. DESIGN SERVICES
-      ══════════════════════════════════════════ */}
-      <section id="design-services" className="py-28 lg:py-48 px-6 bg-charcoal text-cream-light relative overflow-hidden">
+           3. DESIGN SERVICES SECTION
+         ══════════════════════════════════════════ */}
+      <section id="design-services" className="pt-24 pb-36 lg:pt-36 lg:pb-52 px-6 bg-charcoal text-cream-light relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -start-32 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-gold/5" />
           <div className="absolute -end-20 bottom-20 w-[600px] h-[600px] rounded-full border border-gold/5 opacity-80" />
@@ -252,12 +290,24 @@ export default function HomePage() {
             ))}
           </StaggerParent>
         </div>
+
+        {/* ─── الفاصل الحركي المزدوج الثالث (من خدمات التصميم إلى خدمات التنفيذ) ─── */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] h-[40px] sm:h-[65px] md:h-[90px] pointer-events-none select-none">
+          <div className="absolute inset-0 w-[200%] flex opacity-25 text-cream-light fill-current animate-wave-right">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,50 C360,120 1080,20 1440,50 L1440,120 L0,120 Z"/></svg>
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,50 C360,120 1080,20 1440,50 L1440,120 L0,120 Z"/></svg>
+          </div>
+          <div className="absolute inset-0 w-[200%] flex text-cream-light fill-current animate-wave-left">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,30 C480,110 960,10 1440,60 L1440,120 L0,120 Z"/></svg>
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,30 C480,110 960,10 1440,60 L1440,120 L0,120 Z"/></svg>
+          </div>
+        </div>
       </section>
 
       {/* ══════════════════════════════════════════
-          4. EXECUTION SERVICES
-      ══════════════════════════════════════════ */}
-      <section id="execution-services" className="py-28 lg:py-48 px-6 bg-cream-light relative overflow-hidden">
+           4. EXECUTION SERVICES SECTION
+         ══════════════════════════════════════════ */}
+      <section id="execution-services" className="pt-24 pb-36 lg:pt-36 lg:pb-52 px-6 bg-cream-light relative overflow-hidden">
         <div className="absolute end-0 top-1/2 -translate-y-1/2 font-serif text-[280px] font-bold text-charcoal/3 leading-none pointer-events-none select-none hidden xl:block">KD</div>
 
         <div className="max-w-[1300px] mx-auto relative z-10">
@@ -272,7 +322,7 @@ export default function HomePage() {
           <StaggerParent className="grid grid-cols-1 md:grid-cols-2 border border-charcoal/10 bg-white/60 backdrop-blur-md shadow-2xl">
             {[
               { icon: HomeIcon, num: "01", ar: "أعمال التصميم الديكوري", en: "Decor Design Works", arDesc: "مجالس · غرف معيشة · مطابخ · حمامات · غرف نوم", enDesc: "Majlis · Living Rooms · Kitchens · Bathrooms · Bedrooms" },
-              { icon: Wrench, num: "02", ar: "أعمال النجارة", en: "Carpentry Works", arDesc: "ديكورات خشبية · خزائن · مطابخ مدمجة", enDesc: "Wooden Decor · Wardrobes · Built-in Kitchens" },
+              { icon: Wrench, num: "02", ar: "أعمال النجارة", en: "Carpentry Works", arDesc: "ديكات خشبية · خزائن · مطابخ مدمجة", enDesc: "Wooden Decor · Wardrobes · Built-in Kitchens" },
               { icon: Square, num: "03", ar: "أعمال الجبس", en: "Gypsum Works", arDesc: "جدران · أسقف · ديكورات جبسية متنوعة", enDesc: "Walls · Ceilings · Various Gypsum Decorations" },
               { icon: Layers, num: "04", ar: "أسمنت بورد", en: "Cement Board", arDesc: "قواطع داخلية · واجهات خارجية", enDesc: "Interior Partitions · Exterior Facades" },
               { icon: Grid3x3, num: "05", ar: "الحجر وبدائله", en: "Stone & Alternatives", arDesc: "تكسية جدران داخلية · واجهات خارجية", enDesc: "Interior Wall Cladding · External Facades" },
@@ -300,12 +350,24 @@ export default function HomePage() {
             ))}
           </StaggerParent>
         </div>
+
+        {/* ─── الفاصل الحركي المزدوج الرابع (من خدمات التنفيذ إلى قسم التواصل) ─── */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] h-[40px] sm:h-[65px] md:h-[90px] pointer-events-none select-none">
+          <div className="absolute inset-0 w-[200%] flex opacity-25 text-charcoal-mid fill-current animate-wave-left">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,50 C480,100 960,0 1440,40 L1440,120 L0,120 Z"/></svg>
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,40 C320,10 720,110 1440,30 L1440,120 L0,120 Z"/></svg>
+          </div>
+          <div className="absolute inset-0 w-[200%] flex text-charcoal-mid fill-current animate-wave-right">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,40 C320,10 720,110 1440,30 L1440,120 L0,120 Z"/></svg>
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,40 C320,10 720,110 1440,30 L1440,120 L0,120 Z"/></svg>
+          </div>
+        </div>
       </section>
 
       {/* ══════════════════════════════════════════
-          5. CONTACT
-      ══════════════════════════════════════════ */}
-      <section id="contact" className="py-28 lg:py-48 px-6 bg-charcoal-mid relative overflow-hidden text-cream-light border-t border-gold/10">
+           5. CONTACT SECTION
+         ══════════════════════════════════════════ */}
+      <section id="contact" className="py-28 lg:py-48 px-6 bg-charcoal-mid relative overflow-hidden text-cream-light">
         <div className="absolute -bottom-12 -start-8 font-serif text-[350px] font-bold text-gold/3 leading-none pointer-events-none select-none hidden md:block">KD</div>
 
         <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-28 items-center relative z-10">
@@ -364,8 +426,8 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          6. FOOTER
-      ══════════════════════════════════════════ */}
+           6. FOOTER
+         ══════════════════════════════════════════ */}
       <footer className="bg-charcoal border-t border-gold/15 py-12 px-6 pb-32 lg:pb-12">
         <div className="max-w-[1300px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-4">
@@ -378,7 +440,8 @@ export default function HomePage() {
           </div>
         </div>
       </footer>
-      {/* زر واتساب العائم */}
+
+      {/* زر واتساب العائم والمصلح هندسياً بمرونة وبدون تأثر التموضع */}
       <WhatsAppButton />
     </div>
   );
