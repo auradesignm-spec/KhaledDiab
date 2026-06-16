@@ -126,8 +126,8 @@ export default function HomePage() {
 
         <div className="relative z-30 text-center max-w-4xl px-6 flex flex-col items-center w-full">
           
-          {/* الشعار (تمت زيادة المسافة السفلية هنا لتعويض غياب الخط) */}
-          <motion.div initial={{ scale: 0.88, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-4 lg:mb-6">
+          {/* الشعار (تم تقليص المسافات لتقريبه من النص) */}
+          <motion.div initial={{ scale: 0.88, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-2">
             <motion.div
               animate={{ 
                 y: [0, -6, 0],
@@ -138,13 +138,11 @@ export default function HomePage() {
                 ]
               }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="relative px-3 py-2 flex items-center justify-center"
+              className="relative px-3 flex items-center justify-center"
             >
               <BrandLogo className="relative z-10 w-20 h-14 md:w-24 md:h-16 lg:w-26 lg:h-18 text-cream-light" />
             </motion.div>
           </motion.div>
-          
-          {/* ❌ تم حذف كود الخط الطولي من هنا ❌ */}
           
           {/* اسم المصمم */}
           <motion.p initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }} className="font-sans font-medium text-[11px] md:text-xs uppercase mb-2 lg:mb-4 text-gold-light">
