@@ -22,7 +22,8 @@ import BrandLogo from "@/components/BrandLogo";
 
 /* ─── الفاصل المعماري المتحرك (Breathing Wave Divider) ─── */
 const AnimatedDivider = ({ colorClass }: { colorClass: string }) => (
-  <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] h-[50px] md:h-[70px] lg:h-[100px] pointer-events-none z-20">
+  /* 🛠️ المعالجة التقنية: تم تعيين التموضع السفلي بقيمة -2px لإنشاء تداخل لوني متطابق وإغلاق فجوة الـ Sub-pixel */
+  <div className="absolute left-0 w-full overflow-hidden leading-[0] h-[50px] md:h-[70px] lg:h-[100px] pointer-events-none z-20" style={{ bottom: '-2px' }}>
     {/* الطبقة الخلفية (شفافية منخفضة وحركة بطيئة) */}
     <motion.svg viewBox="0 0 1440 120" preserveAspectRatio="none" className={`absolute bottom-0 left-0 w-full h-full ${colorClass} opacity-30`}>
       <motion.path fill="currentColor"
@@ -116,7 +117,9 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════
            1. HERO SECTION
          ══════════════════════════════════════════ */}
-      <section className="relative h-[100dvh] min-h-[620px] w-full bg-charcoal flex flex-col items-center justify-start pt-28 md:justify-center md:pt-0 overflow-hidden pb-24 md:pb-32 lg:pb-[180px]">
+      {/* 🛠️ المعالجة التقنية: إزالة overflow-hidden من الحاوية الأم للسماح للموجة بالتداخل بشكل مثالي */}
+      <section className="relative h-[100dvh] min-h-[620px] w-full bg-charcoal flex flex-col items-center justify-start pt-28 md:justify-center md:pt-0 pb-24 md:pb-32 lg:pb-[180px]">
+        {/* طبقة الخلفية تحتفظ بالقص لعدم تشويه الأقسام الأخرى */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <motion.div animate={{ scale: [1, 1.06, 1], opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} className="absolute -top-[40%] -end-[15%] w-[700px] h-[700px] rounded-full border border-gold/20" />
           <motion.div animate={{ scale: [1, 1.08, 1], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2.5 }} className="absolute -top-[25%] -end-[5%] w-[480px] h-[480px] rounded-full border border-gold/12" />
@@ -173,7 +176,6 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        {/* إضافة الفاصل الفاخر بين الهيرو ومن نحن */}
         <AnimatedDivider colorClass="text-cream-light" />
       </section>
 
@@ -181,7 +183,7 @@ export default function HomePage() {
            2. ABOUT SECTION
          ══════════════════════════════════════════ */}
       <section id="about" className="pt-24 pb-36 lg:pt-36 lg:pb-52 px-6 bg-cream-light relative">
-        <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-32 items-center">
+        <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-32 items-center relative z-10">
           <Reveal direction="left">
             <SectionLabel ar="من نحن" en="About Us" />
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-charcoal leading-[1.3] lg:leading-[1.2] mb-10">
@@ -227,15 +229,15 @@ export default function HomePage() {
           </Reveal>
         </div>
 
-        {/* إضافة الفاصل الفاخر بين من نحن وخدمات التصميم */}
         <AnimatedDivider colorClass="text-charcoal" />
       </section>
 
       {/* ══════════════════════════════════════════
            3. DESIGN SERVICES SECTION
          ══════════════════════════════════════════ */}
-      <section id="design-services" className="pt-24 pb-36 lg:pt-36 lg:pb-52 px-6 bg-charcoal text-cream-light relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
+      {/* 🛠️ المعالجة التقنية: إزالة overflow-hidden من الحاوية الأم */}
+      <section id="design-services" className="pt-24 pb-36 lg:pt-36 lg:pb-52 px-6 bg-charcoal text-cream-light relative">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute -start-32 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-gold/5" />
           <div className="absolute -end-20 bottom-20 w-[600px] h-[600px] rounded-full border border-gold/5 opacity-80" />
         </div>
@@ -257,7 +259,7 @@ export default function HomePage() {
             </Reveal>
           </div>
 
-          <StaggerParent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-gold/15 border border-gold/15 shadow-2xl">
+          <StaggerParent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-gold/15 border border-gold/15 shadow-2xl relative z-10">
             {[
               { num: "01", icon: Grid3x3, ar: "تصميم 2D", en: "2D Design", arDesc: "مخططات دقيقة بالأبعاد الفعلية وتوزيع أمثل للأثاث.", enDesc: "Precise 2D layouts with exact dimensions and optimal furniture placement." },
               { num: "02", icon: Layers, ar: "تصميم 3D", en: "3D Design", arDesc: "تصور واقعي للمساحة قبل التنفيذ باستخدام أحدث التقنيات.", enDesc: "Ultra-realistic 3D visualization before execution using cutting-edge tools." },
@@ -289,15 +291,17 @@ export default function HomePage() {
           </StaggerParent>
         </div>
 
-        {/* إضافة الفاصل الفاخر بين التصميم والتنفيذ */}
         <AnimatedDivider colorClass="text-cream-light" />
       </section>
 
       {/* ══════════════════════════════════════════
            4. EXECUTION SERVICES SECTION
          ══════════════════════════════════════════ */}
-      <section id="execution-services" className="pt-24 pb-36 lg:pt-36 lg:pb-52 px-6 bg-cream-light relative overflow-hidden">
-        <div className="absolute end-0 top-1/2 -translate-y-1/2 font-serif text-[280px] font-bold text-charcoal/3 leading-none pointer-events-none select-none hidden xl:block">KD</div>
+      {/* 🛠️ المعالجة التقنية: إزالة overflow-hidden من الحاوية الأم */}
+      <section id="execution-services" className="pt-24 pb-36 lg:pt-36 lg:pb-52 px-6 bg-cream-light relative">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute end-0 top-1/2 -translate-y-1/2 font-serif text-[280px] font-bold text-charcoal/3 leading-none hidden xl:block">KD</div>
+        </div>
 
         <div className="max-w-[1300px] mx-auto relative z-10">
           <Reveal>
@@ -308,7 +312,7 @@ export default function HomePage() {
             </h2>
           </Reveal>
 
-          <StaggerParent className="grid grid-cols-1 md:grid-cols-2 border border-charcoal/10 bg-white/60 backdrop-blur-md shadow-2xl">
+          <StaggerParent className="grid grid-cols-1 md:grid-cols-2 border border-charcoal/10 bg-white/60 backdrop-blur-md shadow-2xl relative z-10">
             {[
               { icon: HomeIcon, num: "01", ar: "أعمال التصميم الديكوري", en: "Decor Design Works", arDesc: "مجالس · غرف معيشة · مطابخ · حمامات · غرف نوم", enDesc: "Majlis · Living Rooms · Kitchens · Bathrooms · Bedrooms" },
               { icon: Wrench, num: "02", ar: "أعمال النجارة", en: "Carpentry Works", arDesc: "ديكورات خشبية · خزائن · مطابخ مدمجة", enDesc: "Wooden Decor · Wardrobes · Built-in Kitchens" },
@@ -340,15 +344,17 @@ export default function HomePage() {
           </StaggerParent>
         </div>
 
-        {/* إضافة الفاصل الفاخر بين التنفيذ والتواصل */}
         <AnimatedDivider colorClass="text-charcoal-mid" />
       </section>
 
       {/* ══════════════════════════════════════════
            5. CONTACT SECTION
          ══════════════════════════════════════════ */}
-      <section id="contact" className="py-28 lg:py-48 px-6 bg-charcoal-mid relative overflow-hidden text-cream-light">
-        <div className="absolute -bottom-12 -start-8 font-serif text-[350px] font-bold text-gold/3 leading-none pointer-events-none select-none hidden md:block">KD</div>
+      {/* 🛠️ المعالجة التقنية: إزالة overflow-hidden من الحاوية الأم */}
+      <section id="contact" className="py-28 lg:py-48 px-6 bg-charcoal-mid relative text-cream-light">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute -bottom-12 -start-8 font-serif text-[350px] font-bold text-gold/3 leading-none hidden md:block">KD</div>
+        </div>
 
         <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-28 items-center relative z-10">
           <Reveal direction="left">
@@ -421,7 +427,7 @@ export default function HomePage() {
         </div>
       </footer>
 
-      {/* زر واتساب العائم والمصلح هندسياً بمرونة وبدون تأثر التموضع */}
+      {/* زر واتساب العائم */}
       <WhatsAppButton />
     </div>
   );
