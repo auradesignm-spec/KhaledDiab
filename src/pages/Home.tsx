@@ -20,6 +20,38 @@ import {
 import Nav from "@/components/Nav";
 import BrandLogo from "@/components/BrandLogo";
 
+/* ─── الفاصل المعماري المتحرك (Breathing Wave Divider) ─── */
+const AnimatedDivider = ({ colorClass }: { colorClass: string }) => (
+  <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] h-[50px] md:h-[70px] lg:h-[100px] pointer-events-none z-20">
+    {/* الطبقة الخلفية (شفافية منخفضة وحركة بطيئة) */}
+    <motion.svg viewBox="0 0 1440 120" preserveAspectRatio="none" className={`absolute bottom-0 left-0 w-full h-full ${colorClass} opacity-30`}>
+      <motion.path fill="currentColor"
+        animate={{
+          d: [
+            "M0,60 C480,0 960,120 1440,60 L1440,120 L0,120 Z",
+            "M0,60 C480,120 960,0 1440,60 L1440,120 L0,120 Z",
+            "M0,60 C480,0 960,120 1440,60 L1440,120 L0,120 Z"
+          ]
+        }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+      />
+    </motion.svg>
+    {/* الطبقة الأمامية (لون صلب وحركة متعاكسة برتم مختلف) */}
+    <motion.svg viewBox="0 0 1440 120" preserveAspectRatio="none" className={`absolute bottom-0 left-0 w-full h-full ${colorClass}`}>
+      <motion.path fill="currentColor"
+        animate={{
+          d: [
+            "M0,80 C360,120 1080,0 1440,40 L1440,120 L0,120 Z",
+            "M0,40 C360,0 1080,120 1440,80 L1440,120 L0,120 Z",
+            "M0,80 C360,120 1080,0 1440,40 L1440,120 L0,120 Z"
+          ]
+        }}
+        transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
+      />
+    </motion.svg>
+  </div>
+);
+
 /* ─── Reveal wrapper ─── */
 const Reveal = ({ children, delay = 0, className = "", direction = "up" }: any) => {
   const ref = useRef(null);
@@ -81,20 +113,6 @@ export default function HomePage() {
     <div id="top" className="relative min-h-screen overflow-x-hidden bg-charcoal">
       <Nav />
 
-      {/* ─── أنماط الحركة اللانهائية للأمواج (CSS Keyframes) ─── */}
-      <style>{`
-        @keyframes liquid-slide-left {
-          0% { transform: translate3d(0, 0, 0); }
-          100% { transform: translate3d(-50%, 0, 0); }
-        }
-        @keyframes liquid-slide-right {
-          0% { transform: translate3d(-50%, 0, 0); }
-          100% { transform: translate3d(0, 0, 0); }
-        }
-        .animate-wave-left { animation: liquid-slide-left 18s linear infinite; }
-        .animate-wave-right { animation: liquid-slide-right 24s linear infinite; }
-      `}</style>
-
       {/* ══════════════════════════════════════════
            1. HERO SECTION
          ══════════════════════════════════════════ */}
@@ -155,19 +173,8 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        {/* ─── الفاصل الحركي المزدوج الأول (من الهيرو إلى أباوت) ─── */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] h-[40px] sm:h-[65px] md:h-[90px] pointer-events-none select-none">
-          {/* الموجة الخلفية المتأخرة */}
-          <div className="absolute inset-0 w-[200%] flex opacity-25 text-cream-light fill-current animate-wave-right">
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,50 C360,120 1080,20 1440,50 L1440,120 L0,120 Z"/></svg>
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,50 C360,120 1080,20 1440,50 L1440,120 L0,120 Z"/></svg>
-          </div>
-          {/* الموجة الأمامية الرئيسية */}
-          <div className="absolute inset-0 w-[200%] flex text-cream-light fill-current animate-wave-left">
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,32L120,42.7C240,53,480,75,720,74.7C960,75,1200,53,1320,42.7L1440,32L1440,120 L0,120 Z"/></svg>
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,32L120,42.7C240,53,480,75,720,74.7C960,75,1200,53,1320,42.7L1440,32L1440,120 L0,120 Z"/></svg>
-          </div>
-        </div>
+        {/* إضافة الفاصل الفاخر بين الهيرو ومن نحن */}
+        <AnimatedDivider colorClass="text-cream-light" />
       </section>
 
       {/* ══════════════════════════════════════════
@@ -220,17 +227,8 @@ export default function HomePage() {
           </Reveal>
         </div>
 
-        {/* ─── الفاصل الحركي المزدوج الثاني (من أباوت إلى خدمات التصميم) ─── */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] h-[40px] sm:h-[65px] md:h-[90px] pointer-events-none select-none">
-          <div className="absolute inset-0 w-[200%] flex opacity-25 text-charcoal fill-current animate-wave-left">
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,40 C480,100 960,0 1440,40 L1440,120 L0,120 Z"/></svg>
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,40 C480,100 960,0 1440,40 L1440,120 L0,120 Z"/></svg>
-          </div>
-          <div className="absolute inset-0 w-[200%] flex text-charcoal fill-current animate-wave-right">
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,50 C360,130 1080,-30 1440,50 L1440,120 L0,120 Z"/></svg>
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,50 C360,130 1080,-30 1440,50 L1440,120 L0,120 Z"/></svg>
-          </div>
-        </div>
+        {/* إضافة الفاصل الفاخر بين من نحن وخدمات التصميم */}
+        <AnimatedDivider colorClass="text-charcoal" />
       </section>
 
       {/* ══════════════════════════════════════════
@@ -291,17 +289,8 @@ export default function HomePage() {
           </StaggerParent>
         </div>
 
-        {/* ─── الفاصل الحركي المزدوج الثالث (من خدمات التصميم إلى خدمات التنفيذ) ─── */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] h-[40px] sm:h-[65px] md:h-[90px] pointer-events-none select-none">
-          <div className="absolute inset-0 w-[200%] flex opacity-25 text-cream-light fill-current animate-wave-right">
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,50 C360,120 1080,20 1440,50 L1440,120 L0,120 Z"/></svg>
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,50 C360,120 1080,20 1440,50 L1440,120 L0,120 Z"/></svg>
-          </div>
-          <div className="absolute inset-0 w-[200%] flex text-cream-light fill-current animate-wave-left">
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,30 C480,110 960,10 1440,60 L1440,120 L0,120 Z"/></svg>
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,30 C480,110 960,10 1440,60 L1440,120 L0,120 Z"/></svg>
-          </div>
-        </div>
+        {/* إضافة الفاصل الفاخر بين التصميم والتنفيذ */}
+        <AnimatedDivider colorClass="text-cream-light" />
       </section>
 
       {/* ══════════════════════════════════════════
@@ -322,7 +311,7 @@ export default function HomePage() {
           <StaggerParent className="grid grid-cols-1 md:grid-cols-2 border border-charcoal/10 bg-white/60 backdrop-blur-md shadow-2xl">
             {[
               { icon: HomeIcon, num: "01", ar: "أعمال التصميم الديكوري", en: "Decor Design Works", arDesc: "مجالس · غرف معيشة · مطابخ · حمامات · غرف نوم", enDesc: "Majlis · Living Rooms · Kitchens · Bathrooms · Bedrooms" },
-              { icon: Wrench, num: "02", ar: "أعمال النجارة", en: "Carpentry Works", arDesc: "ديكات خشبية · خزائن · مطابخ مدمجة", enDesc: "Wooden Decor · Wardrobes · Built-in Kitchens" },
+              { icon: Wrench, num: "02", ar: "أعمال النجارة", en: "Carpentry Works", arDesc: "ديكورات خشبية · خزائن · مطابخ مدمجة", enDesc: "Wooden Decor · Wardrobes · Built-in Kitchens" },
               { icon: Square, num: "03", ar: "أعمال الجبس", en: "Gypsum Works", arDesc: "جدران · أسقف · ديكورات جبسية متنوعة", enDesc: "Walls · Ceilings · Various Gypsum Decorations" },
               { icon: Layers, num: "04", ar: "أسمنت بورد", en: "Cement Board", arDesc: "قواطع داخلية · واجهات خارجية", enDesc: "Interior Partitions · Exterior Facades" },
               { icon: Grid3x3, num: "05", ar: "الحجر وبدائله", en: "Stone & Alternatives", arDesc: "تكسية جدران داخلية · واجهات خارجية", enDesc: "Interior Wall Cladding · External Facades" },
@@ -351,17 +340,8 @@ export default function HomePage() {
           </StaggerParent>
         </div>
 
-        {/* ─── الفاصل الحركي المزدوج الرابع (من خدمات التنفيذ إلى قسم التواصل) ─── */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] h-[40px] sm:h-[65px] md:h-[90px] pointer-events-none select-none">
-          <div className="absolute inset-0 w-[200%] flex opacity-25 text-charcoal-mid fill-current animate-wave-left">
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,50 C480,100 960,0 1440,40 L1440,120 L0,120 Z"/></svg>
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,40 C320,10 720,110 1440,30 L1440,120 L0,120 Z"/></svg>
-          </div>
-          <div className="absolute inset-0 w-[200%] flex text-charcoal-mid fill-current animate-wave-right">
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,40 C320,10 720,110 1440,30 L1440,120 L0,120 Z"/></svg>
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-1/2 h-full"><path d="M0,40 C320,10 720,110 1440,30 L1440,120 L0,120 Z"/></svg>
-          </div>
-        </div>
+        {/* إضافة الفاصل الفاخر بين التنفيذ والتواصل */}
+        <AnimatedDivider colorClass="text-charcoal-mid" />
       </section>
 
       {/* ══════════════════════════════════════════
