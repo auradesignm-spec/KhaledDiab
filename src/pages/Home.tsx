@@ -113,18 +113,24 @@ export default function HomePage() {
       <Nav />
 
       {/* ══════════════════════════════════════════
-           1. HERO SECTION 
+           1. HERO SECTION (التوسيط المثالي والمضمون 100%)
          ══════════════════════════════════════════ */}
-      {/* 🛠️ زيادة lg:pb-[220px] و md:pb-[180px] لرفع المحتوى لأعلى بعيداً عن الموجة */}
-      <section className="relative h-[100dvh] min-h-[620px] w-full bg-charcoal flex flex-col items-center justify-center pt-[100px] pb-[180px] md:pt-[150px] md:pb-[180px] lg:pt-[170px] lg:pb-[220px]">
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <section className="relative h-[100dvh] min-h-[600px] w-full bg-charcoal flex flex-col items-center justify-center overflow-hidden">
+        
+        {/* طبقة الخلفية */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
           <motion.div animate={{ scale: [1, 1.06, 1], opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} className="absolute -top-[40%] -end-[15%] w-[700px] h-[700px] rounded-full border border-gold/20" />
           <motion.div animate={{ scale: [1, 1.08, 1], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2.5 }} className="absolute -top-[25%] -end-[5%] w-[480px] h-[480px] rounded-full border border-gold/12" />
           <div className="absolute inset-0 bg-gradient-to-tr from-gold/4 via-transparent to-transparent opacity-80" />
         </div>
 
-        {/* 🛠️ تغيير z-10 إلى z-30 ليكون المحتوى فوق الموجة المائية دائماً */}
-        <div className="relative z-30 text-center max-w-4xl px-6 flex flex-col items-center w-full">
+        {/* 
+          السر الهندسي المضمون: 
+          -translate-y-8: ترفع المحتوى قليلاً في الهاتف.
+          md:translate-y-8 lg:translate-y-12: تنزل المحتوى للأسفل في الكمبيوتر ليبتعد عن الهيدر بأناقة.
+        */}
+        <div className="relative z-30 text-center max-w-4xl px-6 flex flex-col items-center w-full -translate-y-8 md:translate-y-8 lg:translate-y-12">
+          
           <motion.div initial={{ scale: 0.88, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-0 md:mb-1">
             <motion.div
               animate={{ 
