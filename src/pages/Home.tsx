@@ -22,9 +22,7 @@ import BrandLogo from "@/components/BrandLogo";
 
 /* ─── الفاصل المعماري المتحرك (Breathing Wave Divider) ─── */
 const AnimatedDivider = ({ colorClass }: { colorClass: string }) => (
-  /* 🛠️ المعالجة التقنية: تم تعيين التموضع السفلي بقيمة -2px لإنشاء تداخل لوني متطابق وإغلاق فجوة الـ Sub-pixel */
   <div className="absolute left-0 w-full overflow-hidden leading-[0] h-[50px] md:h-[70px] lg:h-[100px] pointer-events-none z-20" style={{ bottom: '-2px' }}>
-    {/* الطبقة الخلفية (شفافية منخفضة وحركة بطيئة) */}
     <motion.svg viewBox="0 0 1440 120" preserveAspectRatio="none" className={`absolute bottom-0 left-0 w-full h-full ${colorClass} opacity-30`}>
       <motion.path fill="currentColor"
         animate={{
@@ -37,7 +35,6 @@ const AnimatedDivider = ({ colorClass }: { colorClass: string }) => (
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
     </motion.svg>
-    {/* الطبقة الأمامية (لون صلب وحركة متعاكسة برتم مختلف) */}
     <motion.svg viewBox="0 0 1440 120" preserveAspectRatio="none" className={`absolute bottom-0 left-0 w-full h-full ${colorClass}`}>
       <motion.path fill="currentColor"
         animate={{
@@ -115,18 +112,21 @@ export default function HomePage() {
       <Nav />
 
       {/* ══════════════════════════════════════════
-           1. HERO SECTION
+           1. HERO SECTION (المعالجة الرياضية للمسافات)
          ══════════════════════════════════════════ */}
-      {/* 🛠️ المعالجة التقنية: إزالة overflow-hidden من الحاوية الأم للسماح للموجة بالتداخل بشكل مثالي */}
-      <section className="relative h-[100dvh] min-h-[620px] w-full bg-charcoal flex flex-col items-center justify-start pt-28 md:justify-center md:pt-0 pb-24 md:pb-32 lg:pb-[180px]">
-        {/* طبقة الخلفية تحتفظ بالقص لعدم تشويه الأقسام الأخرى */}
+      {/* 🛠️ تم الحل هنا: 
+          - للهاتف: pt-[100px] و pb-[180px] تدفع المحتوى لأعلى هرباً من أزرار الهاتف.
+          - للكمبيوتر: md:pt-[180px] تدفع المحتوى لأسفل هرباً من الهيدر!
+      */}
+      <section className="relative h-[100dvh] min-h-[620px] w-full bg-charcoal flex flex-col items-center justify-center pt-[100px] pb-[180px] md:pt-[180px] md:pb-[100px] lg:pt-[200px] lg:pb-[120px]">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <motion.div animate={{ scale: [1, 1.06, 1], opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} className="absolute -top-[40%] -end-[15%] w-[700px] h-[700px] rounded-full border border-gold/20" />
           <motion.div animate={{ scale: [1, 1.08, 1], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2.5 }} className="absolute -top-[25%] -end-[5%] w-[480px] h-[480px] rounded-full border border-gold/12" />
           <div className="absolute inset-0 bg-gradient-to-tr from-gold/4 via-transparent to-transparent opacity-80" />
         </div>
 
-        <div className="relative z-10 text-center max-w-4xl px-6 flex flex-col items-center w-full mt-0 md:mt-16 lg:mt-24">
+        {/* تمت إزالة خصائص الـ margin (mt) كلياً من هنا لكي تعمل الحشوات (Padding) التي وضعناها في السطر السابق بكفاءة مطلقة */}
+        <div className="relative z-10 text-center max-w-4xl px-6 flex flex-col items-center w-full">
           <motion.div initial={{ scale: 0.88, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-0 md:mb-1">
             <motion.div
               animate={{ 
@@ -235,7 +235,6 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════
            3. DESIGN SERVICES SECTION
          ══════════════════════════════════════════ */}
-      {/* 🛠️ المعالجة التقنية: إزالة overflow-hidden من الحاوية الأم */}
       <section id="design-services" className="pt-24 pb-36 lg:pt-36 lg:pb-52 px-6 bg-charcoal text-cream-light relative">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute -start-32 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-gold/5" />
@@ -297,7 +296,6 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════
            4. EXECUTION SERVICES SECTION
          ══════════════════════════════════════════ */}
-      {/* 🛠️ المعالجة التقنية: إزالة overflow-hidden من الحاوية الأم */}
       <section id="execution-services" className="pt-24 pb-36 lg:pt-36 lg:pb-52 px-6 bg-cream-light relative">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute end-0 top-1/2 -translate-y-1/2 font-serif text-[280px] font-bold text-charcoal/3 leading-none hidden xl:block">KD</div>
@@ -350,7 +348,6 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════
            5. CONTACT SECTION
          ══════════════════════════════════════════ */}
-      {/* 🛠️ المعالجة التقنية: إزالة overflow-hidden من الحاوية الأم */}
       <section id="contact" className="py-28 lg:py-48 px-6 bg-charcoal-mid relative text-cream-light">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute -bottom-12 -start-8 font-serif text-[350px] font-bold text-gold/3 leading-none hidden md:block">KD</div>
@@ -427,7 +424,6 @@ export default function HomePage() {
         </div>
       </footer>
 
-      {/* زر واتساب العائم */}
       <WhatsAppButton />
     </div>
   );
