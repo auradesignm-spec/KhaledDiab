@@ -1,8 +1,7 @@
 import React from "react";
 
 export default function WhatsAppButton() {
-  // إعدادات التخصيص
-  const phoneNumber = "96877533603"; // استبدل بـ رقم الهاتف الدولي الخاص بك (بدون أصفار أو علامة +)
+  const phoneNumber = "968XXXXXXXX"; 
   const welcomeMessage = "مرحباً، أود الاستفسار عن خدماتكم المتميزة."; 
   
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(welcomeMessage)}`;
@@ -12,13 +11,12 @@ export default function WhatsAppButton() {
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-[99] flex items-center justify-center w-14 h-14 bg-[#25D366] rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.4)] text-white transition-all duration-300 hover:scale-110 hover:bg-[#20ba5a] active:scale-95 group"
+      // التعديل تم هنا: bottom-28 للهاتف، و md:bottom-8 للكمبيوتر
+      className="fixed bottom-28 md:bottom-8 right-6 z-[99] flex items-center justify-center w-14 h-14 bg-[#25D366] rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.4)] text-white transition-all duration-300 hover:scale-110 hover:bg-[#20ba5a] active:scale-95 group"
       aria-label="Contact us on WhatsApp"
     >
-      {/* تأثير النبض التموجي الخلفي */}
       <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-40 animate-ping pointer-events-none group-hover:animate-none" />
       
-      {/* أيقونة واتساب SVG عالية الدقة */}
       <svg
         className="w-7 h-7 fill-current relative z-10 transition-transform duration-300 group-hover:rotate-[12deg]"
         viewBox="0 0 24 24"
