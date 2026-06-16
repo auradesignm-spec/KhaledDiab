@@ -6,20 +6,16 @@ export default function WhatsAppButton() {
   const welcomeMessage = "مرحباً، أود الاستفسار عن خدماتكم المتميزة."; 
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(welcomeMessage)}`;
 
-  // حالة التحكم بظهور الرسالة
   const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
-    // ظهور أولي بعد ثانيتين من دخول العميل للموقع
     const initialShow = setTimeout(() => setShowMessage(true), 2000);
-    // اختفاء بعد 6 ثوانٍ
     const initialHide = setTimeout(() => setShowMessage(false), 6000);
 
-    // دورة ذكية: تظهر الرسالة لمدة 4 ثوانٍ ثم تختفي لتترك مساحة بصرية نظيفة
     const interval = setInterval(() => {
       setShowMessage(true);
       setTimeout(() => setShowMessage(false), 4000);
-    }, 9000); // تتكرر الدورة كل 9 ثوانٍ
+    }, 9000); 
 
     return () => {
       clearTimeout(initialShow);
@@ -30,9 +26,9 @@ export default function WhatsAppButton() {
 
   return (
     <div className="fixed bottom-33 md:bottom-9 right-6 z-[99]">
-      <div className="relative flex flex-col items-center">
+      {/* تم تغيير المحاذاة هنا إلى items-end لضمان توافق العناصر مع الجهة اليمنى */}
+      <div className="relative flex flex-col items-end">
         
-        {/* ─── رسالة التنبيه العائمة (Tooltip) ─── */}
         <AnimatePresence>
           {showMessage && (
             <motion.div
@@ -40,33 +36,29 @@ export default function WhatsAppButton() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 5, scale: 0.9 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              // استخدام التموضع المطلق (absolute) يضمن عدم دفع الزر أو التأثير على مكانه
-              className="absolute bottom-full mb-3 whitespace-nowrap bg-white text-black shadow-[0_4px_20px_rgba(0,0,0,0.15)] rounded-lg px-4 py-2 text-xs font-bold tracking-wide pointer-events-auto cursor-default"
+              // التعديل الأهم: إضافة right-0 و origin-bottom-right لمنع القص ومحاذاة الرسالة لليمين
+              className="absolute bottom-full right-0 mb-3 whitespace-nowrap bg-white text-black shadow-[0_4px_20px_rgba(0,0,0,0.15)] rounded-lg px-4 py-2 text-xs font-bold tracking-wide pointer-events-auto cursor-default origin-bottom-right"
             >
-              {/* دعم نظام اللغتين عبر كلاسات الموقع الافتراضية */}
               <span className="ar">تواصل معنا الآن</span>
               <span className="en">Contact us now</span>
               
-              {/* المثلث الصغير الموجه للأسفل باللون الأبيض المتناسق */}
-              <div className="absolute -bottom-1 w-2.5 h-2.5 bg-white left-1/2 transform -translate-x-1/2 rotate-45" />
+              {/* تعديل موضع المثلث ليبقى مؤشراً على الزر بدقة (يمين 24 بكسل) */}
+              <div className="absolute -bottom-1 w-2.5 h-2.5 bg-white right-[24px] rotate-45" />
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* ─── زر واتساب التفاعلي ─── */}
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          onMouseEnter={() => setShowMessage(true)} // إظهار الرسالة عند مرور مؤشر الماوس
-          onMouseLeave={() => setShowMessage(false)} // إخفاء الرسالة عند ابتعاد المؤشر
+          onMouseEnter={() => setShowMessage(true)} 
+          onMouseLeave={() => setShowMessage(false)} 
           className="relative flex items-center justify-center w-14 h-14 bg-[#25D366] rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.4)] text-white transition-all duration-300 hover:scale-110 hover:bg-[#20ba5a] active:scale-95 group pointer-events-auto"
           aria-label="Contact us on WhatsApp"
         >
-          {/* تأثير النبض الهيدروليكي الخلفي */}
           <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-40 animate-ping group-hover:animate-none" />
           
-          {/* أيقونة واتساب المتجهة SVG */}
           <svg
             className="w-7 h-7 fill-current relative z-10 transition-transform duration-300 group-hover:rotate-[12deg]"
             viewBox="0 0 24 24"
