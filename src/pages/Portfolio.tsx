@@ -265,6 +265,20 @@ export default function PortfolioPage() {
             { src: "/تصميم داخلي وإنارة.jpeg", label: "تناغم التصميم والإنارة" },
           ]}
         />
+
+        <InteractiveMarquee
+          speed={1.2}
+          onImageClick={setSelectedImage}
+          images={[
+            { src: "/غرفة تغيير ملابس (1).jpeg", label: "غرفة تغيير ملابس" },
+            { src: "/غرفة تغيير ملابس (2).jpeg", label: "غرفة تغيير ملابس" },
+            { src: "/غرفة تغيير ملابس (3).jpeg", label: "غرفة تغيير ملابس" },
+            { src: "/غرفة تغيير ملابس (4).jpeg", label: "غرفة تغيير ملابس" },
+            { src: "/غرفة تغيير ملابس (5).jpeg", label: "غرفة تغيير ملابس" },
+           
+           
+          ]}
+        />
       </section>
 
       {/* FOOTER */}
