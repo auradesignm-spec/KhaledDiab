@@ -82,68 +82,68 @@ export default function HomePage() {
       <Nav />
 
 {/* ══════════════════════════════════════════
-          1. HERO (منطقة عازلة لمنع تداخل المؤشر مع الزر تماماً)
-      ══════════════════════════════════════════ */}
-      {/* 🛠️ تمت زيادة lg:pb-[130px] لإنشاء منطقة آمنة للمؤشر السفلي */}
-      <section className="relative h-[100dvh] min-h-[650px] w-full bg-charcoal flex flex-col items-center justify-center overflow-hidden pt-16 pb-24 lg:pt-[120px] lg:pb-[130px]">
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <motion.div animate={{ scale: [1, 1.06, 1], opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} className="absolute -top-[40%] -end-[15%] w-[700px] h-[700px] rounded-full border border-gold/20" />
-          <motion.div animate={{ scale: [1, 1.08, 1], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2.5 }} className="absolute -top-[25%] -end-[5%] w-[480px] h-[480px] rounded-full border border-gold/12" />
-          <div className="absolute inset-0 bg-gradient-to-tr from-gold/4 via-transparent to-transparent opacity-80" />
-        </div>
+    1. HERO (منطقة عازلة لمنع تداخل المؤشر مع الزر تماماً)
+══════════════════════════════════════════ */}
+{/* 🛠️ تعديل: تقليل الحد الأدنى للارتفاع في الهواتف إلى 500px للحفاظ على التناسق */}
+<section className="relative h-[100dvh] min-h-[500px] md:min-h-[650px] w-full bg-charcoal flex flex-col items-center justify-center overflow-hidden pt-20 pb-24 lg:pt-[120px] lg:pb-[130px]">
+  <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <motion.div animate={{ scale: [1, 1.06, 1], opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} className="absolute -top-[40%] -end-[15%] w-[700px] h-[700px] rounded-full border border-gold/20" />
+    <motion.div animate={{ scale: [1, 1.08, 1], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2.5 }} className="absolute -top-[25%] -end-[5%] w-[480px] h-[480px] rounded-full border border-gold/12" />
+    <div className="absolute inset-0 bg-gradient-to-tr from-gold/4 via-transparent to-transparent opacity-80" />
+  </div>
 
-        <div className="relative z-10 text-center max-w-4xl px-6 flex flex-col items-center w-full mt-20 md:mt-24">
-          
-          <motion.div initial={{ scale: 0.88, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-0 md:mb-1">
-            <motion.div
-              animate={{ 
-                y: [0, -6, 0],
-                filter: [
-                  "drop-shadow(0px 0px 0px rgba(212,175,55,0))",
-                  "drop-shadow(0px 0px 12px rgba(212,175,55,0.5))",
-                  "drop-shadow(0px 0px 0px rgba(212,175,55,0))"
-                ]
-              }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="relative px-3 py-2 flex items-center justify-center"
-            >
-              <BrandLogo className="relative z-10 w-20 h-14 md:w-24 md:h-16 lg:w-26 lg:h-18 text-cream-light" />
-            </motion.div>
-          </motion.div>
-          
-          <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }} style={{ transformOrigin: "top" }} className="w-[1px] h-10 lg:h-12 bg-gradient-to-b from-transparent via-gold to-transparent mx-auto mb-4 lg:mb-5" />
-          
-          <motion.p initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }} className="font-sans font-medium text-[11px] md:text-xs uppercase mb-3 lg:mb-4 text-gold-light">
-            <span className="ar tracking-normal">خالد دياب</span>
-            <span className="en tracking-[0.45em] ml-2">Khaled Diab</span>
-          </motion.p>
-          
-          <motion.h1 initial={{ y: 22, opacity: 0.2 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }} className="font-serif text-5xl md:text-5xl lg:text-6xl xl:text-7xl text-cream-light leading-none -tracking-[0.02em] mb-1">
-            Future Design
-          </motion.h1>
-          <motion.h1 initial={{ y: 22, opacity: 0.2 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.75, ease: [0.16, 1, 0.3, 1] }} className="font-serif italic text-5xl md:text-5xl lg:text-6xl xl:text-7xl text-gold leading-none -tracking-[0.02em] mb-6 md:mb-8">
-            Decore
-          </motion.h1>
-          
-          <motion.div initial={{ y: 16, opacity: 0.25 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }} className="max-w-2xl mx-auto mb-8 md:mb-10">
-            <p className="font-sans font-light text-[11px] md:text-sm text-cream/60 uppercase leading-loose md:leading-loose">
-              <span className="ar tracking-normal block md:inline">تصميم داخلي · تنفيذ احترافي · إبداع لا حدود له</span>
-              <span className="en tracking-[0.15em] block md:inline">Interior Design · Professional Execution · Limitless Creativity</span>
-            </p>
-          </motion.div>
-          
-          {/* 🛠️ أزلنا الهوامش السفلية المبالغ فيها واعتمدنا على الحشوة الخاصة بالقسم الرئيسي */}
-          <motion.div initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 1.05, ease: [0.16, 1, 0.3, 1] }} className="mb-2">
-            <a href="/portfolio" className="group relative inline-flex items-center gap-3 px-10 py-4 border border-gold/40 text-gold-light font-sans text-[11px] md:text-xs uppercase overflow-hidden transition-colors duration-300 hover:text-charcoal">
-              <span className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
-              <span className="relative z-10 font-medium">
-                <span className="ar tracking-normal"> استكشف أعـمـالـنـا الإبداعية</span>
-                <span className="en tracking-[0.3em]">Explore Our Creativity</span>
-              </span>
-            </a>
-          </motion.div>
-        </div>
-      </section>
+  {/* 🛠️ تعديل: إزالة الهامش العلوي (mt-20) في الهواتف لجعله mt-0، وتطبيقه فقط في الشاشات الأكبر md:mt-12 */}
+  <div className="relative z-10 text-center max-w-4xl px-6 flex flex-col items-center w-full mt-0 md:mt-12 lg:mt-16">
+    
+    <motion.div initial={{ scale: 0.88, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-0 md:mb-1">
+      <motion.div
+        animate={{ 
+          y: [0, -6, 0],
+          filter: [
+            "drop-shadow(0px 0px 0px rgba(212,175,55,0))",
+            "drop-shadow(0px 0px 12px rgba(212,175,55,0.5))",
+            "drop-shadow(0px 0px 0px rgba(212,175,55,0))"
+          ]
+        }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        className="relative px-3 py-2 flex items-center justify-center"
+      >
+        <BrandLogo className="relative z-10 w-20 h-14 md:w-24 md:h-16 lg:w-26 lg:h-18 text-cream-light" />
+      </motion.div>
+    </motion.div>
+    
+    <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }} style={{ transformOrigin: "top" }} className="w-[1px] h-10 lg:h-12 bg-gradient-to-b from-transparent via-gold to-transparent mx-auto mb-4 lg:mb-5" />
+    
+    <motion.p initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }} className="font-sans font-medium text-[11px] md:text-xs uppercase mb-3 lg:mb-4 text-gold-light">
+      <span className="ar tracking-normal">خالد دياب</span>
+      <span className="en tracking-[0.45em] ml-2">Khaled Diab</span>
+    </motion.p>
+    
+    <motion.h1 initial={{ y: 22, opacity: 0.2 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }} className="font-serif text-5xl md:text-5xl lg:text-6xl xl:text-7xl text-cream-light leading-none -tracking-[0.02em] mb-1">
+      Future Design
+    </motion.h1>
+    <motion.h1 initial={{ y: 22, opacity: 0.2 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.75, ease: [0.16, 1, 0.3, 1] }} className="font-serif italic text-5xl md:text-5xl lg:text-6xl xl:text-7xl text-gold leading-none -tracking-[0.02em] mb-6 md:mb-8">
+      Decore
+    </motion.h1>
+    
+    <motion.div initial={{ y: 16, opacity: 0.25 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }} className="max-w-2xl mx-auto mb-8 md:mb-10">
+      <p className="font-sans font-light text-[11px] md:text-sm text-cream/60 uppercase leading-loose md:leading-loose">
+        <span className="ar tracking-normal block md:inline">تصميم داخلي · تنفيذ احترافي · إبداع لا حدود له</span>
+        <span className="en tracking-[0.15em] block md:inline">Interior Design · Professional Execution · Limitless Creativity</span>
+      </p>
+    </motion.div>
+    
+    <motion.div initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 1.05, ease: [0.16, 1, 0.3, 1] }} className="mb-2">
+      <a href="/portfolio" className="group relative inline-flex items-center gap-3 px-10 py-4 border border-gold/40 text-gold-light font-sans text-[11px] md:text-xs uppercase overflow-hidden transition-colors duration-300 hover:text-charcoal">
+        <span className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+        <span className="relative z-10 font-medium">
+          <span className="ar tracking-normal"> استكشف أعـمـالـنـا الإبداعية</span>
+          <span className="en tracking-[0.3em]">Explore Our Creativity</span>
+        </span>
+      </a>
+    </motion.div>
+  </div>
+</section>
       {/* ══════════════════════════════════════════
           2. ABOUT
       ══════════════════════════════════════════ */}
