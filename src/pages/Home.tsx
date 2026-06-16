@@ -133,11 +133,11 @@ export default function HomePage() {
           
           {/* 🛠️ أزلنا الهوامش السفلية المبالغ فيها واعتمدنا على الحشوة الخاصة بالقسم الرئيسي */}
           <motion.div initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 1.05, ease: [0.16, 1, 0.3, 1] }} className="mb-2">
-            <a href="/#design-services" className="group relative inline-flex items-center gap-3 px-10 py-4 border border-gold/40 text-gold-light font-sans text-[11px] md:text-xs uppercase overflow-hidden transition-colors duration-300 hover:text-charcoal">
+            <a href="/portfolio" className="group relative inline-flex items-center gap-3 px-10 py-4 border border-gold/40 text-gold-light font-sans text-[11px] md:text-xs uppercase overflow-hidden transition-colors duration-300 hover:text-charcoal">
               <span className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
               <span className="relative z-10 font-medium">
-                <span className="ar tracking-normal">استكشف خدماتنا</span>
-                <span className="en tracking-[0.3em]">Explore Services</span>
+                <span className="ar tracking-normal"> استكشف أعـمـالـنـا الإبداعية</span>
+                <span className="en tracking-[0.3em]">Explore Our Creativity</span>
               </span>
             </a>
           </motion.div>
