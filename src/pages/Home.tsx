@@ -112,8 +112,8 @@ export default function HomePage() {
     <div id="top" className="relative min-h-screen overflow-x-hidden bg-charcoal">
       <Nav />
 
-  {/* ══════════════════════════════════════════
-           1. HERO SECTION (الحل النهائي الجذري للمسافات)
+{/* ══════════════════════════════════════════
+           1. HERO SECTION 
          ══════════════════════════════════════════ */}
       <section className="relative h-[100dvh] min-h-[650px] w-full bg-charcoal flex flex-col items-center justify-center overflow-hidden pt-[80px] pb-[130px] lg:pt-[120px] lg:pb-[160px]">
         
@@ -124,13 +124,10 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-tr from-gold/4 via-transparent to-transparent opacity-80" />
         </div>
 
-        {/* 
-          تمت إزالة الـ translate بالكامل. 
-          الآن المتصفح يرى الحشوة السفلية pb-[160px] ويرفع المحتوى تلقائياً ليبتعد عن الموجة بأمان تام.
-        */}
         <div className="relative z-30 text-center max-w-4xl px-6 flex flex-col items-center w-full">
           
-          <motion.div initial={{ scale: 0.88, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-0 md:mb-1">
+          {/* الشعار (تمت زيادة المسافة السفلية هنا لتعويض غياب الخط) */}
+          <motion.div initial={{ scale: 0.88, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="mb-4 lg:mb-6">
             <motion.div
               animate={{ 
                 y: [0, -6, 0],
@@ -147,13 +144,15 @@ export default function HomePage() {
             </motion.div>
           </motion.div>
           
-          <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }} style={{ transformOrigin: "top" }} className="w-[1px] h-8 md:h-10 lg:h-12 bg-gradient-to-b from-transparent via-gold to-transparent mx-auto mb-3 lg:mb-5" />
+          {/* ❌ تم حذف كود الخط الطولي من هنا ❌ */}
           
+          {/* اسم المصمم */}
           <motion.p initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }} className="font-sans font-medium text-[11px] md:text-xs uppercase mb-2 lg:mb-4 text-gold-light">
             <span className="ar tracking-normal">خالد دياب</span>
             <span className="en tracking-[0.45em] ml-2">Khaled Diab</span>
           </motion.p>
           
+          {/* العناوين الرئيسية */}
           <motion.h1 initial={{ y: 22, opacity: 0.2 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }} className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-cream-light leading-none -tracking-[0.02em] mb-1">
             Future Design
           </motion.h1>
@@ -161,6 +160,7 @@ export default function HomePage() {
             Decore
           </motion.h1>
           
+          {/* الوصف */}
           <motion.div initial={{ y: 16, opacity: 0.25 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }} className="max-w-2xl mx-auto mb-6 md:mb-10">
             <p className="font-sans font-light text-[11px] md:text-sm text-cream/60 uppercase leading-loose md:leading-loose">
               <span className="ar tracking-normal block md:inline">تصميم داخلي · تنفيذ احترافي · إبداع لا حدود له</span>
@@ -168,6 +168,7 @@ export default function HomePage() {
             </p>
           </motion.div>
           
+          {/* الزر */}
           <motion.div initial={{ y: 14, opacity: 0.3 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 1.05, ease: [0.16, 1, 0.3, 1] }} className="mb-0">
             <a href="/portfolio" className="group relative inline-flex items-center gap-3 px-10 py-4 border border-gold/40 text-gold-light font-sans text-[11px] md:text-xs uppercase overflow-hidden transition-colors duration-300 hover:text-charcoal">
               <span className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
@@ -181,7 +182,6 @@ export default function HomePage() {
 
         <AnimatedDivider colorClass="text-cream-light" />
       </section>
-
       {/* ══════════════════════════════════════════
            2. ABOUT SECTION
          ══════════════════════════════════════════ */}
